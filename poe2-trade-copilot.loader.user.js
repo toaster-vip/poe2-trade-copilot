@@ -1,11 +1,14 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Loader
 // @namespace    chatgpt-poe2-trade
-// @version      1.2.0
-// @description  Loads the latest PoE2 Trade Copilot and hotfixes from GitHub on each page load
+// @version      1.3.0
+// @description  Loads the latest PoE2 Trade Copilot, GitHub search source, result collector, and GitHub save bridge
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
-// @grant        none
+// @grant        GM.getValue
+// @grant        GM.setValue
+// @grant        GM.xmlHttpRequest
+// @connect      api.github.com
 // ==/UserScript==
 
 (() => {
@@ -15,7 +18,8 @@
   const SOURCES = [
     "poe2-trade-copilot.user.js",
     "patches/result-collector.v1.js",
-    "patches/search-source.v1.js"
+    "patches/search-source.v1.js",
+    "poe2-trade-copilot.github-save.user.js"
   ];
 
   async function fetchCode(path) {
@@ -23,11 +27,7 @@
       cache: "no-store",
       credentials: "omit"
     });
-
-    if (!response.ok) {
-      throw new Error(`${path}: HTTP ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
     let code = await response.text();
     code = code.replace(/^\/\/ ==UserScript==[\s\S]*?^\/\/ ==\/UserScript==\s*/m, "");
     return code;
@@ -39,32 +39,20 @@
         const code = await fetchCode(path);
         (0, eval)(`${code}\n//# sourceURL=${path}`);
       }
-
-      console.log("[PoE2TC Loader] Latest GitHub version + patches loaded.");
+      console.log("[PoE2TC Loader] v1.3.0 loaded core + search + collector + GitHub save.");
     } catch (error) {
       console.error("[PoE2TC Loader] Failed to load remote script:", error);
-
       const box = document.createElement("div");
       box.textContent = `PoE2 Trade Copilot failed to load from GitHub: ${error.message}`;
       Object.assign(box.style, {
-        position: "fixed",
-        left: "10px",
-        right: "10px",
-        bottom: "10px",
-        zIndex: "2147483647",
-        padding: "10px",
-        borderRadius: "8px",
-        background: "#611",
-        color: "white",
-        font: "12px -apple-system,BlinkMacSystemFont,sans-serif"
+        position:"fixed", left:"10px", right:"10px", bottom:"10px", zIndex:"2147483647",
+        padding:"10px", borderRadius:"8px", background:"#611", color:"white",
+        font:"12px -apple-system,BlinkMacSystemFont,sans-serif"
       });
       document.body?.appendChild(box);
     }
   }
 
-  if (document.body) {
-    boot();
-  } else {
-    window.addEventListener("DOMContentLoaded", boot, { once: true });
-  }
+  if (document.body) boot();
+  else window.addEventListener("DOMContentLoaded", boot, { once:true });
 })();
