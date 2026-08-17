@@ -10,8 +10,8 @@
     {"label": "Buyout Price", "max": 160}
   ],
   "stats": [
-    {"text": "Physical DPS", "min": 650},
-    {"text": "Critical Chance", "min": 9}
+    {"text": "Physical DPS", "min": 635},
+    {"text": "Critical Chance", "min": 8.5}
   ],
   "search": true
 }
