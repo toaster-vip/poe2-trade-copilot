@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "remote-bootstrap-1.1";
+  const VERSION = "remote-bootstrap-1.2";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const CORE_PATH = "poe2-trade-copilot.user.js";
@@ -14,7 +14,8 @@
     "patches/result-collector.v1.js",
     "patches/search-source.v1.js",
     "patches/panel-minimize.v1.js",
-    "patches/button-layout.v1.js"
+    "patches/panel-layout.v1.js",
+    "patches/github-load-run.v1.js"
   ];
 
   function decodeBase64Utf8(base64) {
@@ -27,8 +28,8 @@
   async function fetchApiFile(path, ref = "main") {
     const url = `${API_BASE}${path}?ref=${encodeURIComponent(ref)}&t=${Date.now()}`;
     const response = await fetch(url, {
-      cache: "no-store",
-      credentials: "omit",
+      cache:"no-store",
+      credentials:"omit",
       headers: {"Accept":"application/vnd.github+json"}
     });
     if (!response.ok) throw new Error(`${path}@${ref}: GitHub API HTTP ${response.status}`);
