@@ -14,7 +14,8 @@
     {"text": "Physical Damage to Attacks", "min": 9},
     {"text": "Cold Damage to Attacks", "min": 24},
     {"text": "Cold Resistance", "min": 39},
-    {"text": "Lightning Resistance", "min": 35},
+    {"text": "Lightning Resistance", "min": 22},
+    {"text": "Dexterity", "min": 10},
     {"text": "Mana Regeneration Rate", "min": 30}
   ],
   "search": true
