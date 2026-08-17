@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Loader
 // @namespace    chatgpt-poe2-trade
-// @version      1.0.0
-// @description  Loads the latest PoE2 Trade Copilot from GitHub on each page load
+// @version      1.1.0
+// @description  Loads the latest PoE2 Trade Copilot and hotfixes from GitHub on each page load
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
 // @grant        none
@@ -11,32 +11,35 @@
 (() => {
   "use strict";
 
-  const SOURCE = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/poe2-trade-copilot.user.js";
-  const CACHE_BUSTER = `?t=${Date.now()}`;
+  const BASE = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/";
+  const SOURCES = [
+    "poe2-trade-copilot.user.js",
+    "patches/result-collector.v1.js"
+  ];
+
+  async function fetchCode(path) {
+    const response = await fetch(`${BASE}${path}?t=${Date.now()}`, {
+      cache: "no-store",
+      credentials: "omit"
+    });
+
+    if (!response.ok) {
+      throw new Error(`${path}: HTTP ${response.status}`);
+    }
+
+    let code = await response.text();
+    code = code.replace(/^\/\/ ==UserScript==[\s\S]*?^\/\/ ==\/UserScript==\s*/m, "");
+    return code;
+  }
 
   async function boot() {
     try {
-      const response = await fetch(SOURCE + CACHE_BUSTER, {
-        cache: "no-store",
-        credentials: "omit"
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+      for (const path of SOURCES) {
+        const code = await fetchCode(path);
+        (0, eval)(`${code}\n//# sourceURL=${path}`);
       }
 
-      let code = await response.text();
-
-      // Remove the userscript metadata block before evaluating the program body.
-      code = code.replace(/^\/\/ ==UserScript==[\s\S]*?^\/\/ ==\/UserScript==\s*/m, "");
-
-      // Avoid accidentally running a GitHub HTML/error page as JavaScript.
-      if (!code.includes("PoE2 Trade Copilot") && !code.includes("const VERSION")) {
-        throw new Error("Downloaded file does not look like PoE2 Trade Copilot");
-      }
-
-      (0, eval)(`${code}\n//# sourceURL=poe2-trade-copilot.remote.js`);
-      console.log("[PoE2TC Loader] Latest GitHub version loaded.");
+      console.log("[PoE2TC Loader] Latest GitHub version + patches loaded.");
     } catch (error) {
       console.error("[PoE2TC Loader] Failed to load remote script:", error);
 
