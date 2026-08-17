@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.0
+// @version      0.6.1
 // @description  Remote bootstrap for PoE2 Trade Copilot core and GitHub patches
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -16,13 +16,14 @@
   const BASE = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/";
   const PATCHES = [
     "patches/result-collector.v1.js",
-    "patches/search-source.v1.js"
+    "patches/search-source.v1.js",
+    "patches/select-retry.v1.js"
   ];
 
   async function fetchCode(url) {
     const response = await fetch(`${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`, {
       cache: "no-store",
-      credentials: "omit"
+      credentials:"omit"
     });
     if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
     let code = await response.text();
