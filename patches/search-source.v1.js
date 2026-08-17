@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.5";
+  const PATCH_VERSION = "search-source-1.6";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -78,6 +78,13 @@
     const body=norm(text);
     return tokens(wanted).reduce((n,t)=>n+(body.includes(t)?1:0),0);
   }
+  function requiredScore(wanted) {
+    const body=norm(wanted);
+    const ts=tokens(wanted);
+    const typedAttackDamage = body.includes("damage") && body.includes("attacks") &&
+      ["cold","physical","fire","lightning","chaos"].some(type=>body.includes(type));
+    return typedAttackDamage ? Math.max(1,ts.length) : Math.min(2,Math.max(1,ts.length));
+  }
   function labelOf(value) {
     if(value==null) return "";
     if(typeof value==="string"||typeof value==="number") return String(value);
@@ -96,7 +103,7 @@
       const s=score(getText(option),wanted);
       if(s>bestScore){best=option;bestScore=s;}
     }
-    const required=Math.min(2,Math.max(1,tokens(wanted).length));
+    const required=requiredScore(wanted);
     return bestScore>=required?{option:best,score:bestScore}:null;
   }
 
@@ -128,7 +135,7 @@
       const s=score(row.innerText||row.textContent||"",text);
       if(s>bestScore){best=row;bestScore=s;}
     }
-    const required=Math.min(2,Math.max(1,tokens(text).length));
+    const required=requiredScore(text);
     return bestScore>=required?best:null;
   }
   async function waitForStatRow(before,spec) {
@@ -154,7 +161,6 @@
     nativeValue(input,spec.text);
     await sleep(500);
 
-    // Prefer Vue's own select() just like the known-good Item Category/Rarity path.
     vm=vueInstanceFor(root) || vm;
     if(vm){
       let options=vueOptions(vm);
@@ -176,7 +182,6 @@
       }
     }
 
-    // DOM fallback: click the actual option node, never the wrapper element.
     const domOptions=$$(".multiselect__option, [role='option']").filter(visible);
     const picked=bestOption(domOptions,spec.text,x=>String(x.innerText||x.textContent||"").trim());
     if(!picked) return {ok:false,reason:"stat_option_not_found",options:domOptions.slice(0,20).map(x=>(x.innerText||x.textContent||"").trim())};
