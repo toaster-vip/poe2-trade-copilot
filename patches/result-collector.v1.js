@@ -1,7 +1,8 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.0";
+  const PATCH_VERSION = "collector-2.1";
+  const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -20,24 +21,17 @@
   }
 
   async function copyText(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch {}
+    try { await navigator.clipboard.writeText(text); return true; } catch {}
     try {
       const ta = document.createElement("textarea");
       ta.value = text;
       Object.assign(ta.style, {position:"fixed",left:"0",top:"0",width:"1px",height:"1px",opacity:"0"});
       document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      ta.setSelectionRange(0, ta.value.length);
+      ta.focus(); ta.select(); ta.setSelectionRange(0, ta.value.length);
       const ok = document.execCommand("copy");
       ta.remove();
       return ok;
-    } catch {
-      return false;
-    }
+    } catch { return false; }
   }
 
   function cardElements() {
@@ -124,8 +118,7 @@
     const setPos=y=>{ if(container) container.scrollTop=y; else window.scrollTo(0,y); };
     const stepSize=()=>container?Math.max(300,Math.floor(container.clientHeight*.7)):Math.max(400,Math.floor(window.innerHeight*.7));
     const original=getPos();
-    setPos(0);
-    await sleep(300);
+    setPos(0); await sleep(300);
     let last=-1, stagnant=0;
     for(let rounds=0; rounds<150; rounds++) {
       collectCurrent(map);
@@ -134,48 +127,65 @@
       stagnant=map.size===last?stagnant+1:0;
       last=map.size;
       if(pos>=max-5) {
-        await sleep(600);
-        collectCurrent(map);
+        await sleep(600); collectCurrent(map);
         const max2=getMax();
         if(stagnant>=3 && max2<=max+5) break;
       }
       setPos(Math.min(getMax(),pos+stepSize()));
       await sleep(350);
     }
-    setPos(original);
-    await sleep(100);
+    setPos(original); await sleep(100);
     return [...map.values()];
   }
 
+  function selectTop(listings) {
+    const priced = listings.filter(x => x?.price && Number.isFinite(x.price.amount));
+    const currencies = [...new Set(priced.map(x => x.price.currency))];
+    let ordered = listings.slice();
+    let sort = "page-order";
+    if (currencies.length === 1) {
+      ordered.sort((a,b) => {
+        const ap = Number.isFinite(a?.price?.amount) ? a.price.amount : Number.POSITIVE_INFINITY;
+        const bp = Number.isFinite(b?.price?.amount) ? b.price.amount : Number.POSITIVE_INFINITY;
+        return ap - bp;
+      });
+      sort = `price-asc:${currencies[0]}`;
+    }
+    return {listings: ordered.slice(0, TOP_N), sort, captured:listings.length};
+  }
+
   async function buildPacket() {
-    const listings=await collectAllResults();
+    const all=await collectAllResults();
+    const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2",
+      version:"0.5.1+collector2.1",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
-      visibleResults:listings.length,
-      listings
+      capturedResults:selected.captured,
+      returnedResults:selected.listings.length,
+      resultLimit:TOP_N,
+      sort:selected.sort,
+      listings:selected.listings
     };
   }
 
   async function copyAllResults() {
     try {
-      status("Scanning all rendered results…");
+      status(`Scanning results and selecting cheapest ${TOP_N}…`);
       const packet=await buildPacket();
       const text=JSON.stringify(packet);
       const ok=await copyText(text);
-      status(ok ? `Copied ${packet.listings.length} result(s).` : `Clipboard blocked for ${packet.listings.length} results. Use SAVE TO GITHUB.`);
+      status(ok ? `Copied ${packet.returnedResults} result(s) · ${packet.sort}.` : `Clipboard blocked. Use SAVE TO GITHUB.`);
     } catch(error) {
       console.error("[PoE2TC Collector]",error);
       status(`Collector failed: ${error.message}`);
     }
   }
 
-  // Safe bridge between page-context collector and the separate GM-permission saver.
   document.addEventListener("poe2tc:request-results", async () => {
     try {
-      status("Preparing results for GitHub…");
+      status(`Preparing cheapest ${TOP_N} for GitHub…`);
       const packet=await buildPacket();
       document.dispatchEvent(new CustomEvent("poe2tc:results-ready", {detail:JSON.stringify(packet)}));
     } catch(error) {
@@ -189,7 +199,7 @@
     const button=$("#ptc-results");
     if(!button){setTimeout(install,250);return;}
     button.onclick=copyAllResults;
-    button.textContent="COPY ALL RESULTS";
+    button.textContent=`COPY TOP ${TOP_N} RESULTS`;
     button.dataset.collectorPatch=PATCH_VERSION;
     console.log(`[PoE2TC Collector] ${PATCH_VERSION} installed.`);
   }
