@@ -12,7 +12,7 @@
   "stats": [
     {"text": "maximum Life", "min": 150},
     {"text": "maximum Mana", "min": 65},
-    {"text": "+# to Strength", "min": 18}
+    {"text": "total to Strength", "min": 18}
   ],
   "search": true
 }
