@@ -2,19 +2,17 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Ring"},
+    {"label": "Item Category", "value": "Bow"},
     {"label": "Item Rarity", "value": "Rare"},
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 30}
+    {"label": "Buyout Price", "max": 130}
   ],
   "stats": [
-    {"text": "maximum Life", "min": 78},
-    {"text": "Cold damage to Attacks", "min": 40},
-    {"text": "Cold Resistance", "min": 39},
-    {"text": "Lightning Resistance", "min": 22},
-    {"text": "Mana Regeneration Rate", "min": 30}
+    {"text": "Physical DPS", "min": 640},
+    {"text": "Critical Chance", "min": 8.2},
+    {"text": "Bow Attacks fire an additional Arrow", "min": 1}
   ],
   "search": true
 }
