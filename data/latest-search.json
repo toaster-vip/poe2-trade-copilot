@@ -10,10 +10,10 @@
     {"label": "Buyout Price", "max": 50}
   ],
   "stats": [
-    {"text": "+# to maximum Life", "min": 90},
-    {"text": "+# to maximum Mana", "min": 100},
-    {"text": "+#% to Cold Resistance", "min": 39},
-    {"text": "+#% to Lightning Resistance", "min": 22}
+    {"text": "maximum Life", "min": 90},
+    {"text": "maximum Mana", "min": 100},
+    {"text": "Cold Resistance", "min": 39},
+    {"text": "Lightning Resistance", "min": 22}
   ],
   "search": true
 }
