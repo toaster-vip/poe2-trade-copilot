@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Loader
 // @namespace    chatgpt-poe2-trade
-// @version      1.1.0
+// @version      1.2.0
 // @description  Loads the latest PoE2 Trade Copilot and hotfixes from GitHub on each page load
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -14,7 +14,8 @@
   const BASE = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/";
   const SOURCES = [
     "poe2-trade-copilot.user.js",
-    "patches/result-collector.v1.js"
+    "patches/result-collector.v1.js",
+    "patches/search-source.v1.js"
   ];
 
   async function fetchCode(path) {
