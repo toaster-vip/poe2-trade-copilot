@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.3";
+  const PATCH_VERSION = "search-source-1.4";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -64,7 +64,8 @@
   }
 
   function nativeValue(el, value) {
-    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set;
+    const proto = el instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+    const setter = Object.getOwnPropertyDescriptor(proto, "value")?.set;
     el.focus();
     if (setter) setter.call(el, String(value)); else el.value = String(value);
     el.dispatchEvent(new Event("input", {bubbles:true}));
@@ -81,17 +82,24 @@
     return tokens(wanted).reduce((n,t) => n + (body.includes(t) ? 1 : 0), 0);
   }
 
-  function numericRows() {
+  function candidateRows() {
     const pane = $(".search-advanced-pane") || document;
-    return $$(".filter", pane).filter(visible).filter(row => $$('input[type="number"]', row).some(visible));
+    return $$(".filter", pane).filter(visible);
   }
 
   function minMax(row) {
-    const inputs = $$('input[type="number"]', row).filter(visible);
+    const inputs = $$('input', row).filter(visible);
     return {
-      min: inputs.find(x => norm(x.placeholder) === "min") || inputs[0] || null,
-      max: inputs.find(x => norm(x.placeholder) === "max") || inputs[1] || null
+      min: inputs.find(x => norm(x.placeholder) === "min") || null,
+      max: inputs.find(x => norm(x.placeholder) === "max") || null
     };
+  }
+
+  function numericRows() {
+    return candidateRows().filter(row => {
+      const mm = minMax(row);
+      return !!(mm.min || mm.max);
+    });
   }
 
   function bestMatchingRow(text, rows = numericRows()) {
@@ -105,8 +113,8 @@
   }
 
   async function waitForNewStatRow(before, spec) {
-    for (let i = 0; i < 20; i++) {
-      await sleep(150);
+    for (let i = 0; i < 30; i++) {
+      await sleep(120);
       const rows = numericRows();
       const added = rows.filter(r => !before.has(r));
       const matchedAdded = bestMatchingRow(spec.text, added);
@@ -124,7 +132,7 @@
       const mm = minMax(existing);
       if (spec.min != null && mm.min) nativeValue(mm.min, spec.min);
       if (spec.max != null && mm.max) nativeValue(mm.max, spec.max);
-      return {ok:true, mode:"existing"};
+      return {ok:true, mode:"existing", rowText:(existing.innerText || existing.textContent || "").replace(/\s+/g," ").trim()};
     }
 
     const input = $("input[placeholder='+ Add Stat Filter']") || $("input[placeholder*='Add Stat Filter']");
@@ -133,9 +141,9 @@
     const before = new Set(numericRows());
     input.click();
     input.focus();
-    await sleep(120);
+    await sleep(150);
     nativeValue(input, spec.text);
-    await sleep(550);
+    await sleep(650);
 
     const options = $$(".multiselect__option, .multiselect__element, [role='option']").filter(visible);
     let best = null, bestScore = 0;
@@ -155,21 +163,24 @@
     if (!row) return {ok:false, reason:"created_row_not_found"};
     const mm = minMax(row);
     if (spec.min != null) {
-      if (!mm.min) return {ok:false, reason:"created_min_not_found"};
+      if (!mm.min) return {ok:false, reason:"created_min_not_found", rowText:(row.innerText||row.textContent||"").trim()};
       nativeValue(mm.min, spec.min);
     }
     if (spec.max != null) {
-      if (!mm.max) return {ok:false, reason:"created_max_not_found"};
+      if (!mm.max) return {ok:false, reason:"created_max_not_found", rowText:(row.innerText||row.textContent||"").trim()};
       nativeValue(mm.max, spec.max);
     }
     return {ok:true, mode:"created", rowText:(row.innerText || row.textContent || "").replace(/\s+/g," ").trim()};
   }
 
-  function selectedValue(label) {
+  function propertyRows() {
     const pane = $(".search-advanced-pane") || document;
+    return $$(".filter.filter-property", pane).filter(visible);
+  }
+
+  function selectedValue(label) {
     const wanted = norm(label);
-    const rows = $$(".filter.filter-property", pane).filter(visible);
-    const row = rows.find(r => norm(r.innerText || r.textContent || "").startsWith(wanted));
+    const row = propertyRows().find(r => norm(r.innerText || r.textContent || "").startsWith(wanted));
     const root = row?.querySelector(".multiselect") || row?.querySelector("[role='combobox']");
     const vm = root ? (root.__vue__ || root.__vueParentComponent || null) : null;
     const vals = vm ? [vm.internalValue,vm.value,vm.modelValue,vm.selected,vm.currentValue,vm.$props?.value] : [];
@@ -180,11 +191,31 @@
     return String(v.label ?? v.name ?? v.text ?? v.value ?? v.id ?? "");
   }
 
+  function findPropertyRow(label) {
+    const wanted = norm(label);
+    const rows = propertyRows();
+    return rows.find(r => {
+      const text = norm(r.innerText || r.textContent || "");
+      return text === wanted || text.startsWith(wanted + " ") || text.includes(wanted);
+    }) || null;
+  }
+
+  function propertyValueMatches(spec) {
+    const row = findPropertyRow(spec.label);
+    if (!row) return false;
+    const mm = minMax(row);
+    if (spec.min != null && String(mm.min?.value ?? "") !== String(spec.min)) return false;
+    if (spec.max != null && String(mm.max?.value ?? "") !== String(spec.max)) return false;
+    return true;
+  }
+
   async function waitForCorePreparation(packet) {
     const selects = Array.isArray(packet.selects) ? packet.selects : [];
-    for (let i = 0; i < 50; i++) {
-      const ok = selects.every(s => norm(selectedValue(s.label)) === norm(s.value));
-      if (ok) return true;
+    const fields = Array.isArray(packet.fields) ? packet.fields : [];
+    for (let i = 0; i < 80; i++) {
+      const selectsOk = selects.every(s => norm(selectedValue(s.label)) === norm(s.value));
+      const fieldsOk = fields.every(propertyValueMatches);
+      if (selectsOk && fieldsOk) return true;
       await sleep(120);
     }
     return false;
@@ -193,33 +224,43 @@
   function installStatBridge(runButton, box) {
     if (runButton.dataset.statBridge === PATCH_VERSION) return;
     runButton.dataset.statBridge = PATCH_VERSION;
+    let bypass = false;
 
     runButton.addEventListener("click", event => {
+      if (bypass) return;
+
       let packet;
       try { packet = JSON.parse(box.value); } catch { return; }
       const stats = Array.isArray(packet.stats) ? packet.stats : [];
       if (!stats.length) return;
 
-      // Let the known-good v0.5.1 core keep doing clear/select/property fields.
-      // We temporarily remove dynamic stats because its old row lookup is too narrow
-      // for the current PoE2 trade DOM, then add those stats here and click Search.
-      const originalText = box.value;
-      const delegated = {...packet, stats:[], search:false};
-      box.value = JSON.stringify(delegated, null, 2);
-      box.dispatchEvent(new Event("input", {bubbles:true}));
-
-      setTimeout(() => {
-        box.value = originalText;
-        box.dispatchEvent(new Event("input", {bubbles:true}));
-      }, 0);
+      // Own this click completely so the old core can never submit the unfiltered search.
+      event.preventDefault();
+      event.stopImmediatePropagation();
 
       (async () => {
-        status("Preparing base filters before dynamic stats...");
+        const originalText = box.value;
+        const delegated = {...packet, stats:[], search:false};
+        box.value = JSON.stringify(delegated, null, 2);
+        box.dispatchEvent(new Event("input", {bubbles:true}));
+        box.dispatchEvent(new Event("change", {bubbles:true}));
+
+        status("Preparing base filters...");
+        bypass = true;
+        runButton.click();
+        bypass = false;
+
         const prepared = await waitForCorePreparation(packet);
         if (!prepared) {
+          box.value = originalText;
+          box.dispatchEvent(new Event("input", {bubbles:true}));
           status("Dynamic stat bridge aborted: base filters did not finish.");
           return;
         }
+
+        box.value = originalText;
+        box.dispatchEvent(new Event("input", {bubbles:true}));
+        box.dispatchEvent(new Event("change", {bubbles:true}));
         await sleep(250);
 
         const audit = [];
@@ -228,13 +269,13 @@
           const result = await addDynamicStat(spec);
           audit.push({spec,result});
           if (!result.ok) {
-            window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:false,packet,audit};
-            status(`Dynamic stat failed: ${spec.text} · ${result.reason}. COPY DEBUG and send it.`);
+            window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:false,version:PATCH_VERSION,packet,audit};
+            status(`Dynamic stat failed: ${spec.text} · ${result.reason}.`);
             return;
           }
         }
 
-        window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:true,packet,audit};
+        window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:true,version:PATCH_VERSION,packet,audit};
         const search = $("button.search-btn");
         if (!search) {
           status("Dynamic stats ready, but Search button was not found.");
@@ -243,8 +284,9 @@
         status("Dynamic stats verified. Searching...");
         search.click();
       })().catch(error => {
+        bypass = false;
         console.error("[PoE2TC Stat Bridge]", error);
-        window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:false,error:String(error),packet};
+        window.__POE2TC_STAT_BRIDGE_DEBUG = {ok:false,version:PATCH_VERSION,error:String(error),packet};
         status(`Dynamic stat bridge failed: ${error.message}`);
       });
     }, true);
