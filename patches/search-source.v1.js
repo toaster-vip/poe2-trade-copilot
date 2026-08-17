@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.6";
+  const PATCH_VERSION = "search-source-1.7";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -254,13 +254,14 @@
     if(spec.max!=null&&String(mm.max?.value??"")!==String(spec.max)) return false;
     return true;
   }
-  async function waitForCorePreparation(packet){
+  async function waitForCorePreparation(packet,coreStats=[]){
     const selects=Array.isArray(packet.selects)?packet.selects:[];
     const fields=Array.isArray(packet.fields)?packet.fields:[];
     for(let i=0;i<80;i++){
       const selectsOk=selects.every(s=>norm(selectedValue(s.label))===norm(s.value));
       const fieldsOk=fields.every(propertyValueMatches);
-      if(selectsOk&&fieldsOk) return true;
+      const coreStatsOk=coreStats.every(s=>propertyValueMatches({label:s.text,min:s.min,max:s.max}));
+      if(selectsOk&&fieldsOk&&coreStatsOk) return true;
       await sleep(120);
     }
     return false;
@@ -275,20 +276,25 @@
       let packet; try{packet=JSON.parse(box.value);}catch{return;}
       const stats=Array.isArray(packet.stats)?packet.stats:[];
       if(!stats.length) return;
+
+      const coreStats=stats.filter(spec=>!!findPropertyRow(spec.text));
+      const dynamicStats=stats.filter(spec=>!findPropertyRow(spec.text));
+      if(!dynamicStats.length) return;
+
       event.preventDefault(); event.stopImmediatePropagation();
 
       (async()=>{
         const originalText=box.value;
-        const delegated={...packet,stats:[],search:false};
+        const delegated={...packet,stats:coreStats,search:false};
         box.value=JSON.stringify(delegated,null,2);
         box.dispatchEvent(new Event("input",{bubbles:true}));
         box.dispatchEvent(new Event("change",{bubbles:true}));
-        status("Preparing base filters...");
+        status("Preparing base filters and numeric properties...");
         bypass=true; runButton.click(); bypass=false;
-        const prepared=await waitForCorePreparation(packet);
+        const prepared=await waitForCorePreparation(packet,coreStats);
         if(!prepared){
           box.value=originalText; box.dispatchEvent(new Event("input",{bubbles:true}));
-          status("Dynamic stat bridge aborted: base filters did not finish."); return;
+          status("Dynamic stat bridge aborted: base/numeric filters did not finish."); return;
         }
         box.value=originalText;
         box.dispatchEvent(new Event("input",{bubbles:true}));
@@ -296,17 +302,17 @@
         await sleep(250);
 
         const audit=[];
-        for(const spec of stats){
+        for(const spec of dynamicStats){
           status(`Adding stat: ${spec.text}...`);
           const result=await addDynamicStat(spec);
           audit.push({spec,result});
-          window.__POE2TC_STAT_BRIDGE_DEBUG={ok:result.ok,version:PATCH_VERSION,packet,audit};
+          window.__POE2TC_STAT_BRIDGE_DEBUG={ok:result.ok,version:PATCH_VERSION,packet,coreStats,dynamicStats,audit};
           if(!result.ok){status(`Dynamic stat failed: ${spec.text} · ${result.reason}.`);return;}
         }
-        window.__POE2TC_STAT_BRIDGE_DEBUG={ok:true,version:PATCH_VERSION,packet,audit};
+        window.__POE2TC_STAT_BRIDGE_DEBUG={ok:true,version:PATCH_VERSION,packet,coreStats,dynamicStats,audit};
         const search=$("button.search-btn");
         if(!search){status("Dynamic stats ready, but Search button was not found.");return;}
-        status("Dynamic stats verified. Searching..."); search.click();
+        status("Numeric and dynamic stats verified. Searching..."); search.click();
       })().catch(error=>{
         bypass=false;
         console.error("[PoE2TC Stat Bridge]",error);
