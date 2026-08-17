@@ -10,10 +10,9 @@
     {"label": "Buyout Price", "max": 50}
   ],
   "stats": [
-    {"text": "maximum Life", "min": 200},
-    {"text": "maximum Mana", "min": 50},
+    {"text": "maximum Life", "min": 165},
+    {"text": "maximum Mana", "min": 90},
     {"text": "Strength", "min": 20},
-    {"text": "Cold Resistance", "min": 10},
     {"text": "Chaos Resistance", "min": 15}
   ],
   "search": true
