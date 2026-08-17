@@ -2,16 +2,18 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Bow"},
+    {"label": "Item Category", "value": "Ring"},
     {"label": "Item Rarity", "value": "Rare"},
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 160}
+    {"label": "Buyout Price", "max": 50}
   ],
   "stats": [
-    {"text": "Physical DPS", "min": 620},
-    {"text": "Critical Chance", "min": 8.0}
+    {"text": "+# to maximum Life", "min": 90},
+    {"text": "+# to maximum Mana", "min": 100},
+    {"text": "+#% to Cold Resistance", "min": 39},
+    {"text": "+#% to Lightning Resistance", "min": 22}
   ],
   "search": true
 }
