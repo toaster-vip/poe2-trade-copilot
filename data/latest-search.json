@@ -7,11 +7,11 @@
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 200}
+    {"label": "Buyout Price", "max": 160}
   ],
   "stats": [
-    {"text": "Physical DPS", "min": 620},
-    {"text": "Critical Chance", "min": 8}
+    {"text": "Physical DPS", "min": 650},
+    {"text": "Critical Chance", "min": 9}
   ],
   "search": true
 }
