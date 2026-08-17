@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "remote-bootstrap-1.6";
+  const VERSION = "remote-bootstrap-1.7";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const CORE_PATH = "poe2-trade-copilot.user.js";
@@ -9,6 +9,7 @@
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
 
   const CRITICAL_MODULES = [
+    "patches/pre-run-reset.v1.js",
     "patches/result-collector.v1.js",
     "patches/search-source.v1.js",
     "patches/github-load-run.v1.js"
