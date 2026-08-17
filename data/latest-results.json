@@ -1,15 +1,15 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
   "version": "0.5.1+collector2.1",
-  "capturedAt": "2026-08-17T14:39:56.185Z",
-  "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Runes%20of%20Aldur/ky0pgGbQC5",
-  "capturedResults": 2,
-  "returnedResults": 2,
+  "capturedAt": "2026-08-17T14:46:12.969Z",
+  "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Runes%20of%20Aldur/G6P7VMbBUb",
+  "capturedResults": 1,
+  "returnedResults": 1,
   "resultLimit": 50,
   "sort": "price-asc:Divine Orb",
   "listings": [
     {
-      "name": "Vortex Knuckle",
+      "name": "Maelström Spiral",
       "baseType": "Sapphire Ring",
       "itemClass": "Ring",
       "itemLevel": 82,
@@ -22,50 +22,10 @@
       "elementalDps": null,
       "totalDps": null,
       "price": {
-        "amount": 1,
+        "amount": 25,
         "currency": "Divine Orb"
       },
-      "seller": "young1703#3862",
-      "listedAgo": "22 hours ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "+26% to Cold Resistance",
-        "Adds 16 to 32 Physical Damage to AttacksP1",
-        "+113 to maximum LifeP1",
-        "+154 to maximum ManaP2",
-        "+29% to Cold ResistanceS4",
-        "+43% to Lightning ResistanceS1",
-        "32% increased Mana Regeneration RateS4",
-        "+113 total maximum Life",
-        "+55% total to Cold Resistance",
-        "+43% total to Lightning Resistance"
-      ]
-    },
-    {
-      "name": "Dragon Turn",
-      "baseType": "Sapphire Ring",
-      "itemClass": "Ring",
-      "itemLevel": 82,
-      "quality": null,
-      "requirements": "Level 60",
-      "physicalDamage": null,
-      "criticalChance": null,
-      "attacksPerSecond": null,
-      "physicalDps": null,
-      "elementalDps": null,
-      "totalDps": null,
-      "price": {
-        "amount": 3,
-        "currency": "Divine Orb"
-      },
-      "seller": "savok1980#0568",
+      "seller": "Leg3nd27#5930",
       "listedAgo": "last month",
       "corrupted": false,
       "sanctified": false,
@@ -76,16 +36,16 @@
       "projectileSkillLevels": 0,
       "attackCostEfficiency": 0,
       "mods": [
-        "+24% to Cold Resistance",
-        "Adds 19 to 30 Physical Damage to AttacksP1",
-        "+108 to Accuracy RatingP5",
-        "+95 to maximum LifeP2",
-        "+31% to Cold ResistanceS3",
-        "+37% to Lightning ResistanceS2",
-        "46% increased Mana Regeneration RateS3",
-        "+95 total maximum Life",
-        "+55% total to Cold Resistance",
-        "+37% total to Lightning Resistance"
+        "+30% to Cold Resistance",
+        "Adds 11 to 17 Physical Damage to AttacksP3",
+        "Adds 23 to 37 Cold damage to AttacksP1",
+        "+83 to maximum LifeP3",
+        "+41% to Cold ResistanceS1",
+        "+36% to Lightning ResistanceS2",
+        "41% increased Mana Regeneration RateS3",
+        "+83 total maximum Life",
+        "+71% total to Cold Resistance",
+        "+36% total to Lightning Resistance"
       ]
     }
   ]
