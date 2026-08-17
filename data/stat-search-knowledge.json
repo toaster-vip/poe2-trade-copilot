@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-17",
+  "rules": {
+    "neverGuessFromItemText": true,
+    "verifyActualUiSection": true,
+    "unknownStatPolicy": "test_one_stat_first",
+    "sourceOfTruth": "official PoE2 Trade page observed behavior"
+  },
+  "entries": [
+    {
+      "key": "maximum_life",
+      "intent": "item grants maximum Life",
+      "kind": "stat",
+      "query": "maximum Life",
+      "status": "verified",
+      "observedUi": "PSEUDO total maximum Life",
+      "notes": "Successfully created Stat Filter row. Do not use '+# to maximum Life'."
+    },
+    {
+      "key": "maximum_mana",
+      "intent": "item grants maximum Mana",
+      "kind": "stat",
+      "query": "maximum Mana",
+      "status": "verified",
+      "observedUi": "PSEUDO total maximum Mana",
+      "notes": "Successfully created Stat Filter row."
+    },
+    {
+      "key": "cold_resistance",
+      "intent": "item grants Cold Resistance",
+      "kind": "stat",
+      "query": "Cold Resistance",
+      "status": "verified",
+      "observedUi": "PSEUDO total to Cold Resistance",
+      "notes": "Successfully created Stat Filter row."
+    },
+    {
+      "key": "lightning_resistance",
+      "intent": "item grants Lightning Resistance",
+      "kind": "stat",
+      "query": "Lightning Resistance",
+      "status": "verified",
+      "observedUi": "PSEUDO total to Lightning Resistance",
+      "notes": "Successfully created Stat Filter row."
+    },
+    {
+      "key": "grants_strength",
+      "intent": "item grants Strength as a modifier",
+      "kind": "stat",
+      "query": null,
+      "status": "unverified",
+      "candidatesToTest": ["Strength", "total Strength", "total to Strength"],
+      "knownFailures": [
+        {
+          "query": "Strength",
+          "failure": "executor classified it as Requirements → Strength, which is equip requirement rather than an item modifier"
+        },
+        {
+          "query": "+# to Strength",
+          "failure": "stat_option_not_found"
+        }
+      ],
+      "notes": "Must be tested as a forced dynamic Stat Filter. Do not use a bare property match."
+    },
+    {
+      "key": "physical_dps",
+      "intent": "weapon Physical DPS",
+      "kind": "property",
+      "label": "Physical DPS",
+      "status": "verified"
+    },
+    {
+      "key": "critical_chance",
+      "intent": "weapon Critical Chance",
+      "kind": "property",
+      "label": "Critical Chance",
+      "status": "verified"
+    },
+    {
+      "key": "buyout_price",
+      "intent": "maximum listing buyout price",
+      "kind": "trade",
+      "label": "Buyout Price",
+      "status": "verified"
+    }
+  ]
+}
