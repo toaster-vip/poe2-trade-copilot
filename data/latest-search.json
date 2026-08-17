@@ -2,16 +2,34 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Bow"},
-    {"label": "Item Rarity", "value": "Rare"},
-    {"label": "Buyout Price", "value": "Divine Orb"}
+    {
+      "label": "Item Category",
+      "value": "Bow"
+    },
+    {
+      "label": "Item Rarity",
+      "value": "Rare"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
+    }
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 160}
+    {
+      "label": "Buyout Price",
+      "max": 160
+    }
   ],
   "stats": [
-    {"text": "Physical DPS", "min": 635},
-    {"text": "Critical Chance", "min": 8.5}
+    {
+      "text": "Physical DPS",
+      "min": 635
+    },
+    {
+      "text": "Critical Chance",
+      "min": 8.5
+    }
   ],
   "search": true
 }
