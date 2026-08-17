@@ -11,8 +11,7 @@
   ],
   "stats": [
     {"text": "maximum Life", "min": 78},
-    {"text": "Physical Damage to Attacks", "min": 16},
-    {"text": "Cold damage to Attacks", "min": 37},
+    {"text": "Cold damage to Attacks", "min": 40},
     {"text": "Cold Resistance", "min": 39},
     {"text": "Lightning Resistance", "min": 22},
     {"text": "Mana Regeneration Rate", "min": 30}
