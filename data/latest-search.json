@@ -7,12 +7,12 @@
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 20}
+    {"label": "Buyout Price", "max": 30}
   ],
   "stats": [
     {"text": "maximum Life", "min": 78},
-    {"text": "Physical Damage to Attacks", "min": 15},
-    {"text": "Cold damage to Attacks", "min": 9},
+    {"text": "Physical Damage to Attacks", "min": 16},
+    {"text": "Cold damage to Attacks", "min": 37},
     {"text": "Cold Resistance", "min": 39},
     {"text": "Lightning Resistance", "min": 22},
     {"text": "Mana Regeneration Rate", "min": 30}
