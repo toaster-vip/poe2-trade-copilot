@@ -7,11 +7,11 @@
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 130}
+    {"label": "Buyout Price", "max": 130},
+    {"label": "Physical DPS", "min": 620},
+    {"label": "Critical Chance", "min": 8.0}
   ],
   "stats": [
-    {"text": "Physical DPS", "min": 620},
-    {"text": "Critical Chance", "min": 8.0},
     {"text": "Bow Attacks fire an additional Arrow", "min": 1}
   ],
   "search": true
