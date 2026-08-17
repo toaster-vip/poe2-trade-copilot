@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Loader
 // @namespace    chatgpt-poe2-trade
-// @version      1.6.1
+// @version      1.6.2
 // @description  Loads known-good PoE2 Trade core in page context and always-current GitHub patches
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -18,7 +18,8 @@
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
   const PATCH_PATHS = [
     "patches/result-collector.v1.js",
-    "patches/search-source.v1.js"
+    "patches/search-source.v1.js",
+    "patches/panel-minimize.v1.js"
   ];
 
   function decodeBase64Utf8(base64) {
@@ -63,8 +64,8 @@
 
   async function boot() {
     try {
-      if (window.__POE2TC_LOADER_161_RUNNING) return;
-      window.__POE2TC_LOADER_161_RUNNING = true;
+      if (window.__POE2TC_LOADER_162_RUNNING) return;
+      window.__POE2TC_LOADER_162_RUNNING = true;
 
       const coreFile = await fetchCore();
       const core = stripHeader(coreFile.code);
@@ -78,13 +79,13 @@
         loaded.push(`${path.split('/').pop()}@${file.sha ? file.sha.slice(0,7) : "unknown"}`);
       }
 
-      window.__POE2TC_LOADER_INFO = {version:"1.6.1", coreSource:coreFile.source, loaded};
-      console.log(`[PoE2TC Loader] v1.6.1 loaded core via ${coreFile.source}; patches: ${loaded.join(", ")}`);
+      window.__POE2TC_LOADER_INFO = {version:"1.6.2", coreSource:coreFile.source, loaded};
+      console.log(`[PoE2TC Loader] v1.6.2 loaded core via ${coreFile.source}; patches: ${loaded.join(", ")}`);
 
       const waitForStatus = () => {
         const el = document.querySelector("#ptc-status");
         if (!el) return setTimeout(waitForStatus, 250);
-        el.textContent = `Loader 1.6.1 · core ${coreFile.source} · current GitHub patches loaded`;
+        el.textContent = `Loader 1.6.2 · core ${coreFile.source} · current GitHub patches loaded`;
       };
       waitForStatus();
     } catch (error) {
