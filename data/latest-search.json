@@ -13,7 +13,6 @@
     {"text": "Has # Charm Slots", "min": 3},
     {"text": "maximum Life", "min": 150},
     {"text": "maximum Mana", "min": 70},
-    {"text": "Strength", "min": 18},
     {"text": "Cold Resistance", "min": 10},
     {"text": "Chaos Resistance", "min": 10}
   ],
