@@ -7,12 +7,13 @@
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 50}
+    {"label": "Buyout Price", "max": 50},
+    {"label": "Armour", "min": 250}
   ],
   "stats": [
-    {"text": "maximum Life", "min": 150},
-    {"text": "maximum Mana", "min": 65},
-    {"text": "total to Strength", "min": 18}
+    {"text": "maximum Life", "min": 160},
+    {"text": "maximum Mana", "min": 80},
+    {"text": "total to Strength", "min": 20}
   ],
   "search": true
 }
