@@ -2,12 +2,16 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Belt"},
-    {"label": "Item Rarity", "value": "Rare"}
+    {"label": "Item Category", "value": "Amulet"},
+    {"label": "Item Rarity", "value": "Rare"},
+    {"label": "Buyout Price", "value": "Divine Orb"}
   ],
-  "fields": [],
+  "fields": [
+    {"label": "Buyout Price", "max": 50}
+  ],
   "stats": [
-    {"text": "Has # Charm Slots", "min": 3}
+    {"text": "level of all Projectile Skills", "min": 3},
+    {"text": "Spirit", "min": 30}
   ],
   "search": true
 }
