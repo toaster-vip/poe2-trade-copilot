@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.2";
+  const PATCH_VERSION = "collector-2.3";
   const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -66,7 +66,19 @@
     return index >= 2 ? {name:clean[index-2],baseType:clean[index-1],itemClass:clean[index]} : {name:clean[0]||null,baseType:clean[1]||null,itemClass:clean[2]||null};
   }
 
-  function parseSockets(text, lines) {
+  function parseSocketDom(card) {
+    const selectors = ['[class*="socket"]','[class*="rune"]','[class*="soul-core"]','[data-socket]','[data-rune]'];
+    const nodes = [...new Set(selectors.flatMap(sel => { try { return [...card.querySelectorAll(sel)]; } catch { return []; } }))];
+    const visibleNodes = nodes.filter(el => visible(el));
+    const descriptors = visibleNodes.map(el => ({tag:el.tagName,className:String(el.className||""),title:el.getAttribute("title")||null,aria:el.getAttribute("aria-label")||null,dataSocket:el.getAttribute("data-socket")||null,dataRune:el.getAttribute("data-rune")||null}));
+    const likely = visibleNodes.filter(el => {
+      const d = String(el.className||"")+" "+String(el.getAttribute("title")||"")+" "+String(el.getAttribute("aria-label")||"")+" "+String(el.getAttribute("data-socket")||"")+" "+String(el.getAttribute("data-rune")||"");
+      return /socket|rune|soul.?core/i.test(d);
+    });
+    return {count:likely.length||null,descriptors};
+  }
+
+  function parseSockets(text, lines, card) {
     const socketLine = lines.find(line => /^(?:Sockets?|Rune Sockets?|Sockets? \(Rune\))\s*:/i.test(line));
     let socketCount = null;
     if (socketLine) {
@@ -81,14 +93,16 @@
     if (socketCount == null) socketCount = num(text, /(?:Rune )?Sockets?\s*:?\s*([0-9]+)/i);
     const bonded = lines.filter(line => /^Bonded:/i.test(line));
     const runeLines = lines.filter(line => /\b(?:Rune|Soul Core)\b/i.test(line) && !/^(?:Rune )?Sockets?\s*:/i.test(line));
-    return {socketCount, bondedEffects: bonded, socketedRunes: runeLines};
+    const dom = parseSocketDom(card);
+    if (socketCount == null) socketCount = dom.count;
+    return {socketCount,bondedEffects:bonded,socketedRunes:runeLines,socketDom:dom.descriptors};
   }
 
   function parseCard(card) {
     const text = String(card.innerText || "").replace(/\u00a0/g," ").trim();
     const lines = text.split("\n").map(x=>x.trim()).filter(Boolean);
     const id = identifyItem(lines);
-    const sockets = parseSockets(text, lines);
+    const sockets = parseSockets(text, lines, card);
     const seller = text.match(/([^\s\n]+#[0-9]+)\s+listed\s+([^\n]+)/i);
     const phys = text.match(/Physical Damage:\s*([0-9]+)\s*[-–]\s*([0-9]+)/i);
     const mods = lines.filter(line => {
@@ -105,7 +119,7 @@
       physicalDps:num(text,/Physical DPS\s*:?\s*([0-9.]+)/i),elementalDps:num(text,/Elemental DPS\s*:?\s*([0-9.]+)/i),totalDps:num(text,/(?:^|\n)DPS\s*:?\s*([0-9.]+)/im),
       price:parsePrice(text),seller:seller?.[1]||null,listedAgo:seller?.[2]?.trim()||null,
       corrupted:/\bCorrupted\b/i.test(text),sanctified:/\bSanctified\b/i.test(text),additionalArrow:/fire an additional arrow/i.test(text),
-      socketCount:sockets.socketCount,bondedEffects:sockets.bondedEffects,socketedRunes:sockets.socketedRunes,
+      socketCount:sockets.socketCount,bondedEffects:sockets.bondedEffects,socketedRunes:sockets.socketedRunes,socketDom:sockets.socketDom,
       manaLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Mana/i)||0,
       lifeLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Life/i)||0,
       attackSkillLevels:num(text,/\+([0-9]+)\s+to Level of all Attack Skills/i)||0,
@@ -179,7 +193,7 @@
     const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.2",
+      version:"0.5.1+collector2.3",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       capturedResults:selected.captured,
