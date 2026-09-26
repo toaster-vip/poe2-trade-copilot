@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.9";
+  const PATCH_VERSION = "search-source-1.10";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -23,40 +23,29 @@
   }
 
   async function fetchLatestSearch() {
-    const headers={"Accept":"application/vnd.github+json","Cache-Control":"no-cache","Pragma":"no-cache"};
     try {
-      // Resolve the newest commit that actually touched latest-search.json, then
-      // fetch the file pinned to that immutable commit. This avoids any stale
-      // moving-main response from intermediary/browser caches.
-      const commitsUrl=`https://api.github.com/repos/toaster-vip/poe2-trade-copilot/commits?path=data/latest-search.json&sha=main&per_page=1&t=${Date.now()}`;
-      const commitsResponse=await fetch(commitsUrl,{cache:"no-store",credentials:"omit",headers});
-      if(!commitsResponse.ok) throw new Error(`GitHub commits HTTP ${commitsResponse.status}`);
-      const commits=await commitsResponse.json();
-      const commitSha=Array.isArray(commits)&&commits[0]?.sha?commits[0].sha:null;
-      if(!commitSha) throw new Error("latest-search commit SHA not found");
-
-      const pinnedUrl=`https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=${encodeURIComponent(commitSha)}&t=${Date.now()}`;
-      const response=await fetch(pinnedUrl,{cache:"no-store",credentials:"omit",headers});
-      if(!response.ok) throw new Error(`GitHub pinned contents HTTP ${response.status}`);
-      const payload=await response.json();
-      if(!payload?.content) throw new Error("GitHub API response missing content");
-      return {text:decodeBase64Utf8(payload.content),sha:payload.sha||null,commitSha,source:"api-pinned"};
+      const response = await fetch(`${API_SOURCE}&t=${Date.now()}`, {
+        cache: "no-store",
+        credentials: "omit",
+        headers: {"Accept":"application/vnd.github+json"}
+      });
+      if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
+      const payload = await response.json();
+      if (!payload?.content) throw new Error("GitHub API response missing content");
+      return {
+        text:decodeBase64Utf8(payload.content),
+        sha:payload.sha||null,
+        commitSha:null,
+        source:"api-main"
+      };
     } catch (apiError) {
-      console.warn("[PoE2TC Search Source] Pinned API load failed; trying moving-main API", apiError);
-      try {
-        const response = await fetch(`${API_SOURCE}&t=${Date.now()}`, {
-          cache: "no-store", credentials: "omit", headers
-        });
-        if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
-        const payload = await response.json();
-        if (!payload?.content) throw new Error("GitHub API response missing content");
-        return {text:decodeBase64Utf8(payload.content),sha:payload.sha||null,commitSha:null,source:"api-main-fallback"};
-      } catch (mainError) {
-        console.warn("[PoE2TC Search Source] API main load failed; trying raw fallback", mainError);
-        const response = await fetch(`${RAW_FALLBACK}?t=${Date.now()}`, {cache:"no-store",credentials:"omit",headers:{"Cache-Control":"no-cache","Pragma":"no-cache"}});
-        if (!response.ok) throw new Error(`GitHub raw HTTP ${response.status}`);
-        return {text:await response.text(),sha:null,commitSha:null,source:"raw-fallback"};
-      }
+      console.warn("[PoE2TC Search Source] API load failed; trying raw fallback", apiError);
+      const response = await fetch(`${RAW_FALLBACK}?t=${Date.now()}`, {
+        cache:"no-store",
+        credentials:"omit"
+      });
+      if (!response.ok) throw new Error(`GitHub raw HTTP ${response.status}`);
+      return {text:await response.text(),sha:null,commitSha:null,source:"raw-fallback"};
     }
   }
 
