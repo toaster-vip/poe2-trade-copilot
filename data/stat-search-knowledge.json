@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-17",
+  "updatedAt": "2026-09-26",
   "rules": {
     "neverGuessFromItemText": true,
     "verifyActualUiSection": true,
@@ -50,7 +50,11 @@
       "kind": "stat",
       "query": null,
       "status": "unverified",
-      "candidatesToTest": ["Strength", "total Strength", "total to Strength"],
+      "candidatesToTest": [
+        "Strength",
+        "total Strength",
+        "total to Strength"
+      ],
       "knownFailures": [
         {
           "query": "Strength",
@@ -83,6 +87,22 @@
       "kind": "trade",
       "label": "Buyout Price",
       "status": "verified"
+    },
+    {
+      "key": "evasion",
+      "intent": "item Evasion property",
+      "kind": "property",
+      "label": "Evasion",
+      "status": "verified",
+      "notes": "Observed as an Equipment Filter numeric property in saved official Trade page map."
+    },
+    {
+      "key": "energy_shield",
+      "intent": "item Energy Shield property",
+      "kind": "property",
+      "label": "Energy Shield",
+      "status": "verified",
+      "notes": "Observed as an Equipment Filter numeric property in saved official Trade page map."
     }
   ]
 }
