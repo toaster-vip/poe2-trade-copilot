@@ -1,52 +1,11 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
   "version": "0.5.1+collector2.1",
-  "capturedAt": "2026-08-17T15:51:20.841Z",
-  "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Runes%20of%20Aldur/G6P7VMbBUb",
-  "capturedResults": 1,
-  "returnedResults": 1,
+  "capturedAt": "2026-09-26T01:50:35.696Z",
+  "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Forbidden%20Rites/H4sIAAAAAAAAE6tWKi5JLCktVrKqVsovKMnMz1OyUkrMq1Sq1QHLACWiq5VKKgtSweIpSjpKaZk5JalFIInY2thaAAPLoFBBAAAA",
+  "capturedResults": 0,
+  "returnedResults": 0,
   "resultLimit": 50,
-  "sort": "price-asc:Divine Orb",
-  "listings": [
-    {
-      "name": "Maelström Spiral",
-      "baseType": "Sapphire Ring",
-      "itemClass": "Ring",
-      "itemLevel": 82,
-      "quality": null,
-      "requirements": "Level 65",
-      "physicalDamage": null,
-      "criticalChance": null,
-      "attacksPerSecond": null,
-      "physicalDps": null,
-      "elementalDps": null,
-      "totalDps": null,
-      "price": {
-        "amount": 25,
-        "currency": "Divine Orb"
-      },
-      "seller": "Leg3nd27#5930",
-      "listedAgo": "last month",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "+30% to Cold Resistance",
-        "Adds 11 to 17 Physical Damage to AttacksP3",
-        "Adds 23 to 37 Cold damage to AttacksP1",
-        "+83 to maximum LifeP3",
-        "+41% to Cold ResistanceS1",
-        "+36% to Lightning ResistanceS2",
-        "41% increased Mana Regeneration RateS3",
-        "+83 total maximum Life",
-        "+71% total to Cold Resistance",
-        "+36% total to Lightning Resistance"
-      ]
-    }
-  ]
+  "sort": "page-order",
+  "listings": []
 }
