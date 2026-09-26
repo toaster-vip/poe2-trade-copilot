@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.4";
+  const PATCH_VERSION = "run-wrapper-1.5";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -72,6 +72,57 @@
     }
     return [];
   }
+  function allSelectRoots(){
+    return [...document.querySelectorAll(".multiselect, [role='combobox']")]
+      .filter(el => !el.closest("#ptc"));
+  }
+  function selectControlCandidates(spec){
+    const wantedValue = norm(spec.value);
+    const wantedLabel = norm(spec.label);
+    const out = [];
+    for (const r of allSelectRoots()) {
+      const vm = r.__vue__ || r.__vueParentComponent || null;
+      const opts = options(vm);
+      const optionLabels = opts.map(label);
+      const exactIndex = optionLabels.findIndex(x => norm(x) === wantedValue);
+      if (exactIndex < 0) continue;
+
+      let node = r;
+      let distance = 0;
+      let labelDistance = 999;
+      let labelContext = "";
+      while (node && node !== document.body && distance < 10) {
+        const text = norm(node.innerText || node.textContent || "");
+        if (text.includes(wantedLabel)) {
+          labelDistance = distance;
+          labelContext = String(node.innerText || node.textContent || "").replace(/\s+/g," ").trim().slice(0,400);
+          break;
+        }
+        node = node.parentElement;
+        distance++;
+      }
+      const input = r.querySelector("input.multiselect__input") || r.querySelector("input") || null;
+      const score = (labelDistance < 999 ? 10000 - labelDistance * 500 : 0) - Math.min(labelContext.length,400);
+      out.push({root:r,vm,input,opts,optionLabels,exactIndex,labelDistance,labelContext,score});
+    }
+    out.sort((a,b)=>b.score-a.score);
+    return out;
+  }
+  function nearestLabelContext(el,label,maxDepth=10){
+    const wanted = norm(label);
+    let node = el;
+    for (let distance=0; node && node!==document.body && distance<=maxDepth; distance++, node=node.parentElement) {
+      const text = norm(node.innerText || node.textContent || "");
+      if (text.includes(wanted)) {
+        return {
+          distance,
+          node,
+          text:String(node.innerText || node.textContent || "").replace(/\s+/g," ").trim()
+        };
+      }
+    }
+    return null;
+  }
   function displayed(row){
     const candidates = [
       row?.querySelector(".multiselect__single"),
@@ -136,59 +187,76 @@
     return true;
   }
   async function setField(spec){
-    const attempts = [];
-    let last = "not_started";
-    for (let attempt=1; attempt<=5; attempt++) {
-      const row = findRow(spec.label);
-      const mm = minMax(row);
-      const trace = {
+    const attempts=[];
+    let last="not_started";
+
+    function candidatesFor(kind){
+      const wantedPlaceholder=kind==="min"?"min":"max";
+      return [...document.querySelectorAll("input")]
+        .filter(el=>!el.closest("#ptc"))
+        .filter(el=>{
+          const p=norm(el.placeholder);
+          return p===wantedPlaceholder || (el.type==="number" && (p==="" || p===wantedPlaceholder));
+        })
+        .map(el=>{
+          const ctx=nearestLabelContext(el,spec.label,10);
+          return {el,ctx};
+        })
+        .filter(x=>!!x.ctx)
+        .sort((a,b)=>{
+          if(a.ctx.distance!==b.ctx.distance) return a.ctx.distance-b.ctx.distance;
+          return a.ctx.text.length-b.ctx.text.length;
+        });
+    }
+
+    for(let attempt=1; attempt<=5; attempt++){
+      const minCandidates=spec.min!=null?candidatesFor("min"):[];
+      const maxCandidates=spec.max!=null?candidatesFor("max"):[];
+      const minEl=spec.min!=null?(minCandidates[0]?.el||null):null;
+      const maxEl=spec.max!=null?(maxCandidates[0]?.el||null):null;
+      const trace={
         attempt,
-        rowFound: !!row,
-        minFound: !!mm.min,
-        maxFound: !!mm.max,
-        rowText: String(row?.innerText || row?.textContent || "").replace(/\s+/g," ").trim().slice(0,500)
+        minCandidates:minCandidates.slice(0,8).map(x=>({distance:x.ctx.distance,context:x.ctx.text.slice(0,280),value:x.el.value})),
+        maxCandidates:maxCandidates.slice(0,8).map(x=>({distance:x.ctx.distance,context:x.ctx.text.slice(0,280),value:x.el.value})),
+        minFound:spec.min==null||!!minEl,
+        maxFound:spec.max==null||!!maxEl
       };
-      if (!row) {
-        last = "row_not_found";
-        trace.reason = last;
+
+      if(spec.min!=null&&!minEl){
+        last="min_not_found";
+        trace.reason=last;
         attempts.push(trace);
-        await sleep(450 * attempt);
+        await sleep(450*attempt);
         continue;
       }
-      if (spec.min != null && !mm.min) {
-        last = "min_not_found";
-        trace.reason = last;
+      if(spec.max!=null&&!maxEl){
+        last="max_not_found";
+        trace.reason=last;
         attempts.push(trace);
-        await sleep(450 * attempt);
-        continue;
-      }
-      if (spec.max != null && !mm.max) {
-        last = "max_not_found";
-        trace.reason = last;
-        attempts.push(trace);
-        await sleep(450 * attempt);
+        await sleep(450*attempt);
         continue;
       }
 
-      if (spec.min != null) setNumericInput(mm.min,spec.min);
-      if (spec.max != null) setNumericInput(mm.max,spec.max);
-      await sleep(350 + 150 * attempt);
+      if(minEl) setNumericInput(minEl,spec.min);
+      if(maxEl) setNumericInput(maxEl,spec.max);
+      await sleep(350+150*attempt);
 
-      const rowAfter = findRow(spec.label) || row;
-      const mmAfter = minMax(rowAfter);
-      trace.afterMin = mmAfter.min?.value ?? null;
-      trace.afterMax = mmAfter.max?.value ?? null;
-      if (fieldCommitted(rowAfter,spec)) {
+      trace.afterMin=minEl?.value??null;
+      trace.afterMax=maxEl?.value??null;
+      const minOk=spec.min==null||String(minEl?.value??"")===String(spec.min);
+      const maxOk=spec.max==null||String(maxEl?.value??"")===String(spec.max);
+      if(minOk&&maxOk){
         attempts.push(trace);
         return {ok:true,attempt,attempts};
       }
 
-      last = "value_not_committed";
-      trace.reason = last;
+      last="value_not_committed";
+      trace.reason=last;
       attempts.push(trace);
       status(`Retrying ${spec.label} (${attempt}/5)…`);
-      await sleep(500 * attempt);
+      await sleep(500*attempt);
     }
+
     return {ok:false,reason:last,attempts};
   }
 
@@ -200,86 +268,111 @@
 
   async function choose(spec){
     const attempts=[];
-    let last = "not_started";
-    for (let attempt=1; attempt<=5; attempt++) {
-      const row = findRow(spec.label);
-      const i = input(row);
-      const trace={attempt,rowFound:!!row,inputFound:!!i,beforeDisplay:displayed(row)};
-      if (!row || !i) {
-        last = !row ? "row_not_found" : "input_not_found";
+    let last="not_started";
+
+    for(let attempt=1; attempt<=5; attempt++){
+      let candidates=selectControlCandidates(spec);
+      let target=candidates[0]||null;
+      const trace={
+        attempt,
+        candidateCount:candidates.length,
+        candidates:candidates.slice(0,10).map(c=>({
+          optionLabels:c.optionLabels.slice(0,25),
+          labelDistance:c.labelDistance,
+          labelContext:c.labelContext,
+          score:c.score
+        })),
+        inputFound:!!target?.input
+      };
+
+      if(!target){
+        last="exact_option_control_not_found";
         trace.reason=last;
         attempts.push(trace);
-        await sleep(450 * attempt);
+        await sleep(450*attempt);
         continue;
       }
 
-      await sleep(400 + 250 * attempt);
-      let vm = vue(row);
-      trace.vueFound=!!vm;
-      if (vm) {
-        let opts = options(vm);
-        trace.vueOptions=opts.slice(0,25).map(label);
-        if (!opts.length) {
-          i.click();
-          await sleep(450 + 200 * attempt);
-          vm = vue(row);
-          opts = options(vm);
-          trace.vueOptionsAfterOpen=opts.slice(0,25).map(label);
-        }
-        const opt = opts.find(o => exact(label(o),spec.value));
-        if (opt) {
-          trace.vueExactFound=true;
-          try {
-            if (typeof vm.select === "function") vm.select(opt);
-            else if (typeof vm.$emit === "function") {
-              vm.$emit("input",opt);
-              vm.$emit("update:modelValue",opt);
-            }
-          } catch (e) { trace.vueError=String(e); }
-          await close(vm,i);
-          await sleep(350);
-          trace.afterVueDisplay=displayed(row);
-          trace.afterVueValue=label(selected(vue(row)));
-          if (committed(row,spec.value)) {
-            attempts.push(trace);
-            return {ok:true,attempt,mode:"vue",attempts};
+      let vm=target.vm;
+      let i=target.input;
+      let opts=target.opts;
+      trace.vueOptions=opts.slice(0,25).map(label);
+
+      if(!i){
+        last="input_not_found";
+        trace.reason=last;
+        attempts.push(trace);
+        await sleep(450*attempt);
+        continue;
+      }
+
+      if(!opts.length){
+        i.click();
+        await sleep(450+200*attempt);
+        candidates=selectControlCandidates(spec);
+        target=candidates[0]||target;
+        vm=target.vm;
+        i=target.input||i;
+        opts=target.opts;
+        trace.vueOptionsAfterOpen=opts.slice(0,25).map(label);
+      }
+
+      const opt=opts.find(o=>exact(label(o),spec.value));
+      if(opt){
+        trace.vueExactFound=true;
+        try{
+          if(typeof vm?.select==="function") vm.select(opt);
+          else if(typeof vm?.$emit==="function"){
+            vm.$emit("input",opt);
+            vm.$emit("update:modelValue",opt);
           }
+        }catch(e){ trace.vueError=String(e); }
+
+        await close(vm,i);
+        await sleep(350);
+
+        const afterVm=target.root ? (target.root.__vue__ || target.root.__vueParentComponent || vm) : vm;
+        trace.afterVueValue=label(selected(afterVm));
+        trace.afterDisplay=String(target.root?.innerText||target.root?.textContent||"").replace(/\s+/g," ").trim().slice(0,250);
+
+        if(exact(trace.afterVueValue,spec.value) || norm(trace.afterDisplay).includes(norm(spec.value))){
+          attempts.push(trace);
+          return {ok:true,attempt,mode:"vue-global-exact",attempts};
         }
       }
 
-      // DOM fallback. Open, type exact desired text, then click exact visible option.
+      // DOM fallback scoped to this exact control.
       i.click();
       await sleep(120);
       setInput(i,spec.value);
-      await sleep(750 + 250 * attempt);
-      const opts = domOptions();
-      trace.domOptions=opts.slice(0,35).map(x=>x.text);
-      let opt = opts.find(x => exact(x.text,spec.value));
-      if (!opt) opt = opts.find(x => norm(x.text).startsWith(norm(spec.value) + " "));
-      if (opt) {
+      await sleep(750+250*attempt);
+      const localOptions=[...target.root.querySelectorAll(".multiselect__option, .multiselect__element, [role='option']")]
+        .filter(visible)
+        .map(el=>({el,text:String(el.innerText||el.textContent||"").replace(/\s+/g," ").trim()}));
+      trace.domOptions=localOptions.slice(0,35).map(x=>x.text);
+      const domOpt=localOptions.find(x=>exact(x.text,spec.value)) || localOptions.find(x=>norm(x.text).startsWith(norm(spec.value)+" "));
+      if(domOpt){
         trace.domExactFound=true;
-        for (const type of ["pointerdown","mousedown","pointerup","mouseup","click"]) {
-          try { opt.el.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,view:window})); } catch {}
+        for(const type of ["pointerdown","mousedown","pointerup","mouseup","click"]){
+          try{domOpt.el.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,view:window}));}catch{}
         }
         await sleep(500);
-        await close(vue(row),i);
-        trace.afterDomDisplay=displayed(row);
-        trace.afterDomValue=label(selected(vue(row)));
-        trace.inputValue=i.value;
-        if (committed(row,spec.value)) {
+        const afterVm=target.root ? (target.root.__vue__ || target.root.__vueParentComponent || vm) : vm;
+        trace.afterDomValue=label(selected(afterVm));
+        trace.finalInput=i.value;
+        if(exact(trace.afterDomValue,spec.value) || norm(target.root?.innerText||target.root?.textContent||"").includes(norm(spec.value))){
           attempts.push(trace);
-          return {ok:true,attempt,mode:"dom",attempts};
+          return {ok:true,attempt,mode:"dom-global-exact",attempts};
         }
       }
 
-      last = `selection_not_committed:${label(selected(vue(row))) || "empty"}`;
+      last=`selection_not_committed:${label(selected(vm))||"empty"}`;
       trace.reason=last;
-      trace.finalDisplay=displayed(row);
-      trace.finalInput=i.value;
       attempts.push(trace);
       status(`Retrying ${spec.label} (${attempt}/5)…`);
-      await sleep(500 * attempt);
+      await sleep(500*attempt);
     }
+
     return {ok:false,reason:last,attempts};
   }
 
