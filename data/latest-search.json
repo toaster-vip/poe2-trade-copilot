@@ -18,15 +18,15 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 1200
+      "max": 800
     },
     {
       "label": "Evasion",
-      "min": 850
+      "min": 950
     },
     {
       "label": "Energy Shield",
-      "min": 250
+      "min": 290
     }
   ],
   "stats": [],
