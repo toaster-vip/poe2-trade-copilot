@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.4";
+  const PATCH_VERSION = "collector-2.5";
   const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -51,12 +51,22 @@
     return m ? Number(String(m[1]).replace(/,/g, "")) : null;
   }
 
+  function canonicalCurrency(value) {
+    const v = norm(value);
+    if (v === "mirror" || v === "mirror of kalandra") return "Mirror of Kalandra";
+    if (v === "divine" || v === "divine orb") return "Divine Orb";
+    if (v === "exalted" || v === "exalted orb") return "Exalted Orb";
+    if (v === "regal" || v === "regal orb") return "Regal Orb";
+    if (v === "chaos" || v === "chaos orb") return "Chaos Orb";
+    return String(value || "").trim() || null;
+  }
+
   function parsePrice(text) {
-    let m = text.match(/Asking Price\s*:?\s*[\r\n ]*([0-9.,]+)\s*[×x]?\s*(Divine Orb|Exalted Orb|Regal Orb|Chaos Orb)/i);
-    if (m) return {amount:Number(m[1].replace(/,/g,"")),currency:m[2]};
-    m = text.match(/~b\/o\s+([0-9.,]+)\s+(divine|exalted|regal|chaos)/i);
+    let m = text.match(/Asking Price\s*:?\s*[\r\n ]*([0-9.,]+)\s*[×x]?\s*(Divine Orb|Exalted Orb|Regal Orb|Chaos Orb|Mirror of Kalandra)/i);
+    if (m) return {amount:Number(m[1].replace(/,/g,"")),currency:canonicalCurrency(m[2])};
+    m = text.match(/~b\/o\s+([0-9.,]+)\s+(divine|exalted|regal|chaos|mirror(?: of kalandra)?)/i);
     if (!m) return null;
-    return {amount:Number(m[1].replace(/,/g,"")),currency:m[2][0].toUpperCase()+m[2].slice(1).toLowerCase()+" Orb"};
+    return {amount:Number(m[1].replace(/,/g,"")),currency:canonicalCurrency(m[2])};
   }
 
   function identifyItem(lines) {
@@ -108,7 +118,7 @@
     const mods = lines.filter(line => {
       if (line===id.name || line===id.baseType || line===id.itemClass || /^Verified$/i.test(line)) return false;
       if (/^(Quality|Physical Damage|Cold Damage|Fire Damage|Lightning Damage|Chaos Damage|Critical Hit Chance|Attacks per Second|Item Level|Requires|DPS|Physical DPS|Elemental DPS|Asking Price|Fee):?/i.test(line)) return false;
-      if (/^~b\/o/i.test(line) || /^[0-9.,]+×.*Orb$/i.test(line) || /\slisted\s/i.test(line) || /^Travel to Hideout$/i.test(line) || /^Ignore Player$/i.test(line)) return false;
+      if (/^~b\/o/i.test(line) || /^[0-9.,]+\s*[×x]?\s*(?:Divine Orb|Exalted Orb|Regal Orb|Chaos Orb|Mirror of Kalandra)$/i.test(line) || /\slisted\s/i.test(line) || /^Travel to Hideout$/i.test(line) || /^Ignore Player$/i.test(line)) return false;
       return true;
     });
     return {
@@ -193,7 +203,7 @@
     const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.4",
+      version:"0.5.1+collector2.5",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       capturedResults:selected.captured,
