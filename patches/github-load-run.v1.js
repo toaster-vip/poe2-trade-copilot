@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.0";
+  const VERSION = "github-load-run-1.1";
   const $ = (s, r = document) => r.querySelector(s);
 
   function install() {
@@ -16,12 +16,15 @@
 
     loadButton.addEventListener("click", () => {
       const before = box.value;
+      const beforeLoadedAt = window.__POE2TC_LAST_SEARCH_SOURCE?.loadedAt || null;
       let tries = 0;
       const timer = setInterval(() => {
         tries += 1;
-        const changed = box.value && box.value !== before;
+        const changed = !!box.value && box.value !== before;
+        const source = window.__POE2TC_LAST_SEARCH_SOURCE || null;
+        const freshLoad = !!source?.loadedAt && source.loadedAt !== beforeLoadedAt;
         const status = $("#ptc-status")?.textContent || "";
-        const loaded = /Loaded current main/i.test(status);
+        const loaded = freshLoad || /Loaded (?:current main|commit )/i.test(status);
 
         if (changed && loaded) {
           clearInterval(timer);
@@ -29,7 +32,7 @@
           return;
         }
 
-        if (tries >= 40) clearInterval(timer);
+        if (tries >= 60) clearInterval(timer);
       }, 100);
     }, false);
 
