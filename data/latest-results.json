@@ -1,13 +1,125 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
   "version": "0.5.1+collector2.5",
-  "capturedAt": "2026-09-26T18:58:05.872Z",
+  "capturedAt": "2026-09-26T19:07:00.327Z",
   "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Forbidden%20Rites/H4sIAAAAAAAAE6tWKi5JLCktVrKqVsovKMnMz1OyUkrMq1Sq1QHLACWiq5VKKgtSweIpSjpKaZk5JalFIInY2thaAAPLoFBBAAAA",
-  "capturedResults": 10,
-  "returnedResults": 10,
+  "capturedResults": 17,
+  "returnedResults": 17,
   "resultLimit": 50,
   "sort": "price-asc:Divine Orb",
   "listings": [
+    {
+      "name": "Storm Guardian",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 81,
+      "quality": 29,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 299,
+      "maximumLife": 40,
+      "dexterity": 26,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 32,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 152,
+        "currency": "Divine Orb"
+      },
+      "seller": "Сидорович#3411",
+      "listedAgo": "2 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 986",
+        "Energy Shield: 299",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "139% increased Evasion and Energy ShieldP1 + P1",
+        "+48 to maximum LifeP1",
+        "+26 to DexterityS3",
+        "+32% to Lightning ResistanceS3",
+        "16% increased Energy Shield Recharge RateS1",
+        "+87 to Evasion RatingP1",
+        "+26 to maximum Energy ShieldP1",
+        "Corrupted",
+        "Evasion986",
+        "Energy Shield299"
+      ]
+    },
     {
       "name": "Golem Keep",
       "baseType": "Grinning Mask",
@@ -149,7 +261,7 @@
         "currency": "Divine Orb"
       },
       "seller": "SomelxD#1966",
-      "listedAgo": "24 minutes ago",
+      "listedAgo": "33 minutes ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
@@ -232,6 +344,566 @@
       ]
     },
     {
+      "name": "Pandemonium Ward",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 82,
+      "quality": 27,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 293,
+      "maximumLife": 40,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 33,
+      "lightningResistance": 44,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 178,
+        "currency": "Divine Orb"
+      },
+      "seller": "Edward#0270",
+      "listedAgo": "2 hours ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 992",
+        "Energy Shield: 293",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "16% increased Rarity of Items foundS1",
+        "+94 to Evasion RatingP1",
+        "+26 to maximum Energy ShieldP1",
+        "96% increased Evasion and Energy ShieldP1",
+        "+33% to Cold ResistanceS3",
+        "+44% to Lightning ResistanceS1",
+        "42% increased Evasion and Energy ShieldP1",
+        "+44 to maximum LifeP1",
+        "Evasion992",
+        "Energy Shield293"
+      ]
+    },
+    {
+      "name": "Rage Glance",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 83,
+      "quality": 27,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 293,
+      "maximumLife": 40,
+      "dexterity": 0,
+      "intelligence": 32,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 45,
+      "lightningResistance": 0,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 178,
+        "currency": "Divine Orb"
+      },
+      "seller": "Edward#0270",
+      "listedAgo": "2 hours ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 992",
+        "Energy Shield: 293",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "17% increased Rarity of Items foundS1",
+        "+94 to Evasion RatingP1",
+        "+26 to maximum Energy ShieldP1",
+        "39% increased Evasion and Energy ShieldP1",
+        "+43 to maximum LifeP1",
+        "+32 to IntelligenceS2",
+        "+45% to Cold ResistanceS1",
+        "99% increased Evasion and Energy ShieldP1",
+        "Evasion992",
+        "Energy Shield293"
+      ]
+    },
+    {
+      "name": "Doom Veil",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 81,
+      "quality": 26,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 298,
+      "maximumLife": 40,
+      "dexterity": 31,
+      "intelligence": 35,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 34,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 189,
+        "currency": "Divine Orb"
+      },
+      "seller": "Сидорович#3411",
+      "listedAgo": "2 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 991",
+        "Energy Shield: 298",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "+92 to Evasion RatingP1",
+        "+27 to maximum Energy ShieldP1",
+        "100% increased Evasion and Energy ShieldP1",
+        "+31 to DexterityS1",
+        "+35 to IntelligenceS1",
+        "+34% to Fire ResistanceS3",
+        "42% increased Evasion and Energy ShieldP1",
+        "+38 to maximum ManaP1",
+        "Corrupted",
+        "Evasion991",
+        "Energy Shield298"
+      ]
+    },
+    {
+      "name": "Miracle Visage",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 80,
+      "quality": 30,
+      "requirements": "Level 80, 40 Dex, 40 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 297,
+      "maximumLife": 40,
+      "dexterity": 0,
+      "intelligence": 28,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 32,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 220,
+        "currency": "Divine Orb"
+      },
+      "seller": "Serekk#6470",
+      "listedAgo": "3 days ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 965",
+        "Energy Shield: 297",
+        "36% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "+32% to Lightning ResistanceS3",
+        "133% increased Evasion and Energy ShieldP1 + P2",
+        "+30 to maximum ManaP2",
+        "35% reduced Attribute RequirementsS1",
+        "+28 to IntelligenceS3",
+        "+89 to Evasion RatingP1",
+        "+28 to maximum Energy ShieldP1",
+        "Evasion965",
+        "Energy Shield297"
+      ]
+    },
+    {
+      "name": "Rapture Cowl",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 82,
+      "quality": 24,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 299,
+      "maximumLife": 40,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 36,
+      "coldResistance": 31,
+      "lightningResistance": 38,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 245,
+        "currency": "Divine Orb"
+      },
+      "seller": "Codyward#2104",
+      "listedAgo": "26 minutes ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 972",
+        "Energy Shield: 299",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "140% increased Evasion and Energy ShieldP1 + P1",
+        "+37 to maximum ManaP1",
+        "+36% to Fire ResistanceS2",
+        "+31% to Cold ResistanceS3",
+        "+38% to Lightning ResistanceS2",
+        "+93 to Evasion RatingP1",
+        "+29 to maximum Energy ShieldP1",
+        "Corrupted",
+        "Evasion972",
+        "Energy Shield299"
+      ]
+    },
+    {
       "name": "Agony Star",
       "baseType": "Grinning Mask",
       "itemClass": "Helmet",
@@ -260,7 +932,7 @@
         "currency": "Divine Orb"
       },
       "seller": "Codyward#2104",
-      "listedAgo": "17 minutes ago",
+      "listedAgo": "26 minutes ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
@@ -570,6 +1242,231 @@
       ]
     },
     {
+      "name": "Dread Cowl",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 82,
+      "quality": 29,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 311,
+      "maximumLife": 40,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 39,
+      "lightningResistance": 0,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 500,
+        "currency": "Divine Orb"
+      },
+      "seller": "Ari#6797",
+      "listedAgo": "2 minutes ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 1015",
+        "Energy Shield: 311",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "18% increased Rarity of Items foundS1",
+        "+94 to Evasion RatingP1",
+        "+29 to maximum Energy ShieldP1",
+        "41% increased Evasion and Energy ShieldP1",
+        "+33 to maximum ManaP1",
+        "33% increased Critical Hit ChanceS1",
+        "+39% to Cold ResistanceS2",
+        "99% increased Evasion and Energy ShieldP1",
+        "Corrupted",
+        "Evasion1015",
+        "Energy Shield311"
+      ]
+    },
+    {
+      "name": "Rapture Veil",
+      "baseType": "Grinning Mask",
+      "itemClass": "Helmet",
+      "itemLevel": 82,
+      "quality": 27,
+      "requirements": "Level 80, 63 Dex, 63 Int",
+      "armour": null,
+      "evasion": null,
+      "energyShield": 297,
+      "maximumLife": 40,
+      "dexterity": 29,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 45,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": null,
+      "criticalChance": null,
+      "attacksPerSecond": null,
+      "physicalDps": null,
+      "elementalDps": null,
+      "totalDps": null,
+      "price": {
+        "amount": 500,
+        "currency": "Divine Orb"
+      },
+      "seller": "huimimao#0232",
+      "listedAgo": "5 hours ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "Evasion Rating: 989",
+        "Energy Shield: 297",
+        "40% increased Armour, Evasion and Energy Shield",
+        "Bonded: +40 to maximum Life",
+        "Bonded: +40 to maximum Mana",
+        "+29 to DexterityS2",
+        "+93 to Evasion RatingP1",
+        "+27 to maximum Energy ShieldP1",
+        "96% increased Evasion and Energy ShieldP1",
+        "+45% to Fire ResistanceS1",
+        "Gain Deflection Rating equal to 22% of Evasion RatingS1",
+        "42% increased Evasion and Energy ShieldP1",
+        "+45 to maximum LifeP1",
+        "Evasion989",
+        "Energy Shield297"
+      ]
+    },
+    {
       "name": "Hypnotic Salvation",
       "baseType": "Grinning Mask",
       "itemClass": "Helmet",
@@ -682,22 +1579,22 @@
       ]
     },
     {
-      "name": "Dread Cowl",
+      "name": "Apocalypse Crest",
       "baseType": "Grinning Mask",
       "itemClass": "Helmet",
-      "itemLevel": 82,
-      "quality": 29,
+      "itemLevel": 80,
+      "quality": 28,
       "requirements": "Level 80, 63 Dex, 63 Int",
       "armour": null,
       "evasion": null,
-      "energyShield": 311,
+      "energyShield": 297,
       "maximumLife": 40,
       "dexterity": 0,
-      "intelligence": 0,
+      "intelligence": 31,
       "strength": 0,
       "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 39,
+      "fireResistance": 36,
+      "coldResistance": 0,
       "lightningResistance": 0,
       "physicalDamage": null,
       "criticalChance": null,
@@ -706,12 +1603,12 @@
       "elementalDps": null,
       "totalDps": null,
       "price": {
-        "amount": 600,
+        "amount": 555,
         "currency": "Divine Orb"
       },
-      "seller": "Ari#6797",
-      "listedAgo": "8 hours ago",
-      "corrupted": true,
+      "seller": "Сидорович#3411",
+      "listedAgo": "2 hours ago",
+      "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
       "socketCount": null,
@@ -776,22 +1673,20 @@
       "projectileSkillLevels": 0,
       "attackCostEfficiency": 0,
       "mods": [
-        "Evasion Rating: 1015",
-        "Energy Shield: 311",
+        "Evasion Rating: 979",
+        "Energy Shield: 297",
         "40% increased Armour, Evasion and Energy Shield",
         "Bonded: +40 to maximum Life",
         "Bonded: +40 to maximum Mana",
-        "18% increased Rarity of Items foundS1",
-        "+94 to Evasion RatingP1",
-        "+29 to maximum Energy ShieldP1",
-        "41% increased Evasion and Energy ShieldP1",
-        "+33 to maximum ManaP1",
-        "33% increased Critical Hit ChanceS1",
-        "+39% to Cold ResistanceS2",
-        "99% increased Evasion and Energy ShieldP1",
-        "Corrupted",
-        "Evasion1015",
-        "Energy Shield311"
+        "136% increased Evasion and Energy ShieldP1 + P1",
+        "+37 to maximum ManaP1",
+        "+2 to Level of all Minion SkillsS1",
+        "+31 to IntelligenceS2",
+        "+36% to Fire ResistanceS2",
+        "+90 to Evasion RatingP1",
+        "+27 to maximum Energy ShieldP1",
+        "Evasion979",
+        "Energy Shield297"
       ]
     },
     {
@@ -1016,118 +1911,6 @@
         "+26 to maximum Energy ShieldP1",
         "Evasion1016",
         "Energy Shield302"
-      ]
-    },
-    {
-      "name": "Beast Dome",
-      "baseType": "Grinning Mask",
-      "itemClass": "Helmet",
-      "itemLevel": 82,
-      "quality": 30,
-      "requirements": "Level 80, 63 Dex, 63 Int",
-      "armour": null,
-      "evasion": null,
-      "energyShield": 315,
-      "maximumLife": 40,
-      "dexterity": 0,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 43,
-      "coldResistance": 42,
-      "lightningResistance": 0,
-      "physicalDamage": null,
-      "criticalChance": null,
-      "attacksPerSecond": null,
-      "physicalDps": null,
-      "elementalDps": null,
-      "totalDps": null,
-      "price": {
-        "amount": 888,
-        "currency": "Divine Orb"
-      },
-      "seller": "liuliyuan0113#2344",
-      "listedAgo": "6 hours ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: +40 to maximum Life",
-        "Bonded: +40 to maximum Mana"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets2",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "Evasion Rating: 1015",
-        "Energy Shield: 315",
-        "40% increased Armour, Evasion and Energy Shield",
-        "Bonded: +40 to maximum Life",
-        "Bonded: +40 to maximum Mana",
-        "42% increased Evasion and Energy ShieldP1",
-        "+44 to maximum LifeP1",
-        "100% increased Evasion and Energy ShieldP1",
-        "+43% to Fire ResistanceS1",
-        "+42% to Cold ResistanceS1",
-        "Gain Deflection Rating equal to 23% of Evasion RatingS1",
-        "+90 to Evasion RatingP1",
-        "+29 to maximum Energy ShieldP1",
-        "Evasion1015",
-        "Energy Shield315"
       ]
     }
   ]
