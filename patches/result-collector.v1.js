@@ -74,7 +74,7 @@
       const explicit = rhs.match(/\b([0-9]+)\b/);
       if (explicit) socketCount = Number(explicit[1]);
       else {
-        const marks = rhs.match(/(?:\b[RGBW]\b|○|●|◉|◇|◆)/gi);
+        const marks = rhs.match(/(?:\\b[RGBW]\\b|○|●|◉|◇|◆)/gi);
         if (marks?.length) socketCount = marks.length;
       }
     }
