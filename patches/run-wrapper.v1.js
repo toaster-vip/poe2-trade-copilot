@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.2";
+  const PATCH_VERSION = "run-wrapper-1.3";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -17,17 +17,36 @@
   };
   const exact = (a,b) => norm(a) === norm(b);
 
-  function rows(){
-    const pane = document.querySelector(".search-advanced-pane") || document;
-    return [...pane.querySelectorAll(".filter.filter-property")].filter(visible);
+  function candidateRows(){
+    const scope = document.querySelector(".search-advanced-pane") || document;
+    const selectors = [".filter.filter-property", ".filter", "[class*='filter']"];
+    const seen = new Set();
+    const out = [];
+    for (const selector of selectors) {
+      for (const el of scope.querySelectorAll(selector)) {
+        if (seen.has(el) || el.closest("#ptc")) continue;
+        seen.add(el);
+        if (!el.querySelector("input, .multiselect, [role='combobox']")) continue;
+        out.push(el);
+      }
+    }
+    return out;
+  }
+  function rowMatchScore(row,wanted){
+    const text = norm(row.innerText || row.textContent || "");
+    let score = 0;
+    if (visible(row)) score += 10000;
+    if (text === wanted) score += 5000;
+    else if (text.startsWith(wanted + " ")) score += 3500;
+    else if (text.includes(wanted)) score += 1500;
+    score -= Math.min(text.length, 1200);
+    return score;
   }
   function findRow(label){
     const wanted = norm(label);
-    const list = rows();
-    return list.find(r => {
-      const t = norm(r.innerText || r.textContent || "");
-      return t === wanted || t.startsWith(wanted + " ");
-    }) || list.find(r => norm(r.innerText || r.textContent || "").includes(wanted)) || null;
+    const list = candidateRows().filter(r => norm(r.innerText || r.textContent || "").includes(wanted));
+    list.sort((a,b) => rowMatchScore(b,wanted) - rowMatchScore(a,wanted));
+    return list[0] || null;
   }
   function root(row){ return row?.querySelector(".multiselect") || row?.querySelector("[role='combobox']") || null; }
   function input(row){ return row?.querySelector("input.multiselect__input") || root(row)?.querySelector("input") || null; }
@@ -84,6 +103,93 @@
     try { if (vm && typeof vm.deactivate === "function") vm.deactivate(); } catch {}
     try { i?.blur(); } catch {}
     await sleep(180);
+  }
+
+  function numericInputs(row){
+    if (!row) return [];
+    return [...row.querySelectorAll("input")].filter(el => {
+      const p = norm(el.placeholder);
+      return el.type === "number" || p === "min" || p === "max";
+    });
+  }
+  function minMax(row){
+    const inputs = numericInputs(row);
+    const byMin = inputs.find(x => norm(x.placeholder) === "min");
+    const byMax = inputs.find(x => norm(x.placeholder) === "max");
+    return {
+      min: byMin || inputs[0] || null,
+      max: byMax || inputs[1] || (inputs.length === 1 ? inputs[0] : null)
+    };
+  }
+  function setNumericInput(el,value){
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value")?.set;
+    el.focus();
+    if (setter) setter.call(el,String(value)); else el.value=String(value);
+    el.dispatchEvent(new Event("input",{bubbles:true}));
+    el.dispatchEvent(new Event("change",{bubbles:true}));
+    el.blur();
+  }
+  function fieldCommitted(row,spec){
+    const mm = minMax(row);
+    if (spec.min != null && String(mm.min?.value ?? "") !== String(spec.min)) return false;
+    if (spec.max != null && String(mm.max?.value ?? "") !== String(spec.max)) return false;
+    return true;
+  }
+  async function setField(spec){
+    const attempts = [];
+    let last = "not_started";
+    for (let attempt=1; attempt<=5; attempt++) {
+      const row = findRow(spec.label);
+      const mm = minMax(row);
+      const trace = {
+        attempt,
+        rowFound: !!row,
+        minFound: !!mm.min,
+        maxFound: !!mm.max,
+        rowText: String(row?.innerText || row?.textContent || "").replace(/\s+/g," ").trim().slice(0,500)
+      };
+      if (!row) {
+        last = "row_not_found";
+        trace.reason = last;
+        attempts.push(trace);
+        await sleep(450 * attempt);
+        continue;
+      }
+      if (spec.min != null && !mm.min) {
+        last = "min_not_found";
+        trace.reason = last;
+        attempts.push(trace);
+        await sleep(450 * attempt);
+        continue;
+      }
+      if (spec.max != null && !mm.max) {
+        last = "max_not_found";
+        trace.reason = last;
+        attempts.push(trace);
+        await sleep(450 * attempt);
+        continue;
+      }
+
+      if (spec.min != null) setNumericInput(mm.min,spec.min);
+      if (spec.max != null) setNumericInput(mm.max,spec.max);
+      await sleep(350 + 150 * attempt);
+
+      const rowAfter = findRow(spec.label) || row;
+      const mmAfter = minMax(rowAfter);
+      trace.afterMin = mmAfter.min?.value ?? null;
+      trace.afterMax = mmAfter.max?.value ?? null;
+      if (fieldCommitted(rowAfter,spec)) {
+        attempts.push(trace);
+        return {ok:true,attempt,attempts};
+      }
+
+      last = "value_not_committed";
+      trace.reason = last;
+      attempts.push(trace);
+      status(`Retrying ${spec.label} (${attempt}/5)…`);
+      await sleep(500 * attempt);
+    }
+    return {ok:false,reason:last,attempts};
   }
 
   function domOptions(){
@@ -198,7 +304,8 @@
       catch { return original.call(this,event); }
 
       const selects = Array.isArray(packet.selects) ? packet.selects : [];
-      if (!selects.length) return original.call(this,event);
+      const fields = Array.isArray(packet.fields) ? packet.fields : [];
+      if (!selects.length && !fields.length) return original.call(this,event);
 
       const preflight={ok:false,version:PATCH_VERSION,packet,steps:[]};
       window.__POE2TC_PREFLIGHT_DEBUG=preflight;
@@ -223,8 +330,20 @@
         }
       }
 
+      for (const spec of fields) {
+        status(`Preflight: ${spec.label} numeric filter`);
+        const r = await setField(spec);
+        preflight.steps.push({step:"field",spec,result:r});
+        if (!r.ok) {
+          preflight.failed=spec;
+          preflight.result=r;
+          status(`ABORTED: ${spec.label} numeric filter failed after 5 retries. COPY DEBUG.`);
+          return;
+        }
+      }
+
       const originalText = box.value;
-      const delegated = {...packet, clear:false, selects:[]};
+      const delegated = {...packet, clear:false, selects:[], fields:[]};
       box.value = JSON.stringify(delegated,null,2);
       preflight.ok=true;
       try {
