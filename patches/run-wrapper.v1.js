@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.3";
+  const PATCH_VERSION = "run-wrapper-1.4";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -396,4 +396,8 @@
   }
 
   install();
+  setInterval(() => {
+    const button = document.querySelector("#ptc-run");
+    if (button && button.dataset.runWrapper !== PATCH_VERSION) install();
+  }, 1500);
 })();
