@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.7";
+  const PATCH_VERSION = "run-wrapper-1.8";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -391,12 +391,55 @@
     return {ok:false,reason:last,attempts};
   }
 
+  function clearNumericFilters(){
+    const inputs=[...document.querySelectorAll("input")]
+      .filter(el=>!el.closest("#ptc"))
+      .filter(el=>{
+        const p=norm(el.placeholder);
+        return el.type==="number" || p==="min" || p==="max";
+      });
+    for(const el of inputs){
+      try{
+        const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value")?.set;
+        el.focus();
+        if(setter) setter.call(el,""); else el.value="";
+        el.dispatchEvent(new Event("input",{bubbles:true}));
+        el.dispatchEvent(new Event("change",{bubbles:true}));
+        el.blur();
+      }catch{}
+    }
+    return inputs.length;
+  }
+
+  function numericResidue(){
+    return [...document.querySelectorAll("input")]
+      .filter(el=>!el.closest("#ptc"))
+      .filter(el=>{
+        const p=norm(el.placeholder);
+        return (el.type==="number" || p==="min" || p==="max") && String(el.value||"").trim()!=="";
+      })
+      .map(el=>({
+        value:el.value,
+        placeholder:el.placeholder||null,
+        context:nearestLabelContext(el,"",4)?.text?.slice(0,180)||null
+      }));
+  }
+
   async function clearPage(){
     const btn = document.querySelector("button.clear-btn");
-    if (!btn) return false;
-    btn.click();
-    await sleep(1200);
-    return true;
+    if (btn) {
+      btn.click();
+      await sleep(900);
+    }
+    const cleared=clearNumericFilters();
+    await sleep(350);
+
+    // A second pass catches controls re-rendered by the Trade page after Clear.
+    const clearedAgain=clearNumericFilters();
+    await sleep(300);
+
+    const residue=numericResidue();
+    return {ok:residue.length===0,buttonFound:!!btn,cleared:cleared+clearedAgain,residue};
   }
 
   function install(){
@@ -421,9 +464,13 @@
 
       status("Preflight: preparing select filters…");
       if (packet.clear !== false) {
-        const ok = await clearPage();
-        preflight.steps.push({step:"clear",ok});
-        if (!ok) { status("ABORTED: clear button not found."); return; }
+        const r = await clearPage();
+        preflight.steps.push({step:"clear",result:r});
+        if (!r.ok) {
+          preflight.failed={step:"clear",residue:r.residue};
+          status("ABORTED: stale numeric filters remain after reset. COPY DEBUG.");
+          return;
+        }
       }
 
       for (const spec of selects) {
@@ -448,6 +495,18 @@
           status(`ABORTED: ${spec.label} numeric filter failed after 5 retries. COPY DEBUG.`);
           return;
         }
+      }
+
+      const verifyFields = fields.map(spec=>({
+        spec,
+        ok:propertyValueMatches(spec),
+        rowText:String(findRow(spec.label)?.innerText||findRow(spec.label)?.textContent||"").replace(/\s+/g," ").trim().slice(0,260)
+      }));
+      preflight.steps.push({step:"verify-fields",fields:verifyFields});
+      if (verifyFields.some(x=>!x.ok)) {
+        preflight.failed={step:"verify-fields",fields:verifyFields};
+        status("ABORTED: one or more numeric filters did not verify. COPY DEBUG.");
+        return;
       }
 
       const originalText = box.value;
