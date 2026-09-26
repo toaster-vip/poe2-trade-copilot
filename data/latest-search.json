@@ -9,9 +9,17 @@
     {
       "label": "Item Rarity",
       "value": "Rare"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
     }
   ],
   "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 200
+    },
     {
       "label": "Physical DPS",
       "min": 750
