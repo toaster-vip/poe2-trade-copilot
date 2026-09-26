@@ -6,8 +6,8 @@
     {"label": "Item Rarity", "value": "Rare"}
   ],
   "fields": [
-    {"label": "Physical DPS", "min": 680},
-    {"label": "Critical Chance", "min": 8}
+    {"label": "Physical DPS", "min": 700},
+    {"label": "Critical Chance", "min": 8.5}
   ],
   "stats": [],
   "search": true
