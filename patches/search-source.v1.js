@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.8";
+  const PATCH_VERSION = "search-source-1.9";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -23,19 +23,40 @@
   }
 
   async function fetchLatestSearch() {
+    const headers={"Accept":"application/vnd.github+json","Cache-Control":"no-cache","Pragma":"no-cache"};
     try {
-      const response = await fetch(`${API_SOURCE}&t=${Date.now()}`, {
-        cache: "no-store", credentials: "omit", headers: {"Accept":"application/vnd.github+json"}
-      });
-      if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
-      const payload = await response.json();
-      if (!payload?.content) throw new Error("GitHub API response missing content");
-      return {text:decodeBase64Utf8(payload.content),sha:payload.sha||null,source:"api"};
+      // Resolve the newest commit that actually touched latest-search.json, then
+      // fetch the file pinned to that immutable commit. This avoids any stale
+      // moving-main response from intermediary/browser caches.
+      const commitsUrl=`https://api.github.com/repos/toaster-vip/poe2-trade-copilot/commits?path=data/latest-search.json&sha=main&per_page=1&t=${Date.now()}`;
+      const commitsResponse=await fetch(commitsUrl,{cache:"no-store",credentials:"omit",headers});
+      if(!commitsResponse.ok) throw new Error(`GitHub commits HTTP ${commitsResponse.status}`);
+      const commits=await commitsResponse.json();
+      const commitSha=Array.isArray(commits)&&commits[0]?.sha?commits[0].sha:null;
+      if(!commitSha) throw new Error("latest-search commit SHA not found");
+
+      const pinnedUrl=`https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=${encodeURIComponent(commitSha)}&t=${Date.now()}`;
+      const response=await fetch(pinnedUrl,{cache:"no-store",credentials:"omit",headers});
+      if(!response.ok) throw new Error(`GitHub pinned contents HTTP ${response.status}`);
+      const payload=await response.json();
+      if(!payload?.content) throw new Error("GitHub API response missing content");
+      return {text:decodeBase64Utf8(payload.content),sha:payload.sha||null,commitSha,source:"api-pinned"};
     } catch (apiError) {
-      console.warn("[PoE2TC Search Source] API load failed; trying raw fallback", apiError);
-      const response = await fetch(`${RAW_FALLBACK}?t=${Date.now()}`, {cache:"no-store",credentials:"omit"});
-      if (!response.ok) throw new Error(`GitHub raw HTTP ${response.status}`);
-      return {text:await response.text(),sha:null,source:"raw-fallback"};
+      console.warn("[PoE2TC Search Source] Pinned API load failed; trying moving-main API", apiError);
+      try {
+        const response = await fetch(`${API_SOURCE}&t=${Date.now()}`, {
+          cache: "no-store", credentials: "omit", headers
+        });
+        if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
+        const payload = await response.json();
+        if (!payload?.content) throw new Error("GitHub API response missing content");
+        return {text:decodeBase64Utf8(payload.content),sha:payload.sha||null,commitSha:null,source:"api-main-fallback"};
+      } catch (mainError) {
+        console.warn("[PoE2TC Search Source] API main load failed; trying raw fallback", mainError);
+        const response = await fetch(`${RAW_FALLBACK}?t=${Date.now()}`, {cache:"no-store",credentials:"omit",headers:{"Cache-Control":"no-cache","Pragma":"no-cache"}});
+        if (!response.ok) throw new Error(`GitHub raw HTTP ${response.status}`);
+        return {text:await response.text(),sha:null,commitSha:null,source:"raw-fallback"};
+      }
     }
   }
 
@@ -55,7 +76,19 @@
       ...(Array.isArray(parsed?.stats) ? parsed.stats : []).map(x => x.text)
     ].filter(Boolean);
     const summary = filters.length ? filters.join(" · ") : "no numeric/stat filters";
-    status(`Loaded current main${loaded.sha?` · ${loaded.sha.slice(0,7)}`:""} · ${summary}`);
+    const fieldSummary=(Array.isArray(parsed?.fields)?parsed.fields:[]).map(x=>{
+      const range=[x.min!=null?`>=${x.min}`:"",x.max!=null?`<=${x.max}`:""].filter(Boolean).join(" ");
+      return `${x.label} ${range}`.trim();
+    }).join(" · ");
+    window.__POE2TC_LAST_SEARCH_SOURCE={
+      version:PATCH_VERSION,
+      source:loaded.source,
+      commitSha:loaded.commitSha||null,
+      blobSha:loaded.sha||null,
+      packet:parsed,
+      loadedAt:new Date().toISOString()
+    };
+    status(`Loaded ${loaded.commitSha?`commit ${loaded.commitSha.slice(0,7)}`:"current main"}${loaded.sha?` · blob ${loaded.sha.slice(0,7)}`:""} · ${fieldSummary||summary}`);
     return parsed;
   }
 
