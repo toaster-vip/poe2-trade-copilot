@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.8";
+  const PATCH_VERSION = "run-wrapper-1.9";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -499,7 +499,7 @@
 
       const verifyFields = fields.map(spec=>({
         spec,
-        ok:propertyValueMatches(spec),
+        ok:fieldCommitted(findRow(spec.label),spec),
         rowText:String(findRow(spec.label)?.innerText||findRow(spec.label)?.textContent||"").replace(/\s+/g," ").trim().slice(0,260)
       }));
       preflight.steps.push({step:"verify-fields",fields:verifyFields});
