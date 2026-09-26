@@ -18,7 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 200
+      "max": 500
     },
     {
       "label": "Physical DPS",
