@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.5";
+  const PATCH_VERSION = "run-wrapper-1.6";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -85,7 +85,6 @@
       const opts = options(vm);
       const optionLabels = opts.map(label);
       const exactIndex = optionLabels.findIndex(x => norm(x) === wantedValue);
-      if (exactIndex < 0) continue;
 
       let node = r;
       let distance = 0;
@@ -102,7 +101,11 @@
         distance++;
       }
       const input = r.querySelector("input.multiselect__input") || r.querySelector("input") || null;
-      const score = (labelDistance < 999 ? 10000 - labelDistance * 500 : 0) - Math.min(labelContext.length,400);
+      if (exactIndex < 0 && labelDistance >= 999) continue;
+      const score =
+        (exactIndex >= 0 ? 20000 : 0) +
+        (labelDistance < 999 ? 10000 - labelDistance * 500 : 0) -
+        Math.min(labelContext.length,400);
       out.push({root:r,vm,input,opts,optionLabels,exactIndex,labelDistance,labelContext,score});
     }
     out.sort((a,b)=>b.score-a.score);
@@ -272,7 +275,7 @@
 
     for(let attempt=1; attempt<=5; attempt++){
       let candidates=selectControlCandidates(spec);
-      let target=candidates[0]||null;
+      let target=candidates.find(c=>c.exactIndex>=0)||candidates[0]||null;
       const trace={
         attempt,
         candidateCount:candidates.length,
@@ -306,14 +309,26 @@
         continue;
       }
 
-      if(!opts.length){
-        i.click();
-        await sleep(450+200*attempt);
-        candidates=selectControlCandidates(spec);
-        target=candidates[0]||target;
-        vm=target.vm;
-        i=target.input||i;
-        opts=target.opts;
+      if(!opts.some(o=>exact(label(o),spec.value))){
+        // Some official Trade multiselects populate their options only after opening.
+        // Probe label-local candidates one at a time and keep the first control that
+        // actually exposes the requested exact value.
+        for(const probe of candidates.slice(0,12)){
+          const probeInput=probe.input;
+          if(!probeInput) continue;
+          try{ probeInput.click(); }catch{}
+          await sleep(300+120*attempt);
+          const refreshed=selectControlCandidates(spec);
+          const exactTarget=refreshed.find(c=>c.exactIndex>=0);
+          if(exactTarget){
+            target=exactTarget;
+            vm=target.vm;
+            i=target.input||probeInput;
+            opts=target.opts;
+            break;
+          }
+          try{ probeInput.blur(); }catch{}
+        }
         trace.vueOptionsAfterOpen=opts.slice(0,25).map(label);
       }
 
