@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.7";
+  const PATCH_VERSION = "search-source-1.8";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -50,8 +50,12 @@
     box.dispatchEvent(new Event("input",{bubbles:true}));
     box.dispatchEvent(new Event("change",{bubbles:true}));
     try { localStorage.setItem("ptc-packet-v51",box.value); } catch {}
-    const firstStat = parsed?.stats?.[0]?.text || "no stats";
-    status(`Loaded current main${loaded.sha?` · ${loaded.sha.slice(0,7)}`:""} · ${firstStat}`);
+    const filters = [
+      ...(Array.isArray(parsed?.fields) ? parsed.fields : []).filter(x => x?.label !== "Buyout Price").map(x => x.label),
+      ...(Array.isArray(parsed?.stats) ? parsed.stats : []).map(x => x.text)
+    ].filter(Boolean);
+    const summary = filters.length ? filters.join(" · ") : "no numeric/stat filters";
+    status(`Loaded current main${loaded.sha?` · ${loaded.sha.slice(0,7)}`:""} · ${summary}`);
     return parsed;
   }
 
