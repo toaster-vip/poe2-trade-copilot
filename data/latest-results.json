@@ -1,7 +1,7 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
-  "version": "0.5.1+collector2.2",
-  "capturedAt": "2026-09-26T03:02:24.169Z",
+  "version": "0.5.1+collector2.3",
+  "capturedAt": "2026-09-26T03:10:18.505Z",
   "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Forbidden%20Rites/H4sIAAAAAAAAE3VNzQqDMAx-l5xFvIwNX0VkdJqNwGyzGpFS-u5LO5B6WC7J95cvwipGthX6CI6FnIUejA2QmqKoMESQwFj4GRp40lvQZ2FMYwV_tnuFq3Mygi_nw6lnR8POtg-35zpvPMnZoBRCSiriZyNe0Mqf_zxz2Qtp7tp1Gpn03UHd2kvK8wVaAJtC8AAAAA",
   "capturedResults": 99,
   "returnedResults": 50,
@@ -29,16 +29,74 @@
         "currency": "Divine Orb"
       },
       "seller": "Kandi_Flip#5453",
-      "listedAgo": "25 minutes ago",
+      "listedAgo": "33 minutes ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -81,15 +139,57 @@
         "currency": "Divine Orb"
       },
       "seller": "네지민#2967",
-      "listedAgo": "20 hours ago",
+      "listedAgo": "21 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -134,11 +234,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -180,15 +322,57 @@
         "currency": "Divine Orb"
       },
       "seller": "Ssadaerg1#4625",
-      "listedAgo": "5 hours ago",
+      "listedAgo": "6 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 9.72,
       "attackSkillLevels": 0,
@@ -233,11 +417,53 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -278,15 +504,57 @@
         "currency": "Divine Orb"
       },
       "seller": "Ssadaerg1#4625",
-      "listedAgo": "2 hours ago",
+      "listedAgo": "3 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -304,54 +572,6 @@
         "17% increased Physical DamageS0",
         "+10 to all AttributesS0",
         "+4.36% to Critical Hit ChanceS2"
-      ]
-    },
-    {
-      "name": "Horror Fletch",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 21,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        450,
-        793
-      ],
-      "criticalChance": 8.8,
-      "attacksPerSecond": 1.29,
-      "physicalDps": 801.74,
-      "elementalDps": null,
-      "totalDps": 801.74,
-      "price": {
-        "amount": 500,
-        "currency": "Divine Orb"
-      },
-      "seller": "Bruce_nguyen#9033",
-      "listedAgo": "4 days ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 40% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "manaLeech": 7.11,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "40% increased Physical Damage",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "71% increased Physical DamageP2",
-        "Adds 39 to 63 Physical DamageP1",
-        "+172 to Accuracy RatingP2",
-        "17% increased Attack SpeedS1",
-        "Leeches 7.11% of Physical Damage as ManaS2",
-        "+3.8% to Critical Hit ChanceS3",
-        "157% increased Physical DamageP2"
       ]
     },
     {
@@ -379,12 +599,70 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -403,6 +681,96 @@
         "+2 to Level of all Attack Skills",
         "Adds 39 to 61 Physical DamageP1",
         "Corrupted"
+      ]
+    },
+    {
+      "name": "Horror Fletch",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 21,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        450,
+        793
+      ],
+      "criticalChance": 8.8,
+      "attacksPerSecond": 1.29,
+      "physicalDps": 801.74,
+      "elementalDps": null,
+      "totalDps": 801.74,
+      "price": {
+        "amount": 500,
+        "currency": "Divine Orb"
+      },
+      "seller": "Bruce_nguyen#9033",
+      "listedAgo": "4 days ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": 5,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 7.11,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "71% increased Physical DamageP2",
+        "Adds 39 to 63 Physical DamageP1",
+        "+172 to Accuracy RatingP2",
+        "17% increased Attack SpeedS1",
+        "Leeches 7.11% of Physical Damage as ManaS2",
+        "+3.8% to Critical Hit ChanceS3",
+        "157% increased Physical DamageP2"
       ]
     },
     {
@@ -430,11 +798,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -479,11 +889,61 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -528,12 +988,62 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [
         "Rune Fletch"
+      ],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
       ],
       "manaLeech": 0,
       "lifeLeech": 0,
@@ -578,11 +1088,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -625,11 +1185,53 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -674,11 +1276,53 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -717,15 +1361,65 @@
         "currency": "Divine Orb"
       },
       "seller": "neilsonew4#5410",
-      "listedAgo": "19 minutes ago",
+      "listedAgo": "27 minutes ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -768,11 +1462,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -817,13 +1561,95 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 10,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 20% increased effect of Fully Broken Armour",
         "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -872,11 +1698,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -922,11 +1790,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -966,15 +1876,65 @@
         "currency": "Divine Orb"
       },
       "seller": "15537337431#4850",
-      "listedAgo": "47 minutes ago",
+      "listedAgo": "55 minutes ago",
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1017,12 +1977,78 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 8,
       "bondedEffects": [
         "Bonded: 70% increased Arrow Speed",
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 8.38,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1070,11 +2096,61 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1117,11 +2193,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1165,12 +2283,70 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1218,11 +2394,61 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1264,11 +2490,53 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1284,6 +2552,96 @@
         "+2 to Level of all Attack SkillsS0",
         "20% chance to gain Onslaught on Killing Hits with this WeaponS0",
         "Adds 39 to 66 Physical DamageP1",
+        "Corrupted"
+      ]
+    },
+    {
+      "name": "Loath Volley",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 81,
+      "quality": 23,
+      "requirements": "Level 77, 163 Dex",
+      "physicalDamage": [
+        398,
+        682
+      ],
+      "criticalChance": 9.74,
+      "attacksPerSecond": 1.39,
+      "physicalDps": 750.6,
+      "elementalDps": null,
+      "totalDps": 750.6,
+      "price": {
+        "amount": 1100,
+        "currency": "Divine Orb"
+      },
+      "seller": "TheLuminousGreen#1270",
+      "listedAgo": "5 days ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": 5,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "+4.74% to Critical Hit ChanceS1",
+        "76% increased Physical DamageP1",
+        "Adds 31 to 65 Physical DamageP1",
+        "+193 to Accuracy RatingP1",
+        "16% increased Attack SpeedS2",
+        "+2 to Level of all Attack SkillsS0",
+        "156% increased Physical DamageP2",
         "Corrupted"
       ]
     },
@@ -1312,11 +2670,69 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1334,54 +2750,6 @@
         "Gain 28 Mana per enemy killedS2",
         "Adds 24 to 51 Physical DamageP2",
         "+2 to Level of all Attack Skills"
-      ]
-    },
-    {
-      "name": "Loath Volley",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 81,
-      "quality": 23,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        398,
-        682
-      ],
-      "criticalChance": 9.74,
-      "attacksPerSecond": 1.39,
-      "physicalDps": 750.6,
-      "elementalDps": null,
-      "totalDps": 750.6,
-      "price": {
-        "amount": 1100,
-        "currency": "Divine Orb"
-      },
-      "seller": "TheLuminousGreen#1270",
-      "listedAgo": "5 days ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 40% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "40% increased Physical Damage",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "+4.74% to Critical Hit ChanceS1",
-        "76% increased Physical DamageP1",
-        "Adds 31 to 65 Physical DamageP1",
-        "+193 to Accuracy RatingP1",
-        "16% increased Attack SpeedS2",
-        "+2 to Level of all Attack SkillsS0",
-        "156% increased Physical DamageP2",
-        "Corrupted"
       ]
     },
     {
@@ -1409,12 +2777,70 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1461,11 +2887,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1482,6 +2958,103 @@
         "Gain 29 Mana per enemy killedS2",
         "+200% Surpassing chance to fire an additional ArrowS1",
         "169% increased Physical DamageP2",
+        "Corrupted"
+      ]
+    },
+    {
+      "name": "Rift Volley",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 81,
+      "quality": 26,
+      "requirements": "Level 77, 163 Dex",
+      "physicalDamage": [
+        432,
+        737
+      ],
+      "criticalChance": 10,
+      "attacksPerSecond": 1.2,
+      "physicalDps": 701.4,
+      "elementalDps": null,
+      "totalDps": 701.4,
+      "price": {
+        "amount": 1288,
+        "currency": "Divine Orb"
+      },
+      "seller": "pan520520#3648",
+      "listedAgo": "4 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": 6,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "+5% to Critical Hit ChanceS1",
+        "230% increased Physical DamageP2 + P2",
+        "+170 to Accuracy RatingP2",
+        "+25% to Critical Damage BonusS1",
+        "+2 to Level of all Attack SkillsS0",
+        "Adds 32 to 66 Physical DamageP1",
         "Corrupted"
       ]
     },
@@ -1510,11 +3083,61 @@
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1531,53 +3154,6 @@
         "12% increased Attack SpeedS2",
         "+3.91% to Critical Hit ChanceS3",
         "Sanctified"
-      ]
-    },
-    {
-      "name": "Rift Volley",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 81,
-      "quality": 26,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        432,
-        737
-      ],
-      "criticalChance": 10,
-      "attacksPerSecond": 1.2,
-      "physicalDps": 701.4,
-      "elementalDps": null,
-      "totalDps": 701.4,
-      "price": {
-        "amount": 1288,
-        "currency": "Divine Orb"
-      },
-      "seller": "pan520520#3648",
-      "listedAgo": "4 hours ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 60% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "60% increased Physical Damage",
-        "Bonded: 60% increased effect of Fully Broken Armour",
-        "+5% to Critical Hit ChanceS1",
-        "230% increased Physical DamageP2 + P2",
-        "+170 to Accuracy RatingP2",
-        "+25% to Critical Damage BonusS1",
-        "+2 to Level of all Attack SkillsS0",
-        "Adds 32 to 66 Physical DamageP1",
-        "Corrupted"
       ]
     },
     {
@@ -1605,13 +3181,95 @@
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 10,
       "bondedEffects": [
         "Bonded: +1 to Level of all Attack Skills",
         "Bonded: 20% increased effect of Fully Broken Armour",
         "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 1,
@@ -1656,15 +3314,65 @@
         "currency": "Divine Orb"
       },
       "seller": "pessimist#3125",
-      "listedAgo": "8 minutes ago",
+      "listedAgo": "16 minutes ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1707,12 +3415,78 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 8,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 70% increased Arrow Speed"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1759,11 +3533,53 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1807,11 +3623,69 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 7,
       "bondedEffects": [
         "Bonded: 70% increased Arrow Speed"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1855,15 +3729,57 @@
         "currency": "Divine Orb"
       },
       "seller": "FrozenFresh#5226",
-      "listedAgo": "24 minutes ago",
+      "listedAgo": "32 minutes ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 5,
       "bondedEffects": [
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1907,11 +3823,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1927,6 +3893,103 @@
         "+25% to Critical Damage BonusS1",
         "+4 to Level of all Projectile SkillsS1",
         "Corrupted"
+      ]
+    },
+    {
+      "name": "Agony Blast",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 30,
+      "requirements": "Level 77, 163 Dex",
+      "physicalDamage": [
+        449,
+        741
+      ],
+      "criticalChance": 9.95,
+      "attacksPerSecond": 1.2,
+      "physicalDps": 714,
+      "elementalDps": null,
+      "totalDps": 714,
+      "price": {
+        "amount": 1488,
+        "currency": "Divine Orb"
+      },
+      "seller": "九月#0493",
+      "listedAgo": "1 minute ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": 6,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "Adds 33 to 63 Physical DamageP1",
+        "78% increased Physical DamageP1",
+        "+196 to Accuracy RatingP1",
+        "+4.95% to Critical Hit ChanceS1",
+        "+23% to Critical Damage BonusS1",
+        "+2 to Level of all Attack SkillsS0",
+        "150% increased Physical DamageP3"
       ]
     },
     {
@@ -1954,11 +4017,61 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -2000,11 +4113,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2022,53 +4185,6 @@
         "+3 to Level of all Projectile SkillsS2",
         "166% increased Physical DamageP2",
         "Corrupted"
-      ]
-    },
-    {
-      "name": "Agony Blast",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 30,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        449,
-        741
-      ],
-      "criticalChance": 9.95,
-      "attacksPerSecond": 1.2,
-      "physicalDps": 714,
-      "elementalDps": null,
-      "totalDps": 714,
-      "price": {
-        "amount": 1588,
-        "currency": "Divine Orb"
-      },
-      "seller": "九月#0493",
-      "listedAgo": "yesterday",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 60% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "60% increased Physical Damage",
-        "Bonded: 60% increased effect of Fully Broken Armour",
-        "Adds 33 to 63 Physical DamageP1",
-        "78% increased Physical DamageP1",
-        "+196 to Accuracy RatingP1",
-        "+4.95% to Critical Hit ChanceS1",
-        "+23% to Critical Damage BonusS1",
-        "+2 to Level of all Attack SkillsS0",
-        "150% increased Physical DamageP3"
       ]
     },
     {
@@ -2096,13 +4212,103 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 11,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 70% increased Arrow Speed",
         "Bonded: 15% increased Reservation Efficiency of Herald Skills"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -2150,11 +4356,61 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 60% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2197,12 +4453,78 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 8,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2244,15 +4566,65 @@
         "currency": "Divine Orb"
       },
       "seller": "hlzz#8210",
-      "listedAgo": "42 minutes ago",
+      "listedAgo": "50 minutes ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 6,
       "bondedEffects": [
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -2299,12 +4671,86 @@
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 9,
       "bondedEffects": [
         "Bonded: 70% increased Arrow Speed",
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2324,58 +4770,6 @@
         "21% increased Attack SpeedS1",
         "Companions have 21% increased Attack SpeedS1",
         "Sanctified"
-      ]
-    },
-    {
-      "name": "Maelström Blast",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 20,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        439,
-        814
-      ],
-      "criticalChance": 9.77,
-      "attacksPerSecond": 1.65,
-      "physicalDps": 1033.73,
-      "elementalDps": null,
-      "totalDps": 1033.73,
-      "price": {
-        "amount": 2000,
-        "currency": "Divine Orb"
-      },
-      "seller": "badfeneka_#1798",
-      "listedAgo": "4 days ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 40% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 3,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "40% increased Physical Damage",
-        "50% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "170% increased Physical DamageP1",
-        "Adds 34 to 63 Physical DamageP1",
-        "+4.77% to Critical Hit ChanceS1",
-        "+3 to Level of all Projectile SkillsS2",
-        "+32 to DexterityS1",
-        "71% increased Physical DamageP2",
-        "+151 to Accuracy RatingP2"
       ]
     },
     {
@@ -2403,12 +4797,94 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 10,
       "bondedEffects": [
         "Bonded: 70% increased Arrow Speed",
         "Bonded: 20% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -2431,6 +4907,132 @@
         "17% increased Attack SpeedS1",
         "Companions have 15% increased Attack SpeedS1",
         "Corrupted"
+      ]
+    },
+    {
+      "name": "Maelström Blast",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 20,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        439,
+        814
+      ],
+      "criticalChance": 9.77,
+      "attacksPerSecond": 1.65,
+      "physicalDps": 1033.73,
+      "elementalDps": null,
+      "totalDps": 1033.73,
+      "price": {
+        "amount": 2000,
+        "currency": "Divine Orb"
+      },
+      "seller": "badfeneka_#1798",
+      "listedAgo": "4 days ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": 9,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 3,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "50% increased Attack Speed",
+        "20% less Attack Damage",
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "170% increased Physical DamageP1",
+        "Adds 34 to 63 Physical DamageP1",
+        "+4.77% to Critical Hit ChanceS1",
+        "+3 to Level of all Projectile SkillsS2",
+        "+32 to DexterityS1",
+        "71% increased Physical DamageP2",
+        "+151 to Accuracy RatingP2"
       ]
     },
     {
@@ -2458,12 +5060,78 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
-      "socketCount": null,
+      "socketCount": 8,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
         "Bonded: 40% increased effect of Fully Broken Armour"
       ],
       "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
