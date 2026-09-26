@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.1";
+  const PATCH_VERSION = "run-wrapper-1.2";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -252,8 +252,22 @@
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
+          box.value=text;
+          box.dispatchEvent(new Event("input",{bubbles:true}));
+          box.focus(); box.select?.();
+          status("Clipboard blocked — debug placed in the text box. Long-press and Copy.");
+          return;
         }
-        return originalDebug?.call(this,event);
+        try {
+          return await originalDebug?.call(this,event);
+        } catch(error) {
+          const fallback=JSON.stringify({protocol:"poe2-trade-copilot/debug-fallback-v1",version:PATCH_VERSION,url:location.href,error:String(error?.message||error),preflight:window.__POE2TC_PREFLIGHT_DEBUG||null,lastDebug:window.__POE2TC_LAST_DEBUG||null});
+          box.value=fallback;
+          box.dispatchEvent(new Event("input",{bubbles:true}));
+          box.focus(); box.select?.();
+          status("COPY DEBUG failed — fallback debug placed in the text box.");
+          return;
+        }
       };
       debugButton.dataset.preflightDebug="1";
     }
