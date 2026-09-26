@@ -2,12 +2,28 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Bow"},
-    {"label": "Item Rarity", "value": "Rare"}
+    {
+      "label": "Item Category",
+      "value": "Bow"
+    },
+    {
+      "label": "Item Rarity",
+      "value": "Rare"
+    }
   ],
   "fields": [
-    {"label": "Physical DPS", "min": 700},
-    {"label": "Critical Chance", "min": 8.5}
+    {
+      "label": "Physical DPS",
+      "min": 750
+    },
+    {
+      "label": "Critical Chance",
+      "min": 9
+    },
+    {
+      "label": "Attacks per Second",
+      "min": 1.28
+    }
   ],
   "stats": [],
   "search": true
