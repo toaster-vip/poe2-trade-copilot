@@ -74,7 +74,7 @@
       const explicit = rhs.match(/\b([0-9]+)\b/);
       if (explicit) socketCount = Number(explicit[1]);
       else {
-        const marks = rhs.match(/[RGBW○●◉◇◆]/gi);
+        const marks = rhs.match(/(?:[RGBW]|○|●|◉|◇|◆)/gi);
         if (marks?.length) socketCount = marks.length;
       }
     }
@@ -87,7 +87,8 @@
   function parseCard(card) {
     const text = String(card.innerText || "").replace(/\u00a0/g," ").trim();
     const lines = text.split("\n").map(x=>x.trim()).filter(Boolean);
-    const id = identifyItem(lines);\n    const sockets = parseSockets(text, lines);
+    const id = identifyItem(lines);
+    const sockets = parseSockets(text, lines);
     const seller = text.match(/([^\s\n]+#[0-9]+)\s+listed\s+([^\n]+)/i);
     const phys = text.match(/Physical Damage:\s*([0-9]+)\s*[-–]\s*([0-9]+)/i);
     const mods = lines.filter(line => {
@@ -104,6 +105,7 @@
       physicalDps:num(text,/Physical DPS\s*:?\s*([0-9.]+)/i),elementalDps:num(text,/Elemental DPS\s*:?\s*([0-9.]+)/i),totalDps:num(text,/(?:^|\n)DPS\s*:?\s*([0-9.]+)/im),
       price:parsePrice(text),seller:seller?.[1]||null,listedAgo:seller?.[2]?.trim()||null,
       corrupted:/\bCorrupted\b/i.test(text),sanctified:/\bSanctified\b/i.test(text),additionalArrow:/fire an additional arrow/i.test(text),
+      socketCount:sockets.socketCount,bondedEffects:sockets.bondedEffects,socketedRunes:sockets.socketedRunes,
       manaLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Mana/i)||0,
       lifeLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Life/i)||0,
       attackSkillLevels:num(text,/\+([0-9]+)\s+to Level of all Attack Skills/i)||0,
