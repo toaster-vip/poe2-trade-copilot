@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "remote-bootstrap-1.9";
+  const VERSION = "remote-bootstrap-2.0";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const CORE_PATH = "poe2-trade-copilot.user.js";
@@ -74,8 +74,35 @@
       for (const path of CRITICAL_MODULES) { const result=await loadModule(path,true); loaded.push(`${path.split('/').pop()}@${result.sha?result.sha.slice(0,7):"unknown"}`); }
       for (const path of OPTIONAL_MODULES) { const result=await loadModule(path,false); if(result.ok) loaded.push(`${path.split('/').pop()}@${result.sha?result.sha.slice(0,7):"unknown"}`); else optionalErrors.push({path:result.path,error:result.error}); }
       window.__POE2TC_REMOTE_INFO={version:VERSION,coreSource:coreFile.source,loaded,optionalErrors};
+
+      const REQUIRED_WRAPPER_VERSION = "run-wrapper-1.6";
+      const verifyWrapper = (tries=0) => {
+        const button = document.querySelector("#ptc-run");
+        if (!button) {
+          if (tries < 40) return setTimeout(() => verifyWrapper(tries+1), 150);
+          throw new Error("run wrapper verification failed: #ptc-run not found");
+        }
+        const active = button.dataset.runWrapper || "none";
+        window.__POE2TC_REMOTE_INFO.activeRunWrapper = active;
+        if (active !== REQUIRED_WRAPPER_VERSION) {
+          const message = `STALE WRAPPER: expected ${REQUIRED_WRAPPER_VERSION}, active ${active}. Close this Trade tab and reopen it.`;
+          const el=document.querySelector("#ptc-status");
+          if(el) el.textContent=message;
+          console.error("[PoE2TC Remote Bootstrap]",message);
+          button.disabled=true;
+          button.title=message;
+          return;
+        }
+        button.disabled=false;
+        button.title="";
+        const el=document.querySelector("#ptc-status");
+        if(el) el.textContent=optionalErrors.length
+          ? `Remote ${VERSION} · ${active} · optional UI degraded`
+          : `Remote ${VERSION} · ${active} · ready`;
+      };
+
       console.log(`[PoE2TC Remote Bootstrap] ${VERSION} loaded: ${loaded.join(", ")}`);
-      const showStatus=()=>{ const el=document.querySelector("#ptc-status"); if(!el) return setTimeout(showStatus,250); el.textContent=optionalErrors.length?`Remote ${VERSION} · core ready · optional UI degraded`:`Remote ${VERSION} · core ready`; }; showStatus();
+      verifyWrapper();
     } catch(error) {
       console.error("[PoE2TC Remote Bootstrap] Critical boot failed:",error);
       const box=document.createElement("div"); box.textContent=`PoE2 Trade Copilot critical startup failed: ${error.message}`;
