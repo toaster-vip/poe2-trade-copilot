@@ -75,7 +75,7 @@
       for (const path of OPTIONAL_MODULES) { const result=await loadModule(path,false); if(result.ok) loaded.push(`${path.split('/').pop()}@${result.sha?result.sha.slice(0,7):"unknown"}`); else optionalErrors.push({path:result.path,error:result.error}); }
       window.__POE2TC_REMOTE_INFO={version:VERSION,coreSource:coreFile.source,loaded,optionalErrors};
 
-      const REQUIRED_WRAPPER_VERSION = "run-wrapper-1.7";
+      const REQUIRED_WRAPPER_VERSION = "run-wrapper-1.8";
       const verifyWrapper = (tries=0) => {
         const button = document.querySelector("#ptc-run");
         if (!button) {
