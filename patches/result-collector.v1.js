@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.5";
+  const PATCH_VERSION = "collector-2.6";
   const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -124,6 +124,17 @@
     return {
       name:id.name,baseType:id.baseType,itemClass:id.itemClass,
       itemLevel:num(text,/Item Level:\s*([0-9]+)/i),quality:num(text,/Quality:\s*\+?([0-9]+)%/i),requirements:text.match(/Requires:\s*([^\n]+)/i)?.[1]||null,
+      armour:num(text,/Armour:\s*([0-9,]+)/i),
+      evasion:num(text,/Evasion:\s*([0-9,]+)/i),
+      energyShield:num(text,/Energy Shield:\s*([0-9,]+)/i),
+      maximumLife:num(text,/\+([0-9]+)\s+to maximum Life/i)||0,
+      dexterity:num(text,/\+([0-9]+)\s+to Dexterity/i)||0,
+      intelligence:num(text,/\+([0-9]+)\s+to Intelligence/i)||0,
+      strength:num(text,/\+([0-9]+)\s+to Strength/i)||0,
+      chaosResistance:num(text,/\+([0-9.]+)%\s+to Chaos Resistance/i)||0,
+      fireResistance:num(text,/\+([0-9.]+)%\s+to Fire Resistance/i)||0,
+      coldResistance:num(text,/\+([0-9.]+)%\s+to Cold Resistance/i)||0,
+      lightningResistance:num(text,/\+([0-9.]+)%\s+to Lightning Resistance/i)||0,
       physicalDamage:phys?[Number(phys[1]),Number(phys[2])]:null,
       criticalChance:num(text,/Critical Hit Chance:\s*([0-9.]+)%/i),attacksPerSecond:num(text,/Attacks per Second:\s*([0-9.]+)/i),
       physicalDps:num(text,/Physical DPS\s*:?\s*([0-9.]+)/i),elementalDps:num(text,/Elemental DPS\s*:?\s*([0-9.]+)/i),totalDps:num(text,/(?:^|\n)DPS\s*:?\s*([0-9.]+)/im),
