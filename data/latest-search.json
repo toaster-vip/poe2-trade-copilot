@@ -3,11 +3,9 @@
   "clear": true,
   "selects": [
     {"label": "Item Category", "value": "Bow"},
-    {"label": "Item Rarity", "value": "Rare"},
-    {"label": "Buyout Price", "value": "Divine Orb"}
+    {"label": "Item Rarity", "value": "Rare"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 200},
     {"label": "Physical DPS", "min": 680},
     {"label": "Critical Chance", "min": 8}
   ],
