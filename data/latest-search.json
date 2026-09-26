@@ -2,16 +2,16 @@
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
   "selects": [
-    {"label": "Item Category", "value": "Amulet"},
+    {"label": "Item Category", "value": "Bow"},
     {"label": "Item Rarity", "value": "Rare"},
     {"label": "Buyout Price", "value": "Divine Orb"}
   ],
   "fields": [
-    {"label": "Buyout Price", "max": 50}
+    {"label": "Buyout Price", "max": 200}
   ],
   "stats": [
-    {"text": "level of all Projectile Skills", "min": 3},
-    {"text": "Spirit", "min": 30}
+    {"text": "Physical DPS", "min": 680},
+    {"text": "Critical Chance", "min": 8}
   ],
   "search": true
 }
