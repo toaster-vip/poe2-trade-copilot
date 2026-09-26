@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.6";
+  const PATCH_VERSION = "run-wrapper-1.7";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -470,12 +470,13 @@
     if (debugButton && !debugButton.dataset.preflightDebug) {
       const originalDebug=debugButton.onclick;
       debugButton.onclick=async function(event){
-        if (window.__POE2TC_PREFLIGHT_DEBUG && !window.__POE2TC_LAST_DEBUG) {
+        if (window.__POE2TC_PREFLIGHT_DEBUG) {
           const packet={
             protocol:"poe2-trade-copilot/preflight-debug-v1",
             version:PATCH_VERSION,
             url:location.href,
-            preflight:window.__POE2TC_PREFLIGHT_DEBUG
+            preflight:window.__POE2TC_PREFLIGHT_DEBUG,
+            lastDebug:window.__POE2TC_LAST_DEBUG||null
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
@@ -488,7 +489,7 @@
         try {
           return await originalDebug?.call(this,event);
         } catch(error) {
-          const fallback=JSON.stringify({protocol:"poe2-trade-copilot/debug-fallback-v1",version:PATCH_VERSION,url:location.href,error:String(error?.message||error),preflight:window.__POE2TC_PREFLIGHT_DEBUG||null,lastDebug:window.__POE2TC_LAST_DEBUG||null});
+          const fallback=JSON.stringify({protocol:"poe2-trade-copilot/debug-fallback-v1",version:PATCH_VERSION,url:location.href,error:String(error?.message||error),preflight:null,lastDebug:window.__POE2TC_LAST_DEBUG||null});
           box.value=fallback;
           box.dispatchEvent(new Event("input",{bubbles:true}));
           box.focus(); box.select?.();
