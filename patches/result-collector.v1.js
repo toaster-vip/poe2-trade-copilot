@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.3";
+  const PATCH_VERSION = "collector-2.4";
   const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -71,11 +71,11 @@
     const nodes = [...new Set(selectors.flatMap(sel => { try { return [...card.querySelectorAll(sel)]; } catch { return []; } }))];
     const visibleNodes = nodes.filter(el => visible(el));
     const descriptors = visibleNodes.map(el => ({tag:el.tagName,className:String(el.className||""),title:el.getAttribute("title")||null,aria:el.getAttribute("aria-label")||null,dataSocket:el.getAttribute("data-socket")||null,dataRune:el.getAttribute("data-rune")||null}));
-    const likely = visibleNodes.filter(el => {
-      const d = String(el.className||"")+" "+String(el.getAttribute("title")||"")+" "+String(el.getAttribute("aria-label")||"")+" "+String(el.getAttribute("data-socket")||"")+" "+String(el.getAttribute("data-rune")||"");
-      return /socket|rune|soul.?core/i.test(d);
-    });
-    return {count:likely.length||null,descriptors};
+    const container = visibleNodes.find(el => /(?:^|\\s)numSockets([0-9]+)(?:\\s|$)/.test(String(el.className||"")));
+    const classMatch = container ? String(container.className||"").match(/(?:^|\\s)numSockets([0-9]+)(?:\\s|$)/) : null;
+    const explicitCount = classMatch ? Number(classMatch[1]) : null;
+    const socketNodes = visibleNodes.filter(el => /(?:^|\\s)socket(?:\\s|$)/.test(String(el.className||"")));
+    return {count:explicitCount ?? (socketNodes.length||null),descriptors};
   }
 
   function parseSockets(text, lines, card) {
@@ -193,7 +193,7 @@
     const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.3",
+      version:"0.5.1+collector2.4",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       capturedResults:selected.captured,
