@@ -1,13 +1,65 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
-  "version": "0.5.1+collector2.1",
-  "capturedAt": "2026-09-26T02:21:01.145Z",
+  "version": "0.5.1+collector2.2",
+  "capturedAt": "2026-09-26T03:02:24.169Z",
   "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Forbidden%20Rites/H4sIAAAAAAAAE3VNzQqDMAx-l5xFvIwNX0VkdJqNwGyzGpFS-u5LO5B6WC7J95cvwipGthX6CI6FnIUejA2QmqKoMESQwFj4GRp40lvQZ2FMYwV_tnuFq3Mygi_nw6lnR8POtg-35zpvPMnZoBRCSiriZyNe0Mqf_zxz2Qtp7tp1Gpn03UHd2kvK8wVaAJtC8AAAAA",
   "capturedResults": 99,
   "returnedResults": 50,
   "resultLimit": 50,
   "sort": "price-asc:Divine Orb",
   "listings": [
+    {
+      "name": "Horror Thunder",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 80,
+      "quality": 25,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        382,
+        723
+      ],
+      "criticalChance": 8.71,
+      "attacksPerSecond": 1.29,
+      "physicalDps": 712.73,
+      "elementalDps": null,
+      "totalDps": 712.73,
+      "price": {
+        "amount": 175,
+        "currency": "Divine Orb"
+      },
+      "seller": "Kandi_Flip#5453",
+      "listedAgo": "25 minutes ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "20% increased Physical Damage",
+        "Bow Attacks fire an additional Arrow",
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "37% increased Physical DamageP5",
+        "Adds 32 to 63 Physical DamageP1",
+        "+93 to Accuracy RatingP5",
+        "17% increased Attack SpeedS1",
+        "+3.71% to Critical Hit ChanceS3",
+        "+2 to Level of all Attack SkillsS0",
+        "168% increased Physical DamageP2",
+        "Corrupted"
+      ]
+    },
     {
       "name": "Pandemonium Twine",
       "baseType": "Obliterator Bow",
@@ -33,6 +85,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -73,10 +130,15 @@
         "currency": "Divine Orb"
       },
       "seller": "yalogo#0413",
-      "listedAgo": "13 hours ago",
+      "listedAgo": "14 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -94,52 +156,6 @@
         "18% increased Physical DamageS0",
         "+9 to all AttributesS0",
         "+3.79% to Critical Hit ChanceS3",
-        "Corrupted"
-      ]
-    },
-    {
-      "name": "Horror Thunder",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 80,
-      "quality": 25,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        382,
-        723
-      ],
-      "criticalChance": 8.71,
-      "attacksPerSecond": 1.29,
-      "physicalDps": 712.73,
-      "elementalDps": null,
-      "totalDps": 712.73,
-      "price": {
-        "amount": 300,
-        "currency": "Divine Orb"
-      },
-      "seller": "Kandi_Flip#5453",
-      "listedAgo": "40 minutes ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": true,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "Bow Attacks fire an additional Arrow",
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "37% increased Physical DamageP5",
-        "Adds 32 to 63 Physical DamageP1",
-        "+93 to Accuracy RatingP5",
-        "17% increased Attack SpeedS1",
-        "+3.71% to Critical Hit ChanceS3",
-        "+2 to Level of all Attack SkillsS0",
-        "168% increased Physical DamageP2",
         "Corrupted"
       ]
     },
@@ -168,6 +184,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 9.72,
       "attackSkillLevels": 0,
@@ -212,6 +233,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -256,6 +282,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -273,51 +304,6 @@
         "17% increased Physical DamageS0",
         "+10 to all AttributesS0",
         "+4.36% to Critical Hit ChanceS2"
-      ]
-    },
-    {
-      "name": "Hypnotic Barrage",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 80,
-      "quality": 24,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        422,
-        735
-      ],
-      "criticalChance": 8.63,
-      "attacksPerSecond": 1.3,
-      "physicalDps": 752.05,
-      "elementalDps": null,
-      "totalDps": 752.05,
-      "price": {
-        "amount": 500,
-        "currency": "Divine Orb"
-      },
-      "seller": "chmopopa777228#7887",
-      "listedAgo": "11 hours ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": true,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "Bow Attacks fire an additional Arrow",
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "+3.63% to Critical Hit ChanceS3",
-        "217% increased Physical DamageP2 + P4",
-        "+101 to Accuracy RatingP4",
-        "18% increased Attack SpeedS1",
-        "+2 to Level of all Attack Skills",
-        "Adds 39 to 61 Physical DamageP1",
-        "Corrupted"
       ]
     },
     {
@@ -345,6 +331,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 7.11,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -361,6 +352,57 @@
         "Leeches 7.11% of Physical Damage as ManaS2",
         "+3.8% to Critical Hit ChanceS3",
         "157% increased Physical DamageP2"
+      ]
+    },
+    {
+      "name": "Hypnotic Barrage",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 80,
+      "quality": 24,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        422,
+        735
+      ],
+      "criticalChance": 8.63,
+      "attacksPerSecond": 1.3,
+      "physicalDps": 752.05,
+      "elementalDps": null,
+      "totalDps": 752.05,
+      "price": {
+        "amount": 500,
+        "currency": "Divine Orb"
+      },
+      "seller": "chmopopa777228#7887",
+      "listedAgo": "12 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "20% increased Physical Damage",
+        "Bow Attacks fire an additional Arrow",
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "+3.63% to Critical Hit ChanceS3",
+        "217% increased Physical DamageP2 + P4",
+        "+101 to Accuracy RatingP4",
+        "18% increased Attack SpeedS1",
+        "+2 to Level of all Attack Skills",
+        "Adds 39 to 61 Physical DamageP1",
+        "Corrupted"
       ]
     },
     {
@@ -384,10 +426,15 @@
         "currency": "Divine Orb"
       },
       "seller": "oumen#4410",
-      "listedAgo": "20 hours ago",
+      "listedAgo": "21 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -432,6 +479,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -476,6 +528,13 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [
+        "Rune Fletch"
+      ],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -519,6 +578,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -557,10 +621,15 @@
         "currency": "Divine Orb"
       },
       "seller": "Nisai_Sneah#3959",
-      "listedAgo": "3 hours ago",
+      "listedAgo": "4 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -605,6 +674,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -620,6 +694,53 @@
         "+4.8% to Critical Hit ChanceS1",
         "+2 to Level of all Attack Skills",
         "Adds 29 to 52 Physical DamageP2"
+      ]
+    },
+    {
+      "name": "Golem Horn",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 30,
+      "requirements": "Level 77, 163 Dex",
+      "physicalDamage": [
+        459,
+        714
+      ],
+      "criticalChance": 8.73,
+      "attacksPerSecond": 1.41,
+      "physicalDps": 826.96,
+      "elementalDps": null,
+      "totalDps": 826.96,
+      "price": {
+        "amount": 680,
+        "currency": "Divine Orb"
+      },
+      "seller": "neilsonew4#5410",
+      "listedAgo": "19 minutes ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "Adds 38 to 62 Physical DamageP1",
+        "63% increased Physical DamageP3",
+        "+129 to Accuracy RatingP3",
+        "17% increased Attack SpeedS1",
+        "+3.73% to Critical Hit ChanceS3",
+        "+2 to Level of all Attack SkillsS0",
+        "153% increased Physical DamageP3"
       ]
     },
     {
@@ -647,6 +768,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -687,10 +813,17 @@
         "currency": "Divine Orb"
       },
       "seller": "Robin#8283",
-      "listedAgo": "11 hours ago",
+      "listedAgo": "12 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour",
+        "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -735,10 +868,15 @@
         "currency": "Divine Orb"
       },
       "seller": "yalogo#0413",
-      "listedAgo": "13 hours ago",
+      "listedAgo": "14 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -784,6 +922,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -823,10 +966,15 @@
         "currency": "Divine Orb"
       },
       "seller": "15537337431#4850",
-      "listedAgo": "6 minutes ago",
+      "listedAgo": "47 minutes ago",
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -842,53 +990,6 @@
         "+4.6% to Critical Hit ChanceS2",
         "+2 to Level of all Attack SkillsS0",
         "Sanctified"
-      ]
-    },
-    {
-      "name": "Wrath Wing",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 83,
-      "quality": 30,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        347,
-        554
-      ],
-      "criticalChance": 8.74,
-      "attacksPerSecond": 1.8,
-      "physicalDps": 810.9,
-      "elementalDps": null,
-      "totalDps": 810.9,
-      "price": {
-        "amount": 800,
-        "currency": "Divine Orb"
-      },
-      "seller": "SoltyRey#0908",
-      "listedAgo": "3 hours ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": true,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "Bow Attacks fire an additional Arrow",
-        "20% less Attack Damage",
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "+3.74% to Critical Hit ChanceS3",
-        "155% increased Physical DamageP2",
-        "Adds 23 to 42 Physical DamageP3",
-        "+99% Surpassing chance to fire an additional ArrowS3",
-        "+2 to Level of all Attack Skills",
-        "63% increased Physical DamageP3",
-        "+129 to Accuracy RatingP3"
       ]
     },
     {
@@ -912,10 +1013,16 @@
         "currency": "Divine Orb"
       },
       "seller": "branoc305#3507",
-      "listedAgo": "20 hours ago",
+      "listedAgo": "21 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 8.38,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -959,10 +1066,15 @@
         "currency": "Divine Orb"
       },
       "seller": "1580312244#4287",
-      "listedAgo": "22 hours ago",
+      "listedAgo": "23 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1005,6 +1117,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1048,6 +1165,12 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1095,6 +1218,11 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1109,51 +1237,6 @@
         "+4.45% to Critical Hit ChanceS1",
         "Gain 69 Life per enemy killedS1",
         "177% increased Physical DamageP1"
-      ]
-    },
-    {
-      "name": "Gloom Twine",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 80,
-      "quality": 21,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        352,
-        670
-      ],
-      "criticalChance": 8.51,
-      "attacksPerSecond": 1.39,
-      "physicalDps": 710.29,
-      "elementalDps": null,
-      "totalDps": 710.29,
-      "price": {
-        "amount": 900,
-        "currency": "Divine Orb"
-      },
-      "seller": "Zefo4#7470",
-      "listedAgo": "2 weeks ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "8% increased Attack Speed",
-        "40% increased Physical Damage",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "+3.51% to Critical Hit ChanceS3",
-        "215% increased Physical DamageP2 + P4",
-        "Adds 20 to 41 Physical DamageP3",
-        "+116 to Accuracy RatingP4",
-        "+2 to Level of all Attack Skills",
-        "18% increased Attack SpeedS1",
-        "Companions have 16% increased Attack SpeedS1",
-        "Corrupted"
       ]
     },
     {
@@ -1181,6 +1264,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1220,10 +1308,15 @@
         "currency": "Divine Orb"
       },
       "seller": "zffkien#6072",
-      "listedAgo": "13 hours ago",
+      "listedAgo": "14 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1268,6 +1361,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1311,6 +1409,12 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1353,10 +1457,15 @@
         "currency": "Divine Orb"
       },
       "seller": "Duszeq_PL#2568",
-      "listedAgo": "3 hours ago",
+      "listedAgo": "4 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1373,48 +1482,6 @@
         "Gain 29 Mana per enemy killedS2",
         "+200% Surpassing chance to fire an additional ArrowS1",
         "169% increased Physical DamageP2",
-        "Corrupted"
-      ]
-    },
-    {
-      "name": "Rift Volley",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 81,
-      "quality": 26,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        432,
-        737
-      ],
-      "criticalChance": 10,
-      "attacksPerSecond": 1.2,
-      "physicalDps": 701.4,
-      "elementalDps": null,
-      "totalDps": 701.4,
-      "price": {
-        "amount": 1288,
-        "currency": "Divine Orb"
-      },
-      "seller": "pan520520#3648",
-      "listedAgo": "3 hours ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "60% increased Physical Damage",
-        "Bonded: 60% increased effect of Fully Broken Armour",
-        "+5% to Critical Hit ChanceS1",
-        "230% increased Physical DamageP2 + P2",
-        "+170 to Accuracy RatingP2",
-        "+25% to Critical Damage BonusS1",
-        "+2 to Level of all Attack SkillsS0",
-        "Adds 32 to 66 Physical DamageP1",
         "Corrupted"
       ]
     },
@@ -1439,10 +1506,15 @@
         "currency": "Divine Orb"
       },
       "seller": "AmhAttAfy#9455",
-      "listedAgo": "21 hours ago",
+      "listedAgo": "22 hours ago",
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1459,6 +1531,53 @@
         "12% increased Attack SpeedS2",
         "+3.91% to Critical Hit ChanceS3",
         "Sanctified"
+      ]
+    },
+    {
+      "name": "Rift Volley",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 81,
+      "quality": 26,
+      "requirements": "Level 77, 163 Dex",
+      "physicalDamage": [
+        432,
+        737
+      ],
+      "criticalChance": 10,
+      "attacksPerSecond": 1.2,
+      "physicalDps": 701.4,
+      "elementalDps": null,
+      "totalDps": 701.4,
+      "price": {
+        "amount": 1288,
+        "currency": "Divine Orb"
+      },
+      "seller": "pan520520#3648",
+      "listedAgo": "4 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "+5% to Critical Hit ChanceS1",
+        "230% increased Physical DamageP2 + P2",
+        "+170 to Accuracy RatingP2",
+        "+25% to Critical Damage BonusS1",
+        "+2 to Level of all Attack SkillsS0",
+        "Adds 32 to 66 Physical DamageP1",
+        "Corrupted"
       ]
     },
     {
@@ -1486,6 +1605,13 @@
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: +1 to Level of all Attack Skills",
+        "Bonded: 20% increased effect of Fully Broken Armour",
+        "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 1,
@@ -1510,46 +1636,50 @@
       ]
     },
     {
-      "name": "Grim Rain",
-      "baseType": "Obliterator Bow",
+      "name": "Corpse Branch",
+      "baseType": "Warmonger Bow",
       "itemClass": "Bow",
       "itemLevel": 82,
-      "quality": 20,
-      "requirements": "Level 78, 105 Dex",
+      "quality": 30,
+      "requirements": "Level 77, 163 Dex",
       "physicalDamage": [
-        469,
-        840
+        463,
+        728
       ],
       "criticalChance": 9.4,
-      "attacksPerSecond": 1.1,
-      "physicalDps": 719.95,
+      "attacksPerSecond": 1.2,
+      "physicalDps": 714.6,
       "elementalDps": null,
-      "totalDps": 719.95,
+      "totalDps": 714.6,
       "price": {
-        "amount": 1400,
+        "amount": 1366,
         "currency": "Divine Orb"
       },
-      "seller": "gryfisx#4044",
-      "listedAgo": "6 hours ago",
+      "seller": "pessimist#3125",
+      "listedAgo": "8 minutes ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 3,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
       "attackCostEfficiency": 0,
       "mods": [
-        "40% increased Physical Damage",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "177% increased Physical DamageP1",
-        "74% increased Physical DamageP2",
-        "Adds 38 to 64 Physical DamageP1",
-        "+173 to Accuracy RatingP2",
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "179% increased Physical DamageP1",
+        "70% increased Physical DamageP2",
+        "+151 to Accuracy RatingP2",
         "+4.4% to Critical Hit ChanceS2",
-        "35% reduced Attribute RequirementsS1",
-        "+3 to Level of all Projectile SkillsS2"
+        "+23% to Critical Damage BonusS1",
+        "+2 to Level of all Attack SkillsS0",
+        "Adds 31 to 53 Physical DamageP2"
       ]
     },
     {
@@ -1573,10 +1703,16 @@
         "currency": "Divine Orb"
       },
       "seller": "1105537803#6677",
-      "listedAgo": "2 hours ago",
+      "listedAgo": "3 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 70% increased Arrow Speed"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1596,6 +1732,54 @@
         "Gain 40 Mana per enemy killedS1",
         "+178% Surpassing chance to fire an additional ArrowS1",
         "Adds 21 to 52 Physical DamageP2"
+      ]
+    },
+    {
+      "name": "Grim Rain",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 20,
+      "requirements": "Level 78, 105 Dex",
+      "physicalDamage": [
+        469,
+        840
+      ],
+      "criticalChance": 9.4,
+      "attacksPerSecond": 1.1,
+      "physicalDps": 719.95,
+      "elementalDps": null,
+      "totalDps": 719.95,
+      "price": {
+        "amount": 1400,
+        "currency": "Divine Orb"
+      },
+      "seller": "gryfisx#4044",
+      "listedAgo": "7 hours ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 3,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "177% increased Physical DamageP1",
+        "74% increased Physical DamageP2",
+        "Adds 38 to 64 Physical DamageP1",
+        "+173 to Accuracy RatingP2",
+        "+4.4% to Critical Hit ChanceS2",
+        "35% reduced Attribute RequirementsS1",
+        "+3 to Level of all Projectile SkillsS2"
       ]
     },
     {
@@ -1619,10 +1803,15 @@
         "currency": "Divine Orb"
       },
       "seller": "jamedoom#0480",
-      "listedAgo": "1 hour ago",
+      "listedAgo": "2 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1642,6 +1831,54 @@
         "+2 to Level of all Attack SkillsS0",
         "18% increased Attack SpeedS1",
         "Companions have 18% increased Attack SpeedS1",
+        "Corrupted"
+      ]
+    },
+    {
+      "name": "Apocalypse Branch",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 83,
+      "quality": 24,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        478,
+        857
+      ],
+      "criticalChance": 8.74,
+      "attacksPerSecond": 1.1,
+      "physicalDps": 734.25,
+      "elementalDps": null,
+      "totalDps": 734.25,
+      "price": {
+        "amount": 1444,
+        "currency": "Divine Orb"
+      },
+      "seller": "FrozenFresh#5226",
+      "listedAgo": "24 minutes ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 4,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "+4 to Level of all Projectile SkillsS1",
+        "242% increased Physical DamageP1 + P2",
+        "+160 to Accuracy RatingP2",
+        "Gain 21 Mana per enemy killedS3",
+        "+3.74% to Critical Hit ChanceS3",
+        "Adds 39 to 66 Physical DamageP1",
         "Corrupted"
       ]
     },
@@ -1666,10 +1903,15 @@
         "currency": "Divine Orb"
       },
       "seller": "1120574838#8611",
-      "listedAgo": "5 hours ago",
+      "listedAgo": "6 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1708,10 +1950,15 @@
         "currency": "Divine Orb"
       },
       "seller": "Der1337_ToD#6350",
-      "listedAgo": "15 hours ago",
+      "listedAgo": "16 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1726,48 +1973,6 @@
         "+2 to Level of all Attack SkillsS0",
         "22% chance to gain Onslaught on Killing Hits with this WeaponS0",
         "Adds 36 to 61 Physical DamageP1"
-      ]
-    },
-    {
-      "name": "Corpse Branch",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 30,
-      "requirements": "Level 77, 163 Dex",
-      "physicalDamage": [
-        463,
-        728
-      ],
-      "criticalChance": 9.4,
-      "attacksPerSecond": 1.2,
-      "physicalDps": 714.6,
-      "elementalDps": null,
-      "totalDps": 714.6,
-      "price": {
-        "amount": 1499,
-        "currency": "Divine Orb"
-      },
-      "seller": "pessimist#3125",
-      "listedAgo": "5 hours ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "60% increased Physical Damage",
-        "Bonded: 60% increased effect of Fully Broken Armour",
-        "179% increased Physical DamageP1",
-        "70% increased Physical DamageP2",
-        "+151 to Accuracy RatingP2",
-        "+4.4% to Critical Hit ChanceS2",
-        "+23% to Critical Damage BonusS1",
-        "+2 to Level of all Attack SkillsS0",
-        "Adds 31 to 53 Physical DamageP2"
       ]
     },
     {
@@ -1795,6 +2000,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -1835,10 +2045,15 @@
         "currency": "Divine Orb"
       },
       "seller": "九月#0493",
-      "listedAgo": "24 hours ago",
+      "listedAgo": "yesterday",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1854,49 +2069,6 @@
         "+23% to Critical Damage BonusS1",
         "+2 to Level of all Attack SkillsS0",
         "150% increased Physical DamageP3"
-      ]
-    },
-    {
-      "name": "Apocalypse Branch",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 83,
-      "quality": 24,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        478,
-        857
-      ],
-      "criticalChance": 8.74,
-      "attacksPerSecond": 1.1,
-      "physicalDps": 734.25,
-      "elementalDps": null,
-      "totalDps": 734.25,
-      "price": {
-        "amount": 1600,
-        "currency": "Divine Orb"
-      },
-      "seller": "FrozenFresh#5226",
-      "listedAgo": "4 hours ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 4,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "40% increased Physical Damage",
-        "Bonded: 40% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "+4 to Level of all Projectile SkillsS1",
-        "242% increased Physical DamageP1 + P2",
-        "+160 to Accuracy RatingP2",
-        "Gain 21 Mana per enemy killedS3",
-        "+3.74% to Critical Hit ChanceS3",
-        "Adds 39 to 66 Physical DamageP1",
-        "Corrupted"
       ]
     },
     {
@@ -1920,10 +2092,17 @@
         "currency": "Divine Orb"
       },
       "seller": "cstni#7793",
-      "listedAgo": "9 hours ago",
+      "listedAgo": "10 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 15% increased Reservation Efficiency of Herald Skills"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -1971,6 +2150,11 @@
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2013,6 +2197,12 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2054,10 +2244,15 @@
         "currency": "Divine Orb"
       },
       "seller": "hlzz#8210",
-      "listedAgo": "3 minutes ago",
+      "listedAgo": "42 minutes ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 2,
@@ -2104,6 +2299,12 @@
       "corrupted": false,
       "sanctified": true,
       "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2123,55 +2324,6 @@
         "21% increased Attack SpeedS1",
         "Companions have 21% increased Attack SpeedS1",
         "Sanctified"
-      ]
-    },
-    {
-      "name": "Victory Strike",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 25,
-      "requirements": "Level 78, 163 Dex",
-      "physicalDamage": [
-        372,
-        669
-      ],
-      "criticalChance": 9.65,
-      "attacksPerSecond": 1.84,
-      "physicalDps": 957.72,
-      "elementalDps": null,
-      "totalDps": 957.72,
-      "price": {
-        "amount": 2000,
-        "currency": "Divine Orb"
-      },
-      "seller": "칠십일#3018",
-      "listedAgo": "4 hours ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": true,
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "+1 Suffix Modifier allowed",
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "Adds 23 to 38 Physical DamageP3",
-        "230% increased Physical DamageP1 + P4",
-        "+102 to Accuracy RatingP4",
-        "+4.65% to Critical Hit ChanceS1",
-        "+195% Surpassing chance to fire an additional ArrowS1",
-        "+2 to Level of all Attack Skills",
-        "17% increased Attack SpeedS1",
-        "Companions have 15% increased Attack SpeedS1",
-        "Corrupted"
       ]
     },
     {
@@ -2199,6 +2351,12 @@
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
       "manaLeech": 0,
       "lifeLeech": 0,
       "attackSkillLevels": 0,
@@ -2218,6 +2376,112 @@
         "+32 to DexterityS1",
         "71% increased Physical DamageP2",
         "+151 to Accuracy RatingP2"
+      ]
+    },
+    {
+      "name": "Victory Strike",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 25,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        372,
+        669
+      ],
+      "criticalChance": 9.65,
+      "attacksPerSecond": 1.84,
+      "physicalDps": 957.72,
+      "elementalDps": null,
+      "totalDps": 957.72,
+      "price": {
+        "amount": 2000,
+        "currency": "Divine Orb"
+      },
+      "seller": "칠십일#3018",
+      "listedAgo": "4 hours ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "+1 Suffix Modifier allowed",
+        "20% increased Physical Damage",
+        "50% increased Attack Speed",
+        "20% less Attack Damage",
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 20% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "Adds 23 to 38 Physical DamageP3",
+        "230% increased Physical DamageP1 + P4",
+        "+102 to Accuracy RatingP4",
+        "+4.65% to Critical Hit ChanceS1",
+        "+195% Surpassing chance to fire an additional ArrowS1",
+        "+2 to Level of all Attack Skills",
+        "17% increased Attack SpeedS1",
+        "Companions have 15% increased Attack SpeedS1",
+        "Corrupted"
+      ]
+    },
+    {
+      "name": "Phoenix Breeze",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 25,
+      "requirements": "Level 78, 163 Dex",
+      "physicalDamage": [
+        437,
+        770
+      ],
+      "criticalChance": 9.4,
+      "attacksPerSecond": 1.3,
+      "physicalDps": 784.55,
+      "elementalDps": null,
+      "totalDps": 784.55,
+      "price": {
+        "amount": 2200,
+        "currency": "Divine Orb"
+      },
+      "seller": "NulDonker#7522",
+      "listedAgo": "2 days ago",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bow Attacks fire an additional Arrow",
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "Adds 39 to 63 Physical DamageP1",
+        "206% increased Physical DamageP3 + P3",
+        "+127 to Accuracy RatingP3",
+        "18% increased Attack SpeedS1",
+        "+200% Surpassing chance to fire an additional ArrowS1",
+        "+4.4% to Critical Hit ChanceS2",
+        "Corrupted"
       ]
     }
   ]
