@@ -29,11 +29,6 @@
       "min": 300
     }
   ],
-  "stats": [
-    {
-      "text": "maximum Life",
-      "min": 80
-    }
-  ],
+  "stats": [],
   "search": true
 }
