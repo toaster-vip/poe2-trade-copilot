@@ -18,7 +18,7 @@
   const exact = (a,b) => norm(a) === norm(b);
 
   function candidateRows(){
-    const scope = document.querySelector(".search-advanced-pane") || document;
+    const scope = document;
     const selectors = [".filter.filter-property", ".filter", "[class*='filter']"];
     const seen = new Set();
     const out = [];
