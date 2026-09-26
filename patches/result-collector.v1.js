@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.1";
+  const PATCH_VERSION = "collector-2.2";
   const TOP_N = 50;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -66,10 +66,28 @@
     return index >= 2 ? {name:clean[index-2],baseType:clean[index-1],itemClass:clean[index]} : {name:clean[0]||null,baseType:clean[1]||null,itemClass:clean[2]||null};
   }
 
+  function parseSockets(text, lines) {
+    const socketLine = lines.find(line => /^(?:Sockets?|Rune Sockets?|Sockets? \(Rune\))\s*:/i.test(line));
+    let socketCount = null;
+    if (socketLine) {
+      const rhs = socketLine.split(":").slice(1).join(":").trim();
+      const explicit = rhs.match(/\b([0-9]+)\b/);
+      if (explicit) socketCount = Number(explicit[1]);
+      else {
+        const marks = rhs.match(/(?:\b[RGBW]\b|○|●|◉|◇|◆)/gi);
+        if (marks?.length) socketCount = marks.length;
+      }
+    }
+    if (socketCount == null) socketCount = num(text, /(?:Rune )?Sockets?\s*:?\s*([0-9]+)/i);
+    const bonded = lines.filter(line => /^Bonded:/i.test(line));
+    const runeLines = lines.filter(line => /\b(?:Rune|Soul Core)\b/i.test(line) && !/^(?:Rune )?Sockets?\s*:/i.test(line));
+    return {socketCount, bondedEffects: bonded, socketedRunes: runeLines};
+  }
+
   function parseCard(card) {
     const text = String(card.innerText || "").replace(/\u00a0/g," ").trim();
     const lines = text.split("\n").map(x=>x.trim()).filter(Boolean);
-    const id = identifyItem(lines);
+    const id = identifyItem(lines);\n    const sockets = parseSockets(text, lines);
     const seller = text.match(/([^\s\n]+#[0-9]+)\s+listed\s+([^\n]+)/i);
     const phys = text.match(/Physical Damage:\s*([0-9]+)\s*[-–]\s*([0-9]+)/i);
     const mods = lines.filter(line => {
@@ -159,7 +177,7 @@
     const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.1",
+      version:"0.5.1+collector2.2",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       capturedResults:selected.captured,
