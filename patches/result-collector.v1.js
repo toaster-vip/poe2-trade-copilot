@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.6";
-  const TOP_N = 50;
+  const PATCH_VERSION = "collector-2.7";
+  const TOP_N = 100;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -214,7 +214,7 @@
     const selected=selectTop(all);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.5",
+      version:"0.5.1+collector2.7",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       capturedResults:selected.captured,
