@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Helmet"
+      "value": "Bow"
     },
     {
       "label": "Item Rarity",
@@ -18,15 +18,19 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 800
+      "max": 2200
     },
     {
-      "label": "Evasion",
+      "label": "Physical DPS",
       "min": 950
     },
     {
-      "label": "Energy Shield",
-      "min": 290
+      "label": "Critical Chance",
+      "min": 9.3
+    },
+    {
+      "label": "Attacks per Second",
+      "min": 1.6
     }
   ],
   "stats": [],
