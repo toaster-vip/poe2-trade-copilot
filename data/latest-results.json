@@ -1,10 +1,10 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
   "version": "0.5.1+collector2.5",
-  "capturedAt": "2026-09-27T20:11:12.551Z",
+  "capturedAt": "2026-09-27T23:26:22.586Z",
   "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Forbidden%20Rites/H4sIAAAAAAAAE6tWKi5JLCktVrKqVsovKMnMz1OyUkrMq1Sq1QHLACWiq5VKKgtSweIpSjpKaZk5JalFIInY2thaAAPLoFBBAAAA",
-  "capturedResults": 7,
-  "returnedResults": 7,
+  "capturedResults": 8,
+  "returnedResults": 8,
   "resultLimit": 50,
   "sort": "price-asc:Divine Orb",
   "listings": [
@@ -40,7 +40,7 @@
         "currency": "Divine Orb"
       },
       "seller": "DinosStark#0039",
-      "listedAgo": "10 hours ago",
+      "listedAgo": "13 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": false,
@@ -168,7 +168,7 @@
         "currency": "Divine Orb"
       },
       "seller": "jamedoom#0480",
-      "listedAgo": "4 hours ago",
+      "listedAgo": "3 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
@@ -289,7 +289,7 @@
         "currency": "Divine Orb"
       },
       "seller": "brownbronxA#5645",
-      "listedAgo": "26 minutes ago",
+      "listedAgo": "4 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
@@ -418,7 +418,7 @@
         "currency": "Divine Orb"
       },
       "seller": "칠십일#3018",
-      "listedAgo": "4 hours ago",
+      "listedAgo": "8 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": false,
@@ -556,7 +556,7 @@
         "currency": "Divine Orb"
       },
       "seller": "oto120229865#1777",
-      "listedAgo": "3 hours ago",
+      "listedAgo": "6 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
@@ -712,7 +712,7 @@
         "currency": "Divine Orb"
       },
       "seller": "1580312244#4287",
-      "listedAgo": "4 hours ago",
+      "listedAgo": "7 hours ago",
       "corrupted": false,
       "sanctified": false,
       "additionalArrow": true,
@@ -818,6 +818,128 @@
       ]
     },
     {
+      "name": "Victory Fletch",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 29,
+      "requirements": "Level 78, 163 Dex",
+      "armour": null,
+      "evasion": null,
+      "energyShield": null,
+      "maximumLife": 0,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": [
+        396,
+        712
+      ],
+      "criticalChance": 9.34,
+      "attacksPerSecond": 1.86,
+      "physicalDps": 1030.44,
+      "elementalDps": 204.6,
+      "totalDps": 1235.04,
+      "price": {
+        "amount": 2050,
+        "currency": "Divine Orb"
+      },
+      "seller": "三角#7010",
+      "listedAgo": "2 hours ago",
+      "corrupted": false,
+      "sanctified": true,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 2,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "+1 Suffix Modifier allowed",
+        "50% increased Attack Speed",
+        "20% less Attack Damage",
+        "Bonded: 70% increased Arrow Speed",
+        "59% reduced Projectile Range",
+        "178% increased Physical DamageP1",
+        "Adds 42 to 72 Physical DamageP1",
+        "Adds 3 to 217 Lightning DamageP2",
+        "+4.34% to Critical Hit ChanceS2",
+        "17% increased Physical DamageS0",
+        "+2 to Level of all Attack SkillsS0",
+        "+11 to all AttributesS0",
+        "19% increased Attack SpeedS1",
+        "Companions have 17% increased Attack SpeedS1",
+        "Sanctified"
+      ]
+    },
+    {
       "name": "Vortex Stinger",
       "baseType": "Obliterator Bow",
       "itemClass": "Bow",
@@ -849,7 +971,7 @@
         "currency": "Divine Orb"
       },
       "seller": "jamedoom#0480",
-      "listedAgo": "4 hours ago",
+      "listedAgo": "3 hours ago",
       "corrupted": true,
       "sanctified": false,
       "additionalArrow": true,
