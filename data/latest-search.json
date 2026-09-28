@@ -13,12 +13,16 @@
     {
       "label": "Buyout Price",
       "value": "Divine Orb"
+    },
+    {
+      "label": "Listed",
+      "value": "Up to 3 Days Ago"
     }
   ],
   "fields": [
     {
       "label": "Buyout Price",
-      "min": 149,
+      "min": 150,
       "max": 150
     }
   ],
