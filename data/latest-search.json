@@ -21,6 +21,15 @@
       "max": 500
     }
   ],
-  "stats": [],
-  "search": false
+  "stats": [
+    {
+      "text": "maximum Life",
+      "min": 130
+    },
+    {
+      "text": "maximum Mana",
+      "min": 100
+    }
+  ],
+  "search": true
 }
