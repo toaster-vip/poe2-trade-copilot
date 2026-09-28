@@ -1,11 +1,11 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.13";
+  const PATCH_VERSION = "search-source-1.14";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
-  const $ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
+  const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   const norm = s => String(s || "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
 
