@@ -18,6 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
+      "min": 1200,
       "max": 2300
     },
     {
@@ -26,7 +27,11 @@
     },
     {
       "label": "Critical Chance",
-      "min": 9.2
+      "min": 9.5
+    },
+    {
+      "label": "Attacks per Second",
+      "min": 1.6
     }
   ],
   "stats": [],
