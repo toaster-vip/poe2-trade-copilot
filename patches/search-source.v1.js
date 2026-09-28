@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.11";
+  const PATCH_VERSION = "search-source-1.12";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -281,13 +281,11 @@
     return true;
   }
   async function waitForCorePreparation(packet,coreStats=[]){
-    const selects=Array.isArray(packet.selects)?packet.selects:[];
-    const fields=Array.isArray(packet.fields)?packet.fields:[];
-    for(let i=0;i<80;i++){
-      const selectsOk=selects.every(s=>norm(selectedValue(s.label))===norm(s.value));
-      const fieldsOk=fields.every(propertyValueMatches);
+    for(let i=0;i<100;i++){
+      const preflight=window.__POE2TC_PREFLIGHT_DEBUG;
+      const baseOk=preflight?.ok===true;
       const coreStatsOk=coreStats.every(s=>propertyValueMatches({label:s.text,min:s.min,max:s.max}));
-      if(selectsOk&&fieldsOk&&coreStatsOk) return true;
+      if(baseOk&&coreStatsOk) return true;
       await sleep(120);
     }
     return false;
@@ -316,6 +314,7 @@
         box.dispatchEvent(new Event("input",{bubbles:true}));
         box.dispatchEvent(new Event("change",{bubbles:true}));
         status("Preparing base filters and numeric properties...");
+        window.__POE2TC_PREFLIGHT_DEBUG=null;
         bypass=true; runButton.click(); bypass=false;
         const prepared=await waitForCorePreparation(packet,coreStats);
         if(!prepared){
