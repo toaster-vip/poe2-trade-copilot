@@ -18,19 +18,15 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 2300
+      "max": 500
     },
     {
       "label": "Physical DPS",
-      "min": 700
+      "min": 600
     },
     {
       "label": "Critical Chance",
-      "min": 9.2
-    },
-    {
-      "label": "Attacks per Second",
-      "min": 1.55
+      "min": 8.3
     }
   ],
   "stats": [],
