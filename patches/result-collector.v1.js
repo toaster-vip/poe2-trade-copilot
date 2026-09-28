@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.7";
+  const PATCH_VERSION = "collector-2.8";
   const TOP_N = 100;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -121,6 +121,8 @@
       if (/^~b\/o/i.test(line) || /^[0-9.,]+\s*[×x]?\s*(?:Divine Orb|Exalted Orb|Regal Orb|Chaos Orb|Mirror of Kalandra)$/i.test(line) || /\slisted\s/i.test(line) || /^Travel to Hideout$/i.test(line) || /^Ignore Player$/i.test(line)) return false;
       return true;
     });
+    const activeMods = mods.filter(line => !/^Bonded:/i.test(line));
+    const activeModText = activeMods.join("\n");
     return {
       name:id.name,baseType:id.baseType,itemClass:id.itemClass,
       itemLevel:num(text,/Item Level:\s*([0-9]+)/i),quality:num(text,/Quality:\s*\+?([0-9]+)%/i),requirements:text.match(/Requires:\s*([^\n]+)/i)?.[1]||null,
@@ -139,13 +141,21 @@
       criticalChance:num(text,/Critical Hit Chance:\s*([0-9.]+)%/i),attacksPerSecond:num(text,/Attacks per Second:\s*([0-9.]+)/i),
       physicalDps:num(text,/Physical DPS\s*:?\s*([0-9.]+)/i),elementalDps:num(text,/Elemental DPS\s*:?\s*([0-9.]+)/i),totalDps:num(text,/(?:^|\n)DPS\s*:?\s*([0-9.]+)/im),
       price:parsePrice(text),seller:seller?.[1]||null,listedAgo:seller?.[2]?.trim()||null,
-      corrupted:/\bCorrupted\b/i.test(text),sanctified:/\bSanctified\b/i.test(text),additionalArrow:/fire an additional arrow/i.test(text),
+      corrupted:/\bCorrupted\b/i.test(text),sanctified:/\bSanctified\b/i.test(text),
+      additionalArrow:activeMods.some(line => /^Bow Attacks fire an additional Arrow$/i.test(line)),
+      surpassingArrowChance:num(activeModText,/\+?([0-9.]+)%\s+Surpassing chance to fire an additional Arrow/i)||0,
+      lessAttackDamage:num(activeModText,/([0-9.]+)%\s+less Attack Damage/i)||0,
+      criticalDamageBonus:num(activeModText,/\+([0-9.]+)%\s+to Critical Damage Bonus/i)||0,
+      rareUniqueAttackDamage:num(activeModText,/([0-9.]+)%\s+increased Attack Damage against Rare or Unique Enemies/i)||0,
+      projectileRangeReduction:num(activeModText,/([0-9.]+)%\s+reduced Projectile Range/i)||0,
+      gainExtraAllElements:num(activeModText,/Gain\s+([0-9.]+)%\s+of Damage as Extra Damage of all Elements/i)||0,
+      manaPerEnemyKilled:num(activeModText,/Gain\s+([0-9.]+)\s+Mana per enemy killed/i)||0,
       socketCount:sockets.socketCount,bondedEffects:sockets.bondedEffects,socketedRunes:sockets.socketedRunes,socketDom:sockets.socketDom,
-      manaLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Mana/i)||0,
-      lifeLeech:num(text,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Life/i)||0,
-      attackSkillLevels:num(text,/\+([0-9]+)\s+to Level of all Attack Skills/i)||0,
-      projectileSkillLevels:num(text,/\+([0-9]+)\s+to Level of all Projectile Skills/i)||0,
-      attackCostEfficiency:num(text,/([0-9.]+)%\s+increased Cost Efficiency of Attacks/i)||0,
+      manaLeech:num(activeModText,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Mana/i)||0,
+      lifeLeech:num(activeModText,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Life/i)||0,
+      attackSkillLevels:num(activeModText,/\+([0-9]+)\s+to Level of all Attack Skills/i)||0,
+      projectileSkillLevels:num(activeModText,/\+([0-9]+)\s+to Level of all Projectile Skills/i)||0,
+      attackCostEfficiency:num(activeModText,/([0-9.]+)%\s+increased Cost Efficiency of Attacks/i)||0,
       mods
     };
   }
