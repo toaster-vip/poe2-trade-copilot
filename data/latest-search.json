@@ -23,10 +23,6 @@
   ],
   "stats": [
     {
-      "text": "Has # Charm Slots",
-      "min": 3
-    },
-    {
       "text": "maximum Life",
       "min": 130
     },
