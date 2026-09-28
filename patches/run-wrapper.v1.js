@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-1.9";
+  const PATCH_VERSION = "run-wrapper-2.0";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -188,6 +188,43 @@
     if (spec.min != null && String(mm.min?.value ?? "") !== String(spec.min)) return false;
     if (spec.max != null && String(mm.max?.value ?? "") !== String(spec.max)) return false;
     return true;
+  }
+
+  function verifyFieldCommitted(spec){
+    function candidatesFor(kind){
+      const wantedPlaceholder=kind==="min"?"min":"max";
+      return [...document.querySelectorAll("input")]
+        .filter(el=>!el.closest("#ptc"))
+        .filter(el=>{
+          const p=norm(el.placeholder);
+          return p===wantedPlaceholder || (el.type==="number" && (p==="" || p===wantedPlaceholder));
+        })
+        .map(el=>{
+          const ctx=nearestLabelContext(el,spec.label,10);
+          return {el,ctx};
+        })
+        .filter(x=>!!x.ctx)
+        .sort((a,b)=>{
+          if(a.ctx.distance!==b.ctx.distance) return a.ctx.distance-b.ctx.distance;
+          return a.ctx.text.length-b.ctx.text.length;
+        });
+    }
+
+    const minCandidates=spec.min!=null?candidatesFor("min"):[];
+    const maxCandidates=spec.max!=null?candidatesFor("max"):[];
+    const minEl=spec.min!=null?(minCandidates[0]?.el||null):null;
+    const maxEl=spec.max!=null?(maxCandidates[0]?.el||null):null;
+    const minOk=spec.min==null || (!!minEl && String(minEl.value??"")===String(spec.min));
+    const maxOk=spec.max==null || (!!maxEl && String(maxEl.value??"")===String(spec.max));
+    const ctx=(minCandidates[0]?.ctx||maxCandidates[0]?.ctx||null);
+    return {
+      ok:minOk&&maxOk,
+      minFound:spec.min==null||!!minEl,
+      maxFound:spec.max==null||!!maxEl,
+      minValue:minEl?.value??null,
+      maxValue:maxEl?.value??null,
+      context:String(ctx?.text||"").slice(0,260)
+    };
   }
   async function setField(spec){
     const attempts=[];
@@ -497,11 +534,18 @@
         }
       }
 
-      const verifyFields = fields.map(spec=>({
-        spec,
-        ok:fieldCommitted(findRow(spec.label),spec),
-        rowText:String(findRow(spec.label)?.innerText||findRow(spec.label)?.textContent||"").replace(/\s+/g," ").trim().slice(0,260)
-      }));
+      const verifyFields = fields.map(spec=>{
+        const result=verifyFieldCommitted(spec);
+        return {
+          spec,
+          ok:result.ok,
+          minFound:result.minFound,
+          maxFound:result.maxFound,
+          minValue:result.minValue,
+          maxValue:result.maxValue,
+          rowText:result.context
+        };
+      });
       preflight.steps.push({step:"verify-fields",fields:verifyFields});
       if (verifyFields.some(x=>!x.ok)) {
         preflight.failed={step:"verify-fields",fields:verifyFields};
