@@ -1,35 +1,11 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
-  "clear": true,
-  "selects": [
-    {
-      "label": "Item Category",
-      "value": "Belt"
-    },
-    {
-      "label": "Item Rarity",
-      "value": "Rare"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
-    }
-  ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 500
-    }
-  ],
+  "clear": false,
+  "selects": [],
+  "fields": [],
   "stats": [
-    {
-      "text": "maximum Life",
-      "min": 150
-    },
-    {
-      "text": "maximum Mana",
-      "min": 70
-    }
+    {"text": "maximum Life", "min": 150},
+    {"text": "maximum Mana", "min": 70}
   ],
   "search": true
 }
