@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.0";
+  const PATCH_VERSION = "run-wrapper-2.1";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -306,7 +306,46 @@
       .map(el => ({el,text:String(el.innerText || el.textContent || "").replace(/\s+/g," ").trim()}));
   }
 
+  function chooseNativeSelect(spec){
+    const wanted=norm(spec.value);
+    const matches=[...document.querySelectorAll("select")]
+      .filter(el=>!el.closest("#ptc") && visible(el))
+      .map(el=>{
+        const opts=[...el.options];
+        const idx=opts.findIndex(o=>norm(o.textContent||o.label||o.value)===wanted);
+        return {el,opts,idx};
+      })
+      .filter(x=>x.idx>=0);
+
+    if(!matches.length) return null;
+
+    const target=matches[0];
+    const opt=target.opts[target.idx];
+    try{
+      target.el.value=opt.value;
+      target.el.selectedIndex=target.idx;
+      target.el.dispatchEvent(new Event("input",{bubbles:true}));
+      target.el.dispatchEvent(new Event("change",{bubbles:true}));
+    }catch(error){
+      return {ok:false,reason:"native_select_error",error:String(error?.message||error)};
+    }
+
+    const selectedText=String(target.el.options[target.el.selectedIndex]?.textContent||target.el.value||"").replace(/\s+/g," ").trim();
+    return {
+      ok:exact(selectedText,spec.value),
+      mode:"native-select-exact",
+      selectedText,
+      optionLabels:target.opts.map(o=>String(o.textContent||o.label||o.value||"").replace(/\s+/g," ").trim()).slice(0,20)
+    };
+  }
+
   async function choose(spec){
+    const nativeResult=chooseNativeSelect(spec);
+    if(nativeResult){
+      if(nativeResult.ok) return {ok:true,attempt:1,mode:nativeResult.mode,attempts:[nativeResult]};
+      return {ok:false,reason:nativeResult.reason||"native_selection_not_committed",attempts:[nativeResult]};
+    }
+
     const attempts=[];
     let last="not_started";
 
