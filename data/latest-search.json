@@ -19,7 +19,7 @@
     {
       "label": "Buyout Price",
       "min": 500,
-      "max": 1000
+      "max": 700
     },
     {
       "label": "Physical DPS",
