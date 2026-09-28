@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.1";
+  const PATCH_VERSION = "run-wrapper-2.2";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -339,7 +339,59 @@
     };
   }
 
+  function tradeModeClickables(){
+    const sel="button,[role='button'],a,label,.multiselect,.dropdown-toggle,[class*='select'],[class*='dropdown']";
+    return [...document.querySelectorAll(sel)]
+      .filter(el=>!el.closest("#ptc") && visible(el))
+      .map(el=>({
+        el,
+        text:String(el.innerText||el.textContent||el.getAttribute("aria-label")||"").replace(/\s+/g," ").trim()
+      }))
+      .filter(x=>/in-person trade|instant buyout/i.test(x.text));
+  }
+
+  async function chooseTradeMode(spec){
+    if(norm(spec.label)!=="trade mode") return null;
+    const wanted=norm(spec.value);
+    const trace={mode:"trade-mode-click",wanted:spec.value,initial:tradeModeClickables().map(x=>x.text).slice(0,30)};
+
+    const clickExact=async()=>{
+      const exactMatch=tradeModeClickables().find(x=>norm(x.text)===wanted || norm(x.text).includes(wanted));
+      if(!exactMatch) return false;
+      try{ exactMatch.el.click(); }catch{
+        try{ exactMatch.el.dispatchEvent(new MouseEvent("click",{bubbles:true,cancelable:true,view:window})); }catch{}
+      }
+      await sleep(500);
+      trace.clicked=exactMatch.text;
+      return true;
+    };
+
+    if(await clickExact()){
+      trace.after=tradeModeClickables().map(x=>x.text).slice(0,30);
+      return {ok:true,attempt:1,mode:"trade-mode-direct-click",attempts:[trace]};
+    }
+
+    const openers=tradeModeClickables();
+    for(const opener of openers.slice(0,12)){
+      try{ opener.el.click(); }catch{
+        try{ opener.el.dispatchEvent(new MouseEvent("click",{bubbles:true,cancelable:true,view:window})); }catch{}
+      }
+      await sleep(350);
+      trace.opened=(trace.opened||[]).concat(opener.text);
+      if(await clickExact()){
+        trace.after=tradeModeClickables().map(x=>x.text).slice(0,30);
+        return {ok:true,attempt:1,mode:"trade-mode-open-then-click",attempts:[trace]};
+      }
+    }
+
+    trace.after=tradeModeClickables().map(x=>x.text).slice(0,30);
+    return {ok:false,reason:"trade_mode_control_not_found",attempts:[trace]};
+  }
+
   async function choose(spec){
+    const tradeModeResult=await chooseTradeMode(spec);
+    if(tradeModeResult) return tradeModeResult;
+
     const nativeResult=chooseNativeSelect(spec);
     if(nativeResult){
       if(nativeResult.ok) return {ok:true,attempt:1,mode:nativeResult.mode,attempts:[nativeResult]};
