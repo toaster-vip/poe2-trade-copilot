@@ -21,12 +21,8 @@
       "max": 100
     },
     {
-      "label": "Physical DPS",
-      "min": 600
-    },
-    {
       "label": "Critical Chance",
-      "min": 8
+      "min": 7
     }
   ],
   "stats": [],
