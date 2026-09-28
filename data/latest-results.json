@@ -1,13 +1,245 @@
 {
   "protocol": "poe2-trade-copilot/results-v5",
   "version": "0.5.1+collector2.7",
-  "capturedAt": "2026-09-28T13:48:10.855Z",
+  "capturedAt": "2026-09-28T13:51:08.964Z",
   "sourceUrl": "https://www.pathofexile.com/trade2/search/poe2/Runes%20of%20Aldur/H4sIAAAAAAAAE6tWKi5JLCktVrKqVsovKMnMz1OyUkrMq1Sq1QHLACWiq5VKKgtSweIpSjpKaZk5JalFIInY2thaAAPLoFBBAAAA",
-  "capturedResults": 7,
-  "returnedResults": 7,
+  "capturedResults": 5,
+  "returnedResults": 5,
   "resultLimit": 100,
   "sort": "price-asc:Divine Orb",
   "listings": [
+    {
+      "name": "Empyrean Horn",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 30,
+      "requirements": "Level 78, 163 Dex",
+      "armour": null,
+      "evasion": null,
+      "energyShield": null,
+      "maximumLife": 0,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": [
+        361,
+        727
+      ],
+      "criticalChance": 9.97,
+      "attacksPerSecond": 1.65,
+      "physicalDps": 897.6,
+      "elementalDps": 197.17,
+      "totalDps": 1094.77,
+      "price": {
+        "amount": 800,
+        "currency": "Divine Orb"
+      },
+      "seller": "rokesh25#3644",
+      "listedAgo": "12 minutes ago",
+      "corrupted": false,
+      "sanctified": true,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 8% chance to gain an additional random Charge when you gain a Charge"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "50% increased Attack Speed",
+        "20% less Attack Damage",
+        "Gain 5% of Damage as Extra Damage of all Elements",
+        "Bonded: 70% increased Arrow Speed",
+        "Bonded: 8% chance to gain an additional random Charge when you gain a Charge",
+        "57% reduced Projectile Range",
+        "Adds 11 to 228 Lightning DamageP1",
+        "Adds 31 to 72 Physical DamageP1",
+        "+4.97% to Critical Hit ChanceS1",
+        "Gain 51 Mana per enemy killedS1",
+        "+168% Surpassing chance to fire an additional ArrowS1",
+        "199% increased Physical DamageP2",
+        "Sanctified"
+      ]
+    },
+    {
+      "name": "Hate Arch",
+      "baseType": "Obliterator Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 23,
+      "requirements": "Level 78, 163 Dex",
+      "armour": null,
+      "evasion": null,
+      "energyShield": null,
+      "maximumLife": 0,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": [
+        476,
+        870
+      ],
+      "criticalChance": 9.99,
+      "attacksPerSecond": 1.28,
+      "physicalDps": 861.44,
+      "elementalDps": null,
+      "totalDps": 861.44,
+      "price": {
+        "amount": 888,
+        "currency": "Divine Orb"
+      },
+      "seller": "774597868#0506",
+      "listedAgo": "6 days ago",
+      "corrupted": false,
+      "sanctified": false,
+      "additionalArrow": false,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 40% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets2",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 0,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "40% increased Physical Damage",
+        "Bonded: 40% increased effect of Fully Broken Armour",
+        "50% reduced Projectile Range",
+        "179% increased Physical DamageP1",
+        "54% increased Physical DamageP4",
+        "Adds 37 to 66 Physical DamageP1",
+        "+115 to Accuracy RatingP4",
+        "+4.99% to Critical Hit ChanceS1",
+        "18% increased Physical DamageS0",
+        "+7 to all AttributesS0",
+        "16% increased Attack SpeedS1",
+        "Companions have 12% increased Attack SpeedS1"
+      ]
+    },
     {
       "name": "Dragon Thunder",
       "baseType": "Obliterator Bow",
@@ -119,11 +351,11 @@
       ]
     },
     {
-      "name": "Brood Song",
+      "name": "Sorrow Song",
       "baseType": "Obliterator Bow",
       "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 23,
+      "itemLevel": 83,
+      "quality": 27,
       "requirements": "Level 78, 163 Dex",
       "armour": null,
       "evasion": null,
@@ -137,19 +369,19 @@
       "coldResistance": 0,
       "lightningResistance": 0,
       "physicalDamage": [
-        385,
-        727
+        334,
+        626
       ],
-      "criticalChance": 9.92,
-      "attacksPerSecond": 1.65,
-      "physicalDps": 917.4,
-      "elementalDps": 28.05,
-      "totalDps": 945.45,
+      "criticalChance": 9.98,
+      "attacksPerSecond": 1.86,
+      "physicalDps": 892.8,
+      "elementalDps": 214.83,
+      "totalDps": 1107.63,
       "price": {
-        "amount": 2490,
+        "amount": 2000,
         "currency": "Divine Orb"
       },
-      "seller": "Sundragon5278#1727",
+      "seller": "Ke4aL#3681",
       "listedAgo": "yesterday",
       "corrupted": true,
       "sanctified": false,
@@ -157,698 +389,7 @@
       "socketCount": null,
       "bondedEffects": [
         "Bonded: 20% increased Projectile Speed",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets3",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune socketRight",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 4,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "Adds 1 to 33 Lightning Damage",
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "Bow Attacks fire an additional Arrow",
-        "20% less Attack Damage",
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "+4 to Level of all Projectile SkillsS1",
-        "58% increased Physical DamageP3",
-        "Adds 26 to 51 Physical DamageP2",
-        "+130 to Accuracy RatingP3",
-        "+4.92% to Critical Hit ChanceS1",
-        "+192% Surpassing chance to fire an additional ArrowS1",
-        "178% increased Physical DamageP1",
-        "Twice Corrupted"
-      ]
-    },
-    {
-      "name": "Kraken Twine",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 20,
-      "requirements": "Level 78, 163 Dex",
-      "armour": null,
-      "evasion": null,
-      "energyShield": null,
-      "maximumLife": 0,
-      "dexterity": 0,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 0,
-      "lightningResistance": 0,
-      "physicalDamage": [
-        376,
-        655
-      ],
-      "criticalChance": 10.23,
-      "attacksPerSecond": 1.8,
-      "physicalDps": 927.9,
-      "elementalDps": null,
-      "totalDps": 927.9,
-      "price": {
-        "amount": 2500,
-        "currency": "Divine Orb"
-      },
-      "seller": "JustSulo#4689",
-      "listedAgo": "4 days ago",
-      "corrupted": false,
-      "sanctified": true,
-      "additionalArrow": true,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets3",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune socketRight",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 2,
-      "projectileSkillLevels": 0,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "Bow Attacks fire an additional Arrow",
-        "20% less Attack Damage",
-        "Bonded: 20% increased Projectile Speed",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "47% reduced Projectile Range",
-        "164% increased Physical DamageP2",
-        "57% increased Physical DamageP3",
-        "+143 to Accuracy RatingP3",
-        "+5.23% to Critical Hit ChanceS1",
-        "13% increased Attack SpeedS2",
-        "+2 to Level of all Attack SkillsS0",
-        "Adds 30 to 45 Physical DamageP1",
-        "Sanctified"
-      ]
-    },
-    {
-      "name": "Doom Branch",
-      "baseType": "Obliterator Bow",
-      "itemClass": "Bow",
-      "itemLevel": 81,
-      "quality": 24,
-      "requirements": "Level 78, 163 Dex",
-      "armour": null,
-      "evasion": null,
-      "energyShield": null,
-      "maximumLife": 0,
-      "dexterity": 0,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 0,
-      "lightningResistance": 0,
-      "physicalDamage": [
-        449,
-        808
-      ],
-      "criticalChance": 9.97,
-      "attacksPerSecond": 1.84,
-      "physicalDps": 1156.44,
-      "elementalDps": null,
-      "totalDps": 1156.44,
-      "price": {
-        "amount": 2599,
-        "currency": "Divine Orb"
-      },
-      "seller": "brownbronxA#5645",
-      "listedAgo": "5 days ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": false,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets2",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 4,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "50% reduced Projectile Range",
-        "168% increased Physical DamageP2",
-        "74% increased Physical DamageP2",
-        "Adds 38 to 65 Physical DamageP1",
-        "+172 to Accuracy RatingP2",
-        "+4.97% to Critical Hit ChanceS1",
-        "17% increased Attack SpeedS1",
-        "+4 to Level of all Projectile SkillsS1",
-        "Corrupted"
-      ]
-    },
-    {
-      "name": "Onslaught Fletch",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 30,
-      "requirements": "Level 77, 163 Dex",
-      "armour": null,
-      "evasion": null,
-      "energyShield": null,
-      "maximumLife": 0,
-      "dexterity": 32,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 0,
-      "lightningResistance": 0,
-      "physicalDamage": [
-        420,
-        677
-      ],
-      "criticalChance": 9.67,
-      "attacksPerSecond": 1.8,
-      "physicalDps": 987.3,
-      "elementalDps": null,
-      "totalDps": 987.3,
-      "price": {
-        "amount": 2899,
-        "currency": "Divine Orb"
-      },
-      "seller": "brownbronxA#5645",
-      "listedAgo": "5 days ago",
-      "corrupted": true,
-      "sanctified": false,
-      "additionalArrow": true,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 70% increased Arrow Speed"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets2",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 4,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "+1 Suffix Modifier allowed",
-        "50% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "178% increased Physical DamageP1",
-        "69% increased Physical DamageP2",
-        "+158 to Accuracy RatingP2",
-        "+4.67% to Critical Hit ChanceS1",
-        "+4 to Level of all Projectile SkillsS1",
-        "+32 to DexterityS1",
-        "+196% Surpassing chance to fire an additional ArrowS1",
-        "Adds 37 to 66 Physical DamageP1",
-        "Corrupted"
-      ]
-    },
-    {
-      "name": "Carrion Nock",
-      "baseType": "Warmonger Bow",
-      "itemClass": "Bow",
-      "itemLevel": 82,
-      "quality": 25,
-      "requirements": "Level 77, 163 Dex",
-      "armour": null,
-      "evasion": null,
-      "energyShield": null,
-      "maximumLife": 0,
-      "dexterity": 0,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 0,
-      "lightningResistance": 0,
-      "physicalDamage": [
-        430,
-        666
-      ],
-      "criticalChance": 10,
-      "attacksPerSecond": 1.8,
-      "physicalDps": 986.4,
-      "elementalDps": null,
-      "totalDps": 986.4,
-      "price": {
-        "amount": 2999,
-        "currency": "Divine Orb"
-      },
-      "seller": "brownbronxA#5645",
-      "listedAgo": "5 days ago",
-      "corrupted": false,
-      "sanctified": true,
-      "additionalArrow": true,
-      "socketCount": null,
-      "bondedEffects": [
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour"
-      ],
-      "socketedRunes": [],
-      "socketDom": [
-        {
-          "tag": "DIV",
-          "className": "sockets numSockets2",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "socket socket--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        },
-        {
-          "tag": "DIV",
-          "className": "item-mod item-mod--rune",
-          "title": null,
-          "aria": null,
-          "dataSocket": null,
-          "dataRune": null
-        }
-      ],
-      "manaLeech": 0,
-      "lifeLeech": 0,
-      "attackSkillLevels": 0,
-      "projectileSkillLevels": 4,
-      "attackCostEfficiency": 0,
-      "mods": [
-        "20% increased Physical Damage",
-        "50% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "Bonded: 20% increased effect of Fully Broken Armour",
-        "+5% to Critical Hit ChanceS1",
-        "258% increased Physical DamageP1 + P1",
-        "+170 to Accuracy RatingP1",
-        "+4 to Level of all Projectile SkillsS1",
-        "+190% Surpassing chance to fire an additional ArrowS1",
-        "Adds 35 to 57 Physical DamageP1",
-        "Sanctified"
-      ]
-    },
-    {
-      "name": "Tempest Reach",
-      "baseType": "Ironwood Shortbow",
-      "itemClass": "Bow",
-      "itemLevel": 83,
-      "quality": 20,
-      "requirements": "Level 67, 134 Dex",
-      "armour": null,
-      "evasion": null,
-      "energyShield": null,
-      "maximumLife": 0,
-      "dexterity": 0,
-      "intelligence": 0,
-      "strength": 0,
-      "chaosResistance": 0,
-      "fireResistance": 0,
-      "coldResistance": 0,
-      "lightningResistance": 0,
-      "physicalDamage": [
-        297,
-        540
-      ],
-      "criticalChance": 9.78,
-      "attacksPerSecond": 2.23,
-      "physicalDps": 933.26,
-      "elementalDps": null,
-      "totalDps": 933.26,
-      "price": {
-        "amount": 3000,
-        "currency": "Divine Orb"
-      },
-      "seller": "adll#1737",
-      "listedAgo": "2 months ago",
-      "corrupted": false,
-      "sanctified": false,
-      "additionalArrow": true,
-      "socketCount": null,
-      "bondedEffects": [
+        "Bonded: +1 to Level of all Attack Skills",
         "Bonded: 70% increased Arrow Speed"
       ],
       "socketedRunes": [],
@@ -908,6 +449,152 @@
           "aria": null,
           "dataSocket": null,
           "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        }
+      ],
+      "manaLeech": 0,
+      "lifeLeech": 0,
+      "attackSkillLevels": 1,
+      "projectileSkillLevels": 0,
+      "attackCostEfficiency": 0,
+      "mods": [
+        "50% increased Attack Speed",
+        "Bow Attacks fire an additional Arrow",
+        "20% less Attack Damage",
+        "50% increased Attack Damage against Rare or Unique Enemies",
+        "Bonded: 20% increased Projectile Speed",
+        "Bonded: +1 to Level of all Attack Skills",
+        "Bonded: 70% increased Arrow Speed",
+        "50% reduced Projectile Range",
+        "+4.98% to Critical Hit ChanceS1",
+        "174% increased Physical DamageP1",
+        "Adds 10 to 221 Lightning DamageP1",
+        "19% increased Attack SpeedS1",
+        "+199% Surpassing chance to fire an additional ArrowS1",
+        "Adds 34 to 65 Physical DamageP1",
+        "Corrupted"
+      ]
+    },
+    {
+      "name": "Bramble Strike",
+      "baseType": "Warmonger Bow",
+      "itemClass": "Bow",
+      "itemLevel": 82,
+      "quality": 27,
+      "requirements": "Level 77, 163 Dex",
+      "armour": null,
+      "evasion": null,
+      "energyShield": null,
+      "maximumLife": 0,
+      "dexterity": 0,
+      "intelligence": 0,
+      "strength": 0,
+      "chaosResistance": 0,
+      "fireResistance": 0,
+      "coldResistance": 0,
+      "lightningResistance": 0,
+      "physicalDamage": [
+        457,
+        742
+      ],
+      "criticalChance": 9.75,
+      "attacksPerSecond": 1.43,
+      "physicalDps": 857.29,
+      "elementalDps": null,
+      "totalDps": 857.29,
+      "price": {
+        "amount": 2000,
+        "currency": "Divine Orb"
+      },
+      "seller": "vegata8326#4460",
+      "listedAgo": "last month",
+      "corrupted": true,
+      "sanctified": false,
+      "additionalArrow": true,
+      "socketCount": null,
+      "bondedEffects": [
+        "Bonded: 60% increased effect of Fully Broken Armour"
+      ],
+      "socketedRunes": [],
+      "socketDom": [
+        {
+          "tag": "DIV",
+          "className": "sockets numSockets3",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "socket socket--rune socketRight",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
+        },
+        {
+          "tag": "DIV",
+          "className": "item-mod item-mod--rune",
+          "title": null,
+          "aria": null,
+          "dataSocket": null,
+          "dataRune": null
         }
       ],
       "manaLeech": 0,
@@ -916,16 +603,16 @@
       "projectileSkillLevels": 0,
       "attackCostEfficiency": 0,
       "mods": [
-        "60% increased Attack Speed",
-        "20% less Attack Damage",
-        "Bonded: 70% increased Arrow Speed",
-        "79% increased Physical DamageP1",
-        "+182 to Accuracy RatingP1",
-        "170% increased Physical DamageP1",
-        "Adds 30 to 53 Physical DamageP2",
-        "+4.78% to Critical Hit ChanceS1",
-        "18% increased Attack SpeedS1",
-        "+147% Surpassing chance to fire an additional ArrowS2"
+        "60% increased Physical Damage",
+        "Bonded: 60% increased effect of Fully Broken Armour",
+        "+182% Surpassing chance to fire an additional ArrowS1",
+        "62% increased Physical DamageP3",
+        "Adds 34 to 62 Physical DamageP1",
+        "+137 to Accuracy RatingP3",
+        "+4.75% to Critical Hit ChanceS1",
+        "19% increased Attack SpeedS1",
+        "178% increased Physical DamageP1",
+        "Corrupted"
       ]
     }
   ]
