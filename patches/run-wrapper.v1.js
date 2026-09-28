@@ -670,6 +670,8 @@
             version:PATCH_VERSION,
             url:location.href,
             preflight:window.__POE2TC_PREFLIGHT_DEBUG,
+            statBridge:window.__POE2TC_STAT_BRIDGE_DEBUG||null,
+            searchSource:window.__POE2TC_LAST_SEARCH_SOURCE||null,
             lastDebug:window.__POE2TC_LAST_DEBUG||null
           };
           const text=JSON.stringify(packet);
