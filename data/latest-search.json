@@ -11,6 +11,10 @@
       "value": "Rare"
     },
     {
+      "label": "Sale Type",
+      "value": "In-Person Trade Only"
+    },
+    {
       "label": "Buyout Price",
       "value": "Divine Orb"
     }
@@ -18,7 +22,8 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 250
+      "min": 250,
+      "max": 500
     },
     {
       "label": "Physical DPS",
