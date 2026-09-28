@@ -18,8 +18,8 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "min": 150,
-      "max": 300
+      "min": 301,
+      "max": 600
     },
     {
       "label": "Evasion",
