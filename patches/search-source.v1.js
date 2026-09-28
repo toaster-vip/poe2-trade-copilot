@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.12";
+  const PATCH_VERSION = "search-source-1.13";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -135,8 +135,57 @@
 
   function statSection() {
     const add=$("input[placeholder='+ Add Stat Filter']") || $("input[placeholder*='Add Stat Filter']");
-    if(!add) return null;
-    return add.closest(".filter-group") || add.closest(".filter-group-body") || add.parentElement?.parentElement?.parentElement || document;
+    if(add) return add.closest(".filter-group") || add.closest(".filter-group-body") || add.parentElement?.parentElement?.parentElement || document;
+
+    const heading=$("body *").find(el=>visible(el) && /^STAT FILTERS$/i.test(String(el.textContent||"").replace(/\s+/g," ").trim()));
+    if(!heading) return null;
+
+    let node=heading.parentElement;
+    for(let i=0;node&&node!==document.body&&i<6;i++,node=node.parentElement){
+      const text=norm(node.innerText||node.textContent||"");
+      if(text.includes("stat filters") && node.querySelector("input,button,.multiselect,[role='combobox']")) return node;
+    }
+    return heading.parentElement||null;
+  }
+
+  async function addStatInput(){
+    let input=$("input[placeholder='+ Add Stat Filter']") || $("input[placeholder*='Add Stat Filter']");
+    if(input&&visible(input)) return input;
+
+    const section=statSection();
+    if(!section) return null;
+
+    const candidates=()=>$("input",section)
+      .filter(el=>visible(el)&&!el.closest("#ptc"))
+      .filter(el=>{
+        const p=norm(el.placeholder);
+        if(el.type==="number"||p==="min"||p==="max") return false;
+        return p.includes("stat")||p.includes("search")||!!el.closest(".multiselect,[role='combobox']");
+      });
+
+    input=candidates()[0]||null;
+    if(input) return input;
+
+    const opener=$("button,[role='button'],div",section)
+      .filter(visible)
+      .find(el=>/ADD STAT FILTER/i.test(String(el.innerText||el.textContent||"").replace(/\s+/g," ").trim()));
+    if(opener){
+      try{opener.click();}catch{}
+      await sleep(250);
+      input=candidates()[0]||null;
+      if(input) return input;
+    }
+
+    const selectRoot=$(".multiselect,[role='combobox']",section).filter(visible)[0]||null;
+    if(selectRoot){
+      try{selectRoot.click();}catch{}
+      await sleep(200);
+      input=$("input",selectRoot).filter(visible).find(el=>{
+        const p=norm(el.placeholder);
+        return el.type!=="number"&&p!=="min"&&p!=="max";
+      })||null;
+    }
+    return input;
   }
   function allRows() {
     const section=statSection() || ($(".search-advanced-pane")||document);
@@ -229,8 +278,12 @@
       return {ok:true,mode:"existing",rowText:(existing.innerText||existing.textContent||"").replace(/\s+/g," ").trim()};
     }
 
-    const input=$("input[placeholder='+ Add Stat Filter']") || $("input[placeholder*='Add Stat Filter']");
-    if(!input) return {ok:false,reason:"add_stat_input_not_found"};
+    const input=await addStatInput();
+    if(!input) return {
+      ok:false,
+      reason:"add_stat_input_not_found",
+      sectionText:(statSection()?.innerText||"").replace(/\s+/g," ").trim().slice(0,1200)
+    };
     const before=new Set(statRows());
     const select=await commitStatSelection(input,spec);
     if(!select.ok) return select;
