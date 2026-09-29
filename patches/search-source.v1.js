@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.14";
+  const PATCH_VERSION = "search-source-1.15";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -344,6 +344,171 @@
     return false;
   }
 
+
+  const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
+  const DIRECT_API_VERSION = "direct-api-1.0";
+
+  function directLeague(packet){
+    const explicit=packet?.apiSearch?.league;
+    if(explicit) return String(explicit);
+    const parts=location.pathname.split("/").filter(Boolean);
+    const poeIndex=parts.findIndex(x=>x==="poe2");
+    if(poeIndex>=0 && parts[poeIndex+1]) {
+      try { return decodeURIComponent(parts[poeIndex+1]); } catch { return parts[poeIndex+1]; }
+    }
+    return null;
+  }
+
+  async function officialStatIndex(){
+    if(window.__POE2TC_OFFICIAL_STAT_INDEX) return window.__POE2TC_OFFICIAL_STAT_INDEX;
+    const response=await fetch(OFFICIAL_STATS_URL,{
+      cache:"no-store",
+      credentials:"same-origin",
+      headers:{"Accept":"application/json"}
+    });
+    if(!response.ok) throw new Error(\`official stats HTTP \${response.status}\`);
+    const payload=await response.json();
+    const index=new Map();
+    for(const group of payload?.result||[]){
+      for(const entry of group?.entries||[]){
+        if(entry?.id) index.set(String(entry.id),entry);
+      }
+    }
+    if(!index.size) throw new Error("official stats catalog was empty");
+    window.__POE2TC_OFFICIAL_STAT_INDEX=index;
+    return index;
+  }
+
+  function apiStatGroups(spec,index){
+    const groups=Array.isArray(spec?.statGroups)?spec.statGroups:[];
+    return groups.map((group,groupIndex)=>{
+      const type=String(group?.type||"and");
+      const allowed=new Set(["and","count","not","if","weight","weight2"]);
+      if(!allowed.has(type)) throw new Error(\`unsupported stat group type: \${type}\`);
+      const filters=(Array.isArray(group?.filters)?group.filters:[]).map((filter,filterIndex)=>{
+        const id=String(filter?.id||"");
+        if(!id) throw new Error(\`statGroups[\${groupIndex}].filters[\${filterIndex}] missing id\`);
+        const live=index.get(id);
+        if(!live) throw new Error(\`official stat id no longer exists: \${id}\`);
+        if(filter?.text && norm(live.text)!==norm(filter.text)){
+          throw new Error(\`official stat text mismatch for \${id}: expected "\${filter.text}", got "\${live.text}"\`);
+        }
+        const value={};
+        if(filter?.min!=null) value.min=Number(filter.min);
+        if(filter?.max!=null) value.max=Number(filter.max);
+        if((type==="weight"||type==="weight2") && filter?.weight!=null) value.weight=Number(filter.weight);
+        return {
+          id,
+          ...(Object.keys(value).length?{value}:{}),
+          ...(filter?.disabled?{disabled:true}:{})
+        };
+      });
+      const out={type,filters};
+      if(type==="count"||type==="weight"||type==="weight2"){
+        const value={};
+        if(group?.min!=null) value.min=Number(group.min);
+        if(group?.max!=null) value.max=Number(group.max);
+        out.value=value;
+      }
+      return out;
+    });
+  }
+
+  function buildDirectQuery(spec,index){
+    const filters={};
+    if(spec?.category || spec?.rarity){
+      filters.type_filters={filters:{}};
+      if(spec.category) filters.type_filters.filters.category={option:String(spec.category)};
+      if(spec.rarity) filters.type_filters.filters.rarity={option:String(spec.rarity)};
+    }
+    if(spec?.price){
+      const price={};
+      if(spec.price.option) price.option=String(spec.price.option);
+      if(spec.price.min!=null) price.min=Number(spec.price.min);
+      if(spec.price.max!=null) price.max=Number(spec.price.max);
+      filters.trade_filters={filters:{price}};
+    }
+    return {
+      status:{option:String(spec?.status||"securable")},
+      stats:apiStatGroups(spec,index),
+      filters
+    };
+  }
+
+  async function runDirectApiPacket(packet){
+    const spec=packet?.apiSearch;
+    const league=directLeague(packet);
+    if(!league) throw new Error("league could not be resolved");
+    status("Direct API: validating exact stat IDs against official catalog...");
+    const index=await officialStatIndex();
+    const query=buildDirectQuery(spec,index);
+    const requestBody={query,sort:{price:"asc"}};
+    const debug={
+      ok:false,
+      version:DIRECT_API_VERSION,
+      league,
+      catalogSize:index.size,
+      packet,
+      requestBody,
+      startedAt:new Date().toISOString()
+    };
+    window.__POE2TC_DIRECT_API_DEBUG=debug;
+
+    if(packet.search===false){
+      debug.ok=true;
+      debug.validationOnly=true;
+      status(\`PASS: \${query.stats.reduce((n,g)=>n+g.filters.length,0)} exact official stats verified. Search NOT submitted.\`);
+      return debug;
+    }
+
+    status("Direct API: submitting verified Count/AND search...");
+    const response=await fetch(\`/api/trade2/search/poe2/\${encodeURIComponent(league)}\`,{
+      method:"POST",
+      credentials:"same-origin",
+      headers:{
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(requestBody)
+    });
+    const responseText=await response.text();
+    let result=null;
+    try { result=JSON.parse(responseText); } catch {}
+    debug.httpStatus=response.status;
+    debug.response=result||responseText.slice(0,1200);
+    if(!response.ok) throw new Error(\`trade search HTTP \${response.status}\`);
+    if(!result?.id) throw new Error("trade search response missing id");
+    debug.ok=true;
+    debug.searchId=result.id;
+    debug.total=result.total??null;
+    debug.resultCount=Array.isArray(result.result)?result.result.length:null;
+    status(\`PASS: direct search submitted\${result.total!=null?\` · \${result.total} matches\`:""}. Opening results...\`);
+    await sleep(250);
+    location.assign(\`/trade2/search/poe2/\${encodeURIComponent(league)}/\${encodeURIComponent(result.id)}\`);
+    return debug;
+  }
+
+  function installDirectApiBridge(runButton,box){
+    if(runButton.dataset.directApiBridge===DIRECT_API_VERSION) return;
+    runButton.dataset.directApiBridge=DIRECT_API_VERSION;
+    runButton.addEventListener("click",event=>{
+      let packet; try{packet=JSON.parse(box.value);}catch{return;}
+      if(!packet?.apiSearch) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      (async()=>{
+        try{
+          await runDirectApiPacket(packet);
+        }catch(error){
+          console.error("[PoE2TC Direct API]",error);
+          const prev=window.__POE2TC_DIRECT_API_DEBUG||{};
+          window.__POE2TC_DIRECT_API_DEBUG={...prev,ok:false,version:DIRECT_API_VERSION,error:String(error?.message||error),packet};
+          status(\`Direct API search aborted: \${error?.message||error}. COPY DEBUG.\`);
+        }
+      })();
+    },true);
+  }
+
   function installStatBridge(runButton,box){
     if(runButton.dataset.statBridge===PATCH_VERSION) return;
     runButton.dataset.statBridge=PATCH_VERSION;
@@ -413,6 +578,7 @@
       grid.insertBefore(button,runButton);
       button.addEventListener("click",async()=>{try{await loadFromGitHub();}catch(error){console.error("[PoE2TC Search Source]",error);status(`GitHub search load failed: ${error.message}`);}});
     }
+    installDirectApiBridge(runButton,box);
     installStatBridge(runButton,box);
     window.__POE2TC_LOAD_SEARCH_FROM_GITHUB=loadFromGitHub;
     console.log(`[PoE2TC Search Source] ${PATCH_VERSION} installed`);
