@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.4";
+  const VERSION = "stat-groups-1.5";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -80,7 +80,7 @@
   }
 
   function findAddGroupControl() {
-    const candidates = $("button,[role='button'],a,div,span", document)
+    const candidates = $$("button,[role='button'],a,div,span", document)
       .filter(el => visible(el) && !el.closest("#ptc"))
       .map(el => ({
         el,
@@ -150,7 +150,7 @@
   async function setExistingGroupType(group, type) {
     const wanted = norm(type);
 
-    for (const select of $("select", group).filter(visible)) {
+    for (const select of $$("select", group).filter(visible)) {
       const opts = [...select.options];
       const idx = opts.findIndex(o => norm(o.textContent || o.label || o.value) === wanted);
       if (idx >= 0) {
@@ -163,7 +163,7 @@
       }
     }
 
-    for (const root of $(".multiselect,[role='combobox']", group).filter(visible)) {
+    for (const root of $$(".multiselect,[role='combobox']", group).filter(visible)) {
       const vm = vueFor(root);
       if (!vm) continue;
       let options = vueOptions(vm);
@@ -186,7 +186,7 @@
       } catch {}
     }
 
-    const local = $("button,a,[role='button'],.multiselect",group)
+    const local = $$("button,a,[role='button'],.multiselect",group)
       .filter(visible)
       .find(el => {
         const t=norm(el.innerText || el.textContent || "");
@@ -249,7 +249,7 @@
 
   function groupRangeInputs(group, spec) {
     const statTexts=(spec.filters || []).map(x=>norm(x.text));
-    const inputs=$("input",group).filter(visible).filter(el=>{
+    const inputs=$$("input",group).filter(visible).filter(el=>{
       const p=norm(el.placeholder);
       if(p!=="min" && p!=="max") return false;
       const row=el.closest(".filter");
