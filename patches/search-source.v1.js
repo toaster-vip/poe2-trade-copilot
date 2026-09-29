@@ -366,7 +366,7 @@
       credentials:"same-origin",
       headers:{"Accept":"application/json"}
     });
-    if(!response.ok) throw new Error(\`official stats HTTP \${response.status}\`);
+    if(!response.ok) throw new Error(`official stats HTTP ${response.status}`);
     const payload=await response.json();
     const index=new Map();
     for(const group of payload?.result||[]){
@@ -384,14 +384,14 @@
     return groups.map((group,groupIndex)=>{
       const type=String(group?.type||"and");
       const allowed=new Set(["and","count","not","if","weight","weight2"]);
-      if(!allowed.has(type)) throw new Error(\`unsupported stat group type: \${type}\`);
+      if(!allowed.has(type)) throw new Error(`unsupported stat group type: ${type}`);
       const filters=(Array.isArray(group?.filters)?group.filters:[]).map((filter,filterIndex)=>{
         const id=String(filter?.id||"");
-        if(!id) throw new Error(\`statGroups[\${groupIndex}].filters[\${filterIndex}] missing id\`);
+        if(!id) throw new Error(`statGroups[${groupIndex}].filters[${filterIndex}] missing id`);
         const live=index.get(id);
-        if(!live) throw new Error(\`official stat id no longer exists: \${id}\`);
+        if(!live) throw new Error(`official stat id no longer exists: ${id}`);
         if(filter?.text && norm(live.text)!==norm(filter.text)){
-          throw new Error(\`official stat text mismatch for \${id}: expected "\${filter.text}", got "\${live.text}"\`);
+          throw new Error(`official stat text mismatch for ${id}: expected "${filter.text}", got "${live.text}"`);
         }
         const value={};
         if(filter?.min!=null) value.min=Number(filter.min);
@@ -457,12 +457,12 @@
     if(packet.search===false){
       debug.ok=true;
       debug.validationOnly=true;
-      status(\`PASS: \${query.stats.reduce((n,g)=>n+g.filters.length,0)} exact official stats verified. Search NOT submitted.\`);
+      status(`PASS: ${query.stats.reduce((n,g)=>n+g.filters.length,0)} exact official stats verified. Search NOT submitted.`);
       return debug;
     }
 
     status("Direct API: submitting verified Count/AND search...");
-    const response=await fetch(\`/api/trade2/search/poe2/\${encodeURIComponent(league)}\`,{
+    const response=await fetch(`/api/trade2/search/poe2/${encodeURIComponent(league)}`,{
       method:"POST",
       credentials:"same-origin",
       headers:{
@@ -476,15 +476,15 @@
     try { result=JSON.parse(responseText); } catch {}
     debug.httpStatus=response.status;
     debug.response=result||responseText.slice(0,1200);
-    if(!response.ok) throw new Error(\`trade search HTTP \${response.status}\`);
+    if(!response.ok) throw new Error(`trade search HTTP ${response.status}`);
     if(!result?.id) throw new Error("trade search response missing id");
     debug.ok=true;
     debug.searchId=result.id;
     debug.total=result.total??null;
     debug.resultCount=Array.isArray(result.result)?result.result.length:null;
-    status(\`PASS: direct search submitted\${result.total!=null?\` · \${result.total} matches\`:""}. Opening results...\`);
+    status(`PASS: direct search submitted${result.total!=null?` · ${result.total} matches`:""}. Opening results...`);
     await sleep(250);
-    location.assign(\`/trade2/search/poe2/\${encodeURIComponent(league)}/\${encodeURIComponent(result.id)}\`);
+    location.assign(`/trade2/search/poe2/${encodeURIComponent(league)}/${encodeURIComponent(result.id)}`);
     return debug;
   }
 
@@ -503,7 +503,7 @@
           console.error("[PoE2TC Direct API]",error);
           const prev=window.__POE2TC_DIRECT_API_DEBUG||{};
           window.__POE2TC_DIRECT_API_DEBUG={...prev,ok:false,version:DIRECT_API_VERSION,error:String(error?.message||error),packet};
-          status(\`Direct API search aborted: \${error?.message||error}. COPY DEBUG.\`);
+          status(`Direct API search aborted: ${error?.message||error}. COPY DEBUG.`);
         }
       })();
     },true);
