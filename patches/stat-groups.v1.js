@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.3";
+  const VERSION = "stat-groups-1.4";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
