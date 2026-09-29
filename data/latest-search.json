@@ -18,21 +18,21 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 300
+      "max": 150
     }
   ],
   "stats": [
     {
       "text": "maximum Life",
-      "min": 170
+      "min": 190
     },
     {
       "text": "maximum Mana",
-      "min": 115
+      "min": 118
     },
     {
       "text": "Cold Resistance",
-      "min": 10
+      "min": 20
     }
   ],
   "search": true
