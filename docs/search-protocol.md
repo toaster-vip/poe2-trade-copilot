@@ -35,3 +35,41 @@ A search packet describes the exact filters the userscript should apply to the o
 ## Invariant
 
 A packet must never be reported as successful merely because text was typed into an input. Success means the final page state matches the requested value.
+
+
+## Exact-ID API stat groups
+
+For searches that need multiple official stat groups such as `count`, a packet may include `apiSearch`.
+The userscript validates every supplied stat id and text against the live official PoE2 Trade
+`/api/trade2/data/stats` catalog before submitting the query. A mismatch aborts the search.
+
+```json
+{
+  "apiSearch": {
+    "league": "Runes of Aldur",
+    "status": "securable",
+    "category": "jewel",
+    "rarity": "rare",
+    "price": {"option": "divine", "max": 10000},
+    "statGroups": [
+      {
+        "type": "and",
+        "filters": [
+          {"id": "explicit.stat_1030153674", "text": "Recover #% of maximum Mana on Kill", "min": 2}
+        ]
+      },
+      {
+        "type": "count",
+        "min": 2,
+        "filters": [
+          {"id": "explicit.stat_2843214518", "text": "#% increased Attack Damage"}
+        ]
+      }
+    ]
+  }
+}
+```
+
+When `apiSearch` is present, the direct API bridge takes precedence over DOM stat entry. The legacy
+`selects` / `fields` / `stats` keys may remain in the packet as a safe fallback for older loaded
+patches.
