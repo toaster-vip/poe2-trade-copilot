@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.6";
+  const PATCH_VERSION = "run-wrapper-2.7";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -571,10 +571,14 @@
   }
 
   async function ensureGroupedStatExecutor(){
-    if(typeof window.__POE2TC_APPLY_STAT_GROUPS==="function") return window.__POE2TC_APPLY_STAT_GROUPS;
+    const required="stat-groups-1.4";
+    if(
+      typeof window.__POE2TC_APPLY_STAT_GROUPS==="function" &&
+      window.__POE2TC_STAT_GROUPS_MODULE?.version===required
+    ) return window.__POE2TC_APPLY_STAT_GROUPS;
 
     const api="https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/patches/stat-groups.v1.js?ref=main&t="+Date.now();
-    status("Grouped-stat module missing; loading it directly…");
+    status("Loading current grouped-stat module…");
     const response=await fetch(api,{
       cache:"no-store",
       credentials:"omit",
@@ -591,10 +595,14 @@
     (0,eval)(code+"\n//# sourceURL=poe2tc-stat-groups-hotload.js");
 
     for(let i=0;i<20;i++){
-      if(typeof window.__POE2TC_APPLY_STAT_GROUPS==="function"){
+      if(
+        typeof window.__POE2TC_APPLY_STAT_GROUPS==="function" &&
+        window.__POE2TC_STAT_GROUPS_MODULE?.version===required
+      ){
         window.__POE2TC_STAT_GROUPS_HOTLOAD={
           ok:true,
           sha:payload.sha||null,
+          version:window.__POE2TC_STAT_GROUPS_MODULE.version,
           loadedAt:new Date().toISOString()
         };
         return window.__POE2TC_APPLY_STAT_GROUPS;
