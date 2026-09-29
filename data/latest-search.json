@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Helmet"
+      "value": "Belt"
     },
     {
       "label": "Item Rarity",
@@ -18,17 +18,11 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "min": 451,
-      "max": 600
+      "max": 200
     },
     {
-      "label": "Energy Shield",
-      "min": 550,
-      "max": 599
-    },
-    {
-      "label": "Intelligence",
-      "max": 112
+      "label": "Chaos Resistance",
+      "min": 33
     }
   ],
   "search": true
