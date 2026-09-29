@@ -754,7 +754,8 @@
             statGroupsModule:window.__POE2TC_STAT_GROUPS_MODULE||null,
             remoteInfo:window.__POE2TC_REMOTE_INFO||null,
             runButtonDataset:{...document.querySelector("#ptc-run")?.dataset},
-            statGroupsHotload:window.__POE2TC_STAT_GROUPS_HOTLOAD||null
+            statGroupsHotload:window.__POE2TC_STAT_GROUPS_HOTLOAD||null,
+            addGroupDiscovery:window.__POE2TC_ADD_GROUP_DISCOVERY||null
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
