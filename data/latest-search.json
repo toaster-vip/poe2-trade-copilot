@@ -24,11 +24,11 @@
   "stats": [
     {
       "text": "maximum Life",
-      "min": 190
+      "min": 200
     },
     {
       "text": "maximum Mana",
-      "min": 118
+      "min": 120
     },
     {
       "text": "Cold Resistance",
