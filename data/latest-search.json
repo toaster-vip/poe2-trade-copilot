@@ -47,7 +47,7 @@
       },
       {
         "type": "count",
-        "min": 2,
+        "min": 3,
         "filters": [
           {
             "id": "explicit.stat_2843214518",
