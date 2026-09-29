@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.8";
+  const VERSION = "stat-groups-1.9";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -212,13 +212,55 @@
     return false;
   }
 
+  function directGroupChoices() {
+    const root = $(".filter-group-select");
+    if (!root) return [];
+    return $("li>span", root)
+      .map(el => ({el,text:String(el.textContent || "").replace(/\s+/g," ").trim()}))
+      .filter(x => x.text);
+  }
+
   async function addGroup(type) {
     const before = new Set(groupRoots());
+    const wanted = norm(type);
+
+    // PoE Trade keeps the Add Stat Group menu as .filter-group-select with
+    // li>span choices in the DOM. Prefer clicking the exact group choice
+    // directly; this is much more stable than searching for visible label text.
+    const direct = directGroupChoices();
+    const directChoice =
+      direct.find(x => norm(x.text) === wanted) ||
+      (wanted === "and" ? direct.find(x => norm(x.text).startsWith("and")) : null) ||
+      (wanted === "count" ? direct.find(x => norm(x.text).startsWith("count")) : null);
+
+    if (directChoice) {
+      clickLikeUser(directChoice.el);
+      const created = await waitForNewGroup(before, type);
+      window.__POE2TC_ADD_GROUP_DISCOVERY = {
+        version:VERSION,
+        mode:"filter-group-select-direct",
+        choice:directChoice.text,
+        choices:direct.map(x=>x.text)
+      };
+      if (!created) return {ok:false, reason:"created_stat_group_not_found_after_direct_choice", choices:direct.map(x=>x.text)};
+      if (!groupTypeVisible(created, type)) {
+        const changed = await setExistingGroupType(created,type);
+        if (!changed || !groupTypeVisible(created,type)) {
+          return {ok:false, reason:"wrong_stat_group_type", wanted:type, groupText:String(created.innerText || created.textContent || "").replace(/\s+/g," ").trim().slice(0,400)};
+        }
+      }
+      return {ok:true, root:created};
+    }
+
     const control = findAddGroupControl();
     if (!control) return {
       ok:false,
       reason:"add_stat_group_control_not_found",
-      discovery:window.__POE2TC_ADD_GROUP_DISCOVERY||null
+      discovery:{
+        ...(window.__POE2TC_ADD_GROUP_DISCOVERY||{}),
+        directChoices:direct.map(x=>x.text),
+        filterGroupSelectFound:!!$(".filter-group-select")
+      }
     };
 
     clickLikeUser(control);
@@ -226,7 +268,6 @@
 
     let created = groupRoots().find(x => !before.has(x)) || null;
     if (!created) {
-      const wanted = norm(type);
       const choices = visibleGroupChoices();
       const choice = choices.find(x => norm(x.text) === wanted) ||
         (wanted === "and" ? choices.find(x => norm(x.text).startsWith("and")) : null) ||
