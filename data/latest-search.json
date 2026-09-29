@@ -28,11 +28,7 @@
   "stats": [
     {
       "text": "maximum Life",
-      "min": 100
-    },
-    {
-      "text": "Chaos Resistance",
-      "min": 15
+      "min": 120
     }
   ],
   "search": true
