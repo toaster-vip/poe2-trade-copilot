@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-2.2";
+  const VERSION = "stat-groups-2.3";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -478,7 +478,7 @@
   }
 
   function nativeStatOptions(group) {
-    return $(
+    return $$(
       ".multiselect__option:not(.multiselect__option--disabled), [role='option']",
       group
     ).filter(visible);
