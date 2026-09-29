@@ -11,7 +11,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "0.6.4";
+  const VERSION = "0.6.5";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
@@ -21,6 +21,7 @@
     "patches/packet-guard.v1.js",
     "patches/result-collector.v1.js",
     "patches/search-source.v1.js",
+    "patches/stat-groups.v1.js",
     "patches/github-load-run.v1.js",
     "patches/run-wrapper.v1.js"
   ];
