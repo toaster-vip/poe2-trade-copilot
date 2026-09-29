@@ -28,19 +28,11 @@
   "stats": [
     {
       "text": "maximum Life",
-      "min": 180
-    },
-    {
-      "text": "maximum Mana",
-      "min": 20
-    },
-    {
-      "text": "Fire Resistance",
-      "min": 30
+      "min": 190
     },
     {
       "text": "Chaos Resistance",
-      "min": 15
+      "min": 20
     },
     {
       "text": "Gain Deflection Rating equal to #% of Evasion Rating",
