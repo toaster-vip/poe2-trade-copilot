@@ -37,39 +37,48 @@ A search packet describes the exact filters the userscript should apply to the o
 A packet must never be reported as successful merely because text was typed into an input. Success means the final page state matches the requested value.
 
 
-## Exact-ID API stat groups
+## UI stat groups
 
-For searches that need multiple official stat groups such as `count`, a packet may include `apiSearch`.
-The userscript validates every supplied stat id and text against the live official PoE2 Trade
-`/api/trade2/data/stats` catalog before submitting the query. A mismatch aborts the search.
+For official Trade searches that need explicit stat-group structure, use top-level `statGroups`.
+The grouped-stat executor creates the groups in the official Trade UI; it does not place grouped
+modifiers directly under the root Stat Filters section.
+
+Each filter must provide an exact official stat id and expected display text. Before changing the
+page, the executor validates every id/text pair against the live official
+`/api/trade2/data/stats` catalog.
 
 ```json
 {
-  "apiSearch": {
-    "league": "Runes of Aldur",
-    "status": "securable",
-    "category": "jewel",
-    "rarity": "rare",
-    "price": {"option": "divine", "max": 10000},
-    "statGroups": [
-      {
-        "type": "and",
-        "filters": [
-          {"id": "explicit.stat_1030153674", "text": "Recover #% of maximum Mana on Kill", "min": 2}
-        ]
-      },
-      {
-        "type": "count",
-        "min": 2,
-        "filters": [
-          {"id": "explicit.stat_2843214518", "text": "#% increased Attack Damage"}
-        ]
-      }
-    ]
-  }
+  "statGroups": [
+    {
+      "type": "and",
+      "filters": [
+        {
+          "id": "explicit.stat_1030153674",
+          "text": "Recover #% of maximum Mana on Kill",
+          "min": 2
+        }
+      ]
+    },
+    {
+      "type": "count",
+      "min": 2,
+      "filters": [
+        {
+          "id": "explicit.stat_2843214518",
+          "text": "#% increased Attack Damage"
+        }
+      ]
+    }
+  ]
 }
 ```
 
-When `apiSearch` is present, the direct API bridge takes precedence over DOM stat entry. The legacy
-`selects` / `fields` / `stats` keys may remain in the packet as a safe fallback for older loaded
-patches.
+The executor must verify that:
+- an explicit AND group was created for the mandatory stat(s);
+- an explicit COUNT group was created for pooled optional stats;
+- COUNT min/max is committed on the group itself;
+- every requested stat appears inside its intended group;
+- no grouped stat is silently inserted into the root Stat Filters group.
+
+Legacy `stats` remains for simple, ungrouped filters.
