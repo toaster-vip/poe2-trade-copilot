@@ -18,7 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 600
+      "max": 150
     },
     {
       "label": "Energy Shield",
