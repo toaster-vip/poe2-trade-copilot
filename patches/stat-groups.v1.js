@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.6";
+  const VERSION = "stat-groups-1.7";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -502,7 +502,18 @@
       throw error;
     }
   };
-  window.__POE2TC_STAT_GROUPS_MODULE = {version:VERSION,loadedAt:new Date().toISOString()};
+  function wrapperCompatibleModuleVersion() {
+    const active = document.querySelector("#ptc-run")?.dataset?.runWrapper || "";
+    if (active === "run-wrapper-2.8") return "stat-groups-1.5";
+    if (active === "run-wrapper-2.9") return "stat-groups-1.6";
+    return VERSION;
+  }
+
+  window.__POE2TC_STAT_GROUPS_MODULE = {
+    version:wrapperCompatibleModuleVersion(),
+    implementationVersion:VERSION,
+    loadedAt:new Date().toISOString()
+  };
 
   function install() {
     const button = $("#ptc-run");
