@@ -8,122 +8,15 @@
     },
     {
       "label": "Item Rarity",
-      "value": "Rare"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
+      "value": "Unique"
     }
   ],
-  "fields": [
+  "fields": [],
+  "stats": [
     {
-      "label": "Buyout Price",
-      "min": 700,
-      "max": 10000
+      "text": "Gain #% of Damage as Extra Cold Damage",
+      "min": 13
     }
   ],
-  "stats": [],
-  "apiSearch": {
-    "league": "Runes of Aldur",
-    "status": "any",
-    "category": "jewel",
-    "rarity": "rare",
-    "price": {
-      "option": "divine",
-      "max": 10000,
-      "min": 700
-    },
-    "statGroups": [
-      {
-        "type": "and",
-        "filters": []
-      },
-      {
-        "type": "and",
-        "filters": [
-          {
-            "id": "explicit.stat_1604736568",
-            "min": 2
-          }
-        ]
-      },
-      {
-        "type": "count",
-        "min": 3,
-        "filters": [
-          {
-            "id": "explicit.stat_2843214518",
-            "text": "#% increased Attack Damage",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_4188894176",
-            "text": "#% increased Damage with Bows",
-            "min": 12
-          },
-          {
-            "id": "explicit.stat_1839076647",
-            "text": "#% increased Projectile Damage",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_3291658075",
-            "text": "#% increased Cold Damage",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_3141070085",
-            "text": "#% increased Elemental Damage",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_3417711605",
-            "text": "Damage Penetrates #% Cold Resistance",
-            "min": 7
-          },
-          {
-            "id": "explicit.stat_681332047",
-            "text": "#% increased Attack Speed",
-            "min": 3
-          },
-          {
-            "id": "explicit.stat_3759735052",
-            "text": "#% increased Attack Speed with Bows",
-            "min": 3
-          },
-          {
-            "id": "explicit.stat_2194114101",
-            "text": "#% increased Critical Hit Chance for Attacks",
-            "min": 12
-          },
-          {
-            "id": "explicit.stat_3714003708",
-            "text": "#% increased Critical Damage Bonus for Attack Damage",
-            "min": 15
-          },
-          {
-            "id": "explicit.stat_587431675",
-            "text": "#% increased Critical Hit Chance",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_3556824919",
-            "text": "#% increased Critical Damage Bonus",
-            "min": 15
-          },
-          {
-            "id": "explicit.stat_1310194496",
-            "text": "#% increased Global Physical Damage",
-            "min": 10
-          },
-          {
-            "id": "explicit.stat_1852872083",
-            "text": "#% increased Damage with Hits against Rare and Unique Enemies",
-            "min": 15
-          }
-        ]
-      }
-    ]
-  },
-  "search": true
+  "search": false
 }
