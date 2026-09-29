@@ -22,13 +22,13 @@
     },
     {
       "label": "Energy Shield",
-      "min": 450
+      "min": 500
     }
   ],
   "stats": [
     {
       "text": "maximum Life",
-      "min": 120
+      "min": 130
     }
   ],
   "search": true
