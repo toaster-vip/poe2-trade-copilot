@@ -50,13 +50,43 @@
         "min": 3,
         "filters": [
           {
+            "id": "explicit.stat_2843214518",
+            "text": "#% increased Attack Damage",
+            "min": 10
+          },
+          {
+            "id": "explicit.stat_4188894176",
+            "text": "#% increased Damage with Bows",
+            "min": 12
+          },
+          {
+            "id": "explicit.stat_1839076647",
+            "text": "#% increased Projectile Damage",
+            "min": 10
+          },
+          {
             "id": "explicit.stat_3291658075",
             "text": "#% increased Cold Damage",
             "min": 10
           },
           {
+            "id": "explicit.stat_3141070085",
+            "text": "#% increased Elemental Damage",
+            "min": 10
+          },
+          {
+            "id": "explicit.stat_3417711605",
+            "text": "Damage Penetrates #% Cold Resistance",
+            "min": 7
+          },
+          {
             "id": "explicit.stat_681332047",
             "text": "#% increased Attack Speed",
+            "min": 3
+          },
+          {
+            "id": "explicit.stat_3759735052",
+            "text": "#% increased Attack Speed with Bows",
             "min": 3
           },
           {
@@ -77,6 +107,16 @@
           {
             "id": "explicit.stat_3556824919",
             "text": "#% increased Critical Damage Bonus",
+            "min": 15
+          },
+          {
+            "id": "explicit.stat_1310194496",
+            "text": "#% increased Global Physical Damage",
+            "min": 10
+          },
+          {
+            "id": "explicit.stat_1852872083",
+            "text": "#% increased Damage with Hits against Rare and Unique Enemies",
             "min": 15
           }
         ]
