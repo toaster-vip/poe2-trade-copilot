@@ -21,35 +21,11 @@
       "max": 10000
     }
   ],
-  "stats": [],
-  "apiSearch": {
-    "league": "Runes of Aldur",
-    "status": "any",
-    "category": "jewel",
-    "rarity": "rare",
-    "price": {
-      "option": "divine",
-      "max": 10000
-    },
-    "statGroups": [
-      {
-        "type": "and",
-        "disabled": false,
-        "filters": []
-      },
-      {
-        "type": "and",
-        "disabled": false,
-        "filters": [
-          {
-            "id": "explicit.stat_1030153674",
-            "text": "Recover #% of maximum Mana on Kill",
-            "min": 1,
-            "disabled": false
-          }
-        ]
-      }
-    ]
-  },
-  "search": true
+  "stats": [
+    {
+      "text": "Recover #% of maximum Mana on Kill",
+      "min": 1
+    }
+  ],
+  "search": false
 }
