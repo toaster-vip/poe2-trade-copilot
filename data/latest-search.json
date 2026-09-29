@@ -31,6 +31,18 @@
       "min": 180
     },
     {
+      "text": "maximum Mana",
+      "min": 20
+    },
+    {
+      "text": "Fire Resistance",
+      "min": 30
+    },
+    {
+      "text": "Chaos Resistance",
+      "min": 15
+    },
+    {
       "text": "Gain Deflection Rating equal to #% of Evasion Rating",
       "min": 16
     }
