@@ -67,7 +67,7 @@
   }
 
   function groupRoots() {
-    const exact = $("#trade > .top .filter-group")
+    const exact = $$("#trade > .top .filter-group")
       .filter(group => !!group.querySelector('input[placeholder="+ Add Stat Filter"]'));
     if (exact.length) return exact;
 
