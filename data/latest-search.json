@@ -18,6 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
+      "min": 700,
       "max": 10000
     }
   ],
@@ -29,7 +30,8 @@
     "rarity": "rare",
     "price": {
       "option": "divine",
-      "max": 10000
+      "max": 10000,
+      "min": 700
     },
     "statGroups": [
       {
