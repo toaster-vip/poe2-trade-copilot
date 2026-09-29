@@ -22,17 +22,17 @@
     },
     {
       "label": "Evasion",
-      "min": 800
+      "min": 850
     }
   ],
   "stats": [
     {
       "text": "maximum Life",
-      "min": 150
+      "min": 180
     },
     {
       "text": "Gain Deflection Rating equal to #% of Evasion Rating",
-      "min": 15
+      "min": 16
     }
   ],
   "search": true
