@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.15";
+  const PATCH_VERSION = "search-source-1.16";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -346,7 +346,7 @@
 
 
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
-  const DIRECT_API_VERSION = "direct-api-1.0";
+  const DIRECT_API_VERSION = "direct-api-1.1";
 
   function directLeague(packet){
     const explicit=packet?.apiSearch?.league;
@@ -400,10 +400,10 @@
         return {
           id,
           ...(Object.keys(value).length?{value}:{}),
-          ...(filter?.disabled?{disabled:true}:{})
+          disabled:filter?.disabled===true
         };
       });
-      const out={type,filters};
+      const out={type,filters,disabled:group?.disabled===true};
       if(type==="count"||type==="weight"||type==="weight2"){
         const value={};
         if(group?.min!=null) value.min=Number(group.min);
