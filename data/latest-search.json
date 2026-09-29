@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Helmet"
+      "value": "Jewel"
     },
     {
       "label": "Item Rarity",
@@ -18,25 +18,13 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 200
-    },
-    {
-      "label": "Evasion",
-      "min": 850
+      "max": 300
     }
   ],
   "stats": [
     {
-      "text": "maximum Life",
-      "min": 190
-    },
-    {
-      "text": "Chaos Resistance",
-      "min": 20
-    },
-    {
-      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
-      "min": 16
+      "text": "Recover #% of maximum Mana on Kill",
+      "min": 2
     }
   ],
   "search": true
