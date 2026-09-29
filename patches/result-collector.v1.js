@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-3.1";
+  const PATCH_VERSION = "collector-3.2";
   const TOP_N = 150;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -225,13 +225,35 @@
     return m ? Number(m[0]) : null;
   }
 
+  function cleanRequirementName(name) {
+    const raw = String(name || "");
+    if (/intelligence|\bint\b/i.test(raw)) return "Int";
+    if (/dexterity|\bdex\b/i.test(raw)) return "Dex";
+    if (/strength|\bstr\b/i.test(raw)) return "Str";
+    if (/level/i.test(raw)) return "Level";
+    return raw.replace(/\[([^|\]]+)\|([^\]]+)\]/g,"$2");
+  }
+
   function requirementText(item) {
     const reqs = Array.isArray(item?.requirements) ? item.requirements : [];
     if (!reqs.length) return null;
     return reqs.map(r => {
       const value = r?.values?.[0]?.[0];
-      return value != null ? `${value} ${r?.name || ""}`.trim() : null;
+      const name = cleanRequirementName(r?.name);
+      return value != null ? `${value} ${name}`.trim() : null;
     }).filter(Boolean).join(", ") || null;
+  }
+
+  function apiModText(x) {
+    if (x == null) return "";
+    if (typeof x === "string" || typeof x === "number") return String(x);
+    if (typeof x === "object") {
+      for (const key of ["text","value","display","rendered","mod"]) {
+        if (typeof x[key] === "string" && x[key].trim()) return x[key].trim();
+      }
+      if (typeof x.name === "string" && x.name.trim() && !Array.isArray(x.magnitudes)) return x.name.trim();
+    }
+    return "";
   }
 
   function allApiMods(item) {
@@ -242,7 +264,11 @@
     const out = [];
     for (const field of fields) {
       const xs = item?.[field];
-      if (Array.isArray(xs)) out.push(...xs.map(String));
+      if (!Array.isArray(xs)) continue;
+      for (const x of xs) {
+        const text = apiModText(x);
+        if (text) out.push(text);
+      }
     }
     return out;
   }
@@ -299,7 +325,7 @@
       requirements:requirementText(item),
       armour:propNumber(item,"Armour"),
       evasion:propNumber(item,"Evasion Rating") ?? propNumber(item,"Evasion"),
-      energyShield:propNumber(item,"Energy Shield"),
+      energyShield:propNumber(item,"Energy Shield") ?? (Number.isFinite(Number(item?.extended?.es)) ? Number(item.extended.es) : null),
       maximumLife:num(activeModText,/\+([0-9]+)\s+to maximum Life/i)||0,
       dexterity:num(activeModText,/\+([0-9]+)\s+to Dexterity/i)||0,
       intelligence:num(activeModText,/\+([0-9]+)\s+to Intelligence/i)||0,
@@ -434,7 +460,7 @@
     const selected=selectTop(combined);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector3.1",
+      version:"0.5.1+collector3.2",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
       matchedResults:search?.total ?? null,
