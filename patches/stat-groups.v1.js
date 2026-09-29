@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.9";
+  const VERSION = "stat-groups-2.0";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -67,6 +67,10 @@
   }
 
   function groupRoots() {
+    const exact = $("#trade > .top .filter-group")
+      .filter(group => !!group.querySelector('input[placeholder="+ Add Stat Filter"]'));
+    if (exact.length) return exact;
+
     const seen = new Set();
     const out = [];
     for (const input of addInputs()) {
@@ -212,78 +216,127 @@
     return false;
   }
 
-  function directGroupChoices() {
-    const root = $(".filter-group-select");
-    if (!root) return [];
-    return $$("li>span", root)
-      .map(el => ({el,text:String(el.textContent || "").replace(/\s+/g," ").trim()}))
-      .filter(x => x.text);
+  function groupOptionLabel(type) {
+    const labels = {
+      and:"And",
+      count:"Count",
+      not:"Not",
+      if:"If",
+      weight:"Weighted Sum",
+      weight2:"Weighted Sum v2"
+    };
+    return labels[String(type || "").toLowerCase()] || String(type || "");
+  }
+
+  function nativeGroupSelect() {
+    return $("#trade > .top .filter-group-select") || $(".filter-group-select");
+  }
+
+  function findNativeGroupOption(groupSelect, type) {
+    if (!groupSelect) return null;
+    const wanted = norm(groupOptionLabel(type));
+    return $$(
+      ".multiselect__option:not(.multiselect__option--disabled), li > span",
+      groupSelect
+    ).find(el => norm(el.textContent || "") === wanted) || null;
+  }
+
+  async function waitForNativeGroupOption(groupSelect, type, attempts=20) {
+    for (let i=0; i<attempts; i++) {
+      const option = findNativeGroupOption(groupSelect, type);
+      if (option) return option;
+      await sleep(50);
+    }
+    return null;
   }
 
   async function addGroup(type) {
     const before = new Set(groupRoots());
-    const wanted = norm(type);
+    const groupSelect = nativeGroupSelect();
+    const groupInput = groupSelect?.querySelector('input[placeholder="+ Add Stat Group"]') || null;
 
-    // PoE Trade keeps the Add Stat Group menu as .filter-group-select with
-    // li>span choices in the DOM. Prefer clicking the exact group choice
-    // directly; this is much more stable than searching for visible label text.
-    const direct = directGroupChoices();
-    const directChoice =
-      direct.find(x => norm(x.text) === wanted) ||
-      (wanted === "and" ? direct.find(x => norm(x.text).startsWith("and")) : null) ||
-      (wanted === "count" ? direct.find(x => norm(x.text).startsWith("count")) : null);
-
-    if (directChoice) {
-      clickLikeUser(directChoice.el);
-      const created = await waitForNewGroup(before, type);
-      window.__POE2TC_ADD_GROUP_DISCOVERY = {
-        version:VERSION,
-        mode:"filter-group-select-direct",
-        choice:directChoice.text,
-        choices:direct.map(x=>x.text)
-      };
-      if (!created) return {ok:false, reason:"created_stat_group_not_found_after_direct_choice", choices:direct.map(x=>x.text)};
-      if (!groupTypeVisible(created, type)) {
-        const changed = await setExistingGroupType(created,type);
-        if (!changed || !groupTypeVisible(created,type)) {
-          return {ok:false, reason:"wrong_stat_group_type", wanted:type, groupText:String(created.innerText || created.textContent || "").replace(/\s+/g," ").trim().slice(0,400)};
-        }
-      }
-      return {ok:true, root:created};
-    }
-
-    const control = findAddGroupControl();
-    if (!control) return {
-      ok:false,
-      reason:"add_stat_group_control_not_found",
-      discovery:{
-        ...(window.__POE2TC_ADD_GROUP_DISCOVERY||{}),
-        directChoices:direct.map(x=>x.text),
-        filterGroupSelectFound:!!$(".filter-group-select")
-      }
+    window.__POE2TC_ADD_GROUP_DISCOVERY = {
+      version:VERSION,
+      mode:"native-filter-group-select",
+      type,
+      groupSelectFound:!!groupSelect,
+      groupInputFound:!!groupInput,
+      beforeCount:before.size
     };
 
-    clickLikeUser(control);
-    await sleep(250);
-
-    let created = groupRoots().find(x => !before.has(x)) || null;
-    if (!created) {
-      const choices = visibleGroupChoices();
-      const choice = choices.find(x => norm(x.text) === wanted) ||
-        (wanted === "and" ? choices.find(x => norm(x.text).startsWith("and")) : null) ||
-        (wanted === "count" ? choices.find(x => norm(x.text).startsWith("count")) : null);
-      if (!choice) return {ok:false, reason:"stat_group_type_option_not_found", choices:choices.map(x=>x.text)};
-      clickLikeUser(choice.el);
-      created = await waitForNewGroup(before, type);
+    if (!groupSelect || !groupInput) {
+      return {
+        ok:false,
+        reason:"native_add_stat_group_input_not_found",
+        discovery:window.__POE2TC_ADD_GROUP_DISCOVERY
+      };
     }
 
-    if (!created) return {ok:false, reason:"created_stat_group_not_found"};
+    groupInput.focus();
+    groupInput.click();
+
+    const option = findNativeGroupOption(groupSelect, type) ||
+      await waitForNativeGroupOption(groupSelect, type, 20);
+
+    const choices = $$(
+      ".multiselect__option:not(.multiselect__option--disabled), li > span",
+      groupSelect
+    ).map(el => String(el.textContent || "").replace(/\s+/g," ").trim()).filter(Boolean);
+
+    window.__POE2TC_ADD_GROUP_DISCOVERY = {
+      ...window.__POE2TC_ADD_GROUP_DISCOVERY,
+      choices,
+      wanted:groupOptionLabel(type),
+      optionFound:!!option
+    };
+
+    if (!option) {
+      return {
+        ok:false,
+        reason:"native_stat_group_option_not_found",
+        choices
+      };
+    }
+
+    // Native PoE Trade expects the dropdown to be activated first, then a
+    // normal click on the rendered option.
+    option.click();
+
+    let created = null;
+    for (let i=0; i<30; i++) {
+      await sleep(75);
+      const now = groupRoots();
+      created = now.find(group => !before.has(group)) || null;
+      if (created) break;
+    }
+
+    window.__POE2TC_ADD_GROUP_DISCOVERY = {
+      ...window.__POE2TC_ADD_GROUP_DISCOVERY,
+      afterCount:groupRoots().length,
+      created:!!created
+    };
+
+    if (!created) {
+      return {
+        ok:false,
+        reason:"created_stat_group_not_found_after_native_click",
+        discovery:window.__POE2TC_ADD_GROUP_DISCOVERY
+      };
+    }
+
     if (!groupTypeVisible(created, type)) {
       const changed = await setExistingGroupType(created,type);
       if (!changed || !groupTypeVisible(created,type)) {
-        return {ok:false, reason:"wrong_stat_group_type", wanted:type, groupText:String(created.innerText || created.textContent || "").replace(/\s+/g," ").trim().slice(0,400)};
+        return {
+          ok:false,
+          reason:"wrong_stat_group_type",
+          wanted:type,
+          groupText:String(created.innerText || created.textContent || "")
+            .replace(/\s+/g," ").trim().slice(0,400)
+        };
       }
     }
+
     return {ok:true, root:created};
   }
 
