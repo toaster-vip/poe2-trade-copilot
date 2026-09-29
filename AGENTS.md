@@ -16,11 +16,13 @@ For current project architecture and usage, also read `README.md` and `docs/sear
 
 ## Exact official Trade stat IDs
 
-The one-stat UI-discovery rule above applies to fuzzy/text-driven DOM stat selection. For `apiSearch`
-packets, an exact stat id plus its expected display text may be used when both conditions hold:
+The one-stat UI-discovery rule above applies to fuzzy/text-driven DOM stat selection. For grouped
+`statGroups` packets, an exact stat id plus its expected display text may be used when both conditions hold:
 
 1. The id/text pair came from the official PoE2 Trade stat catalog or a current data snapshot built from it.
 2. The userscript re-fetches the live official `/api/trade2/data/stats` catalog and verifies the exact id/text
-   pair before submitting the search.
+   pair before inserting the stat into the official Trade UI.
 
-If either check fails, abort instead of falling back to fuzzy matching.
+Grouped modifiers must be placed inside their requested UI group (for example AND or COUNT), never
+silently inserted as root-level Stat Filters. If exact id/text verification, group creation, group
+placement, or final UI verification fails, abort instead of falling back to fuzzy matching.
