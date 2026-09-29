@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.2";
+  const VERSION = "stat-groups-1.3";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -80,13 +80,42 @@
   }
 
   function findAddGroupControl() {
-    const area = statArea() || document;
-    const candidates = $$("button,[role='button'],div,a", area)
-      .filter(visible)
-      .map(el => ({el, text:String(el.innerText || el.textContent || "").replace(/\s+/g, " ").trim()}))
-      .filter(x => /ADD STAT GROUP/i.test(x.text))
-      .sort((a,b) => a.text.length - b.text.length);
-    return candidates[0]?.el || null;
+    const candidates = $("button,[role='button'],a,div,span", document)
+      .filter(el => visible(el) && !el.closest("#ptc"))
+      .map(el => ({
+        el,
+        text:String(el.innerText || el.textContent || "").replace(/\s+/g, " ").trim(),
+        rect:el.getBoundingClientRect()
+      }))
+      .filter(x => /(?:^|\s|\+)ADD STAT GROUP(?:\s|$)/i.test(x.text))
+      .sort((a,b) => {
+        const aExact = /^\+?\s*ADD STAT GROUP\s*$/i.test(a.text) ? 0 : 1;
+        const bExact = /^\+?\s*ADD STAT GROUP\s*$/i.test(b.text) ? 0 : 1;
+        if (aExact !== bExact) return aExact - bExact;
+        const aArea = Math.max(1,a.rect.width*a.rect.height);
+        const bArea = Math.max(1,b.rect.width*b.rect.height);
+        if (aArea !== bArea) return aArea-bArea;
+        return a.text.length-b.text.length;
+      });
+
+    const picked=candidates[0]||null;
+    window.__POE2TC_ADD_GROUP_DISCOVERY={
+      version:VERSION,
+      candidateCount:candidates.length,
+      candidates:candidates.slice(0,12).map(x=>({
+        tag:x.el.tagName,
+        className:String(x.el.className||""),
+        text:x.text.slice(0,180),
+        width:Math.round(x.rect.width),
+        height:Math.round(x.rect.height)
+      })),
+      picked:picked?{
+        tag:picked.el.tagName,
+        className:String(picked.el.className||""),
+        text:picked.text.slice(0,180)
+      }:null
+    };
+    return picked?.el || null;
   }
 
   function visibleGroupChoices() {
@@ -179,7 +208,11 @@
   async function addGroup(type) {
     const before = new Set(groupRoots());
     const control = findAddGroupControl();
-    if (!control) return {ok:false, reason:"add_stat_group_control_not_found"};
+    if (!control) return {
+      ok:false,
+      reason:"add_stat_group_control_not_found",
+      discovery:window.__POE2TC_ADD_GROUP_DISCOVERY||null
+    };
 
     clickLikeUser(control);
     await sleep(250);
