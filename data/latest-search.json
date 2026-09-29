@@ -19,9 +19,11 @@
     {
       "label": "Buyout Price",
       "max": 200
-    },
+    }
+  ],
+  "stats": [
     {
-      "label": "Chaos Resistance",
+      "text": "Chaos Resistance",
       "min": 33
     }
   ],
