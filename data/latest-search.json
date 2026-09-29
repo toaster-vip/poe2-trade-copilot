@@ -18,22 +18,21 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "min": 200,
       "max": 200
     },
     {
-      "label": "Energy Shield",
-      "min": 620
+      "label": "Evasion Rating",
+      "min": 800
     }
   ],
   "stats": [
     {
-      "text": "increased Critical Hit Chance",
-      "min": 34
+      "text": "+# to maximum Life",
+      "min": 100
     },
     {
-      "text": "increased Rarity of Items found",
-      "min": 18
+      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+      "min": 15
     }
   ],
   "search": true
