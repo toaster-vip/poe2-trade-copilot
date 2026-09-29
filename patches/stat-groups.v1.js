@@ -80,7 +80,7 @@
   }
 
   function findAddGroupControl() {
-    const candidates = $("input,button,[role='button'],a,div,span", document)
+    const candidates = $$("input,button,[role='button'],a,div,span", document)
       .filter(el => visible(el) && !el.closest("#ptc"))
       .map(el => ({
         el,
