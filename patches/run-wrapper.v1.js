@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.7";
+  const PATCH_VERSION = "run-wrapper-2.8";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -571,7 +571,7 @@
   }
 
   async function ensureGroupedStatExecutor(){
-    const required="stat-groups-1.4";
+    const required="stat-groups-1.5";
     if(
       typeof window.__POE2TC_APPLY_STAT_GROUPS==="function" &&
       window.__POE2TC_STAT_GROUPS_MODULE?.version===required
