@@ -23,6 +23,10 @@
     {
       "label": "Energy Shield",
       "min": 500
+    },
+    {
+      "label": "Intelligence",
+      "max": 112
     }
   ],
   "stats": [
