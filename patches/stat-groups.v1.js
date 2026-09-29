@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.1";
+  const VERSION = "stat-groups-1.2";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -410,6 +410,60 @@
     return false;
   }
 
+  async function applyGroupedStatsAfterBase(packet) {
+    const groups = Array.isArray(packet?.statGroups) ? packet.statGroups : [];
+    if (!groups.length) return {ok:true,skipped:true,version:VERSION};
+
+    const debug = {ok:false,version:VERSION,packet,audit:[]};
+    window.__POE2TC_STAT_GROUPS_DEBUG = debug;
+
+    status("Validating grouped stats against official catalog...");
+    const index = await officialIndex();
+    validateGroups(groups, index);
+    debug.audit.push({step:"catalog-validated",count:groups.reduce((n,g)=>n+(g.filters||[]).length,0)});
+
+    const built = [];
+    for (const spec of groups) {
+      status("Creating " + spec.type.toUpperCase() + " stat group...");
+      const made = await addGroup(spec.type);
+      debug.audit.push({step:"group-create",type:spec.type,result:{ok:made.ok,reason:made.reason||null}});
+      if (!made.ok) throw new Error(spec.type + " group: " + made.reason);
+
+      const range = setGroupRange(made.root, spec);
+      if (!range.ok) throw new Error(spec.type + " group range: " + range.reason);
+
+      for (const filter of spec.filters || []) {
+        status("Adding " + filter.text + " to " + spec.type.toUpperCase() + "...");
+        const added = await commitExactStat(made.root, filter);
+        debug.audit.push({step:"stat-add",type:spec.type,stat:filter.text,result:{ok:added.ok,reason:added.reason||null,selected:added.selected||null}});
+        if (!added.ok) throw new Error(filter.text + ": " + added.reason);
+      }
+      built.push({root:made.root,spec});
+    }
+
+    for (const item of built) {
+      const verified = verifyGroup(item.root, item.spec);
+      debug.audit.push({step:"group-verify",type:item.spec.type,result:verified});
+      if (!verified.ok) throw new Error(item.spec.type + " verification: " + verified.reason);
+    }
+
+    debug.ok = true;
+    status("PASS: AND/COUNT groups verified.");
+    return debug;
+  }
+
+  window.__POE2TC_APPLY_STAT_GROUPS = async packet => {
+    try {
+      return await applyGroupedStatsAfterBase(packet);
+    } catch (error) {
+      const debug = window.__POE2TC_STAT_GROUPS_DEBUG || {};
+      window.__POE2TC_STAT_GROUPS_DEBUG = {...debug,ok:false,version:VERSION,error:String(error?.message || error),packet};
+      status("Grouped stat search aborted: " + (error?.message || error) + ". COPY DEBUG.");
+      throw error;
+    }
+  };
+  window.__POE2TC_STAT_GROUPS_MODULE = {version:VERSION,loadedAt:new Date().toISOString()};
+
   function install() {
     const button = $("#ptc-run");
     const box = $("#ptc-box");
@@ -424,18 +478,14 @@
       const groups = Array.isArray(packet.statGroups) ? packet.statGroups : [];
       if (!groups.length) return;
 
+      // run-wrapper 2.5+ calls the public executor after its own verified base preflight.
+      // Do not intercept here when that integration is active.
+      if (button.dataset.runWrapper === "run-wrapper-2.5") return;
+
       event.preventDefault();
       event.stopImmediatePropagation();
 
       (async () => {
-        const debug = {ok:false,version:VERSION,packet,audit:[]};
-        window.__POE2TC_STAT_GROUPS_DEBUG = debug;
-
-        status("Validating grouped stats against official catalog...");
-        const index = await officialIndex();
-        validateGroups(groups, index);
-        debug.audit.push({step:"catalog-validated",count:groups.reduce((n,g)=>n+(g.filters||[]).length,0)});
-
         const original = box.value;
         const delegated = {...packet, statGroups:[], stats:[], apiSearch:undefined, search:false};
         box.value = JSON.stringify(delegated, null, 2);
@@ -452,36 +502,11 @@
         box.dispatchEvent(new Event("input",{bubbles:true}));
         await sleep(250);
 
-        const built = [];
-        for (const spec of groups) {
-          status("Creating " + spec.type.toUpperCase() + " stat group...");
-          const made = await addGroup(spec.type);
-          debug.audit.push({step:"group-create",type:spec.type,result:{ok:made.ok,reason:made.reason||null}});
-          if (!made.ok) throw new Error(spec.type + " group: " + made.reason);
-
-          const range = setGroupRange(made.root, spec);
-          if (!range.ok) throw new Error(spec.type + " group range: " + range.reason);
-
-          for (const filter of spec.filters || []) {
-            status("Adding " + filter.text + " to " + spec.type.toUpperCase() + "...");
-            const added = await commitExactStat(made.root, filter);
-            debug.audit.push({step:"stat-add",type:spec.type,stat:filter.text,result:{ok:added.ok,reason:added.reason||null,selected:added.selected||null}});
-            if (!added.ok) throw new Error(filter.text + ": " + added.reason);
-          }
-          built.push({root:made.root,spec});
-        }
-
-        for (const item of built) {
-          const verified = verifyGroup(item.root, item.spec);
-          debug.audit.push({step:"group-verify",type:item.spec.type,result:verified});
-          if (!verified.ok) throw new Error(item.spec.type + " verification: " + verified.reason);
-        }
-
-        debug.ok = true;
-        status("PASS: AND/COUNT groups verified. Searching...");
+        await window.__POE2TC_APPLY_STAT_GROUPS(packet);
         if (packet.search !== false) {
           const search = $("button.search-btn");
           if (!search) throw new Error("Search button not found");
+          status("PASS: AND/COUNT groups verified. Searching...");
           search.click();
         } else {
           status("PASS: AND/COUNT groups verified. Search NOT submitted.");
