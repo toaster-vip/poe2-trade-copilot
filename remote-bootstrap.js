@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "remote-bootstrap-2.9";
+  const VERSION = "remote-bootstrap-3.0";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const CORE_PATH = "poe2-trade-copilot.user.js";
@@ -76,7 +76,7 @@
       for (const path of OPTIONAL_MODULES) { const result=await loadModule(path,false); if(result.ok) loaded.push(`${path.split('/').pop()}@${result.sha?result.sha.slice(0,7):"unknown"}`); else optionalErrors.push({path:result.path,error:result.error}); }
       window.__POE2TC_REMOTE_INFO={version:VERSION,coreSource:coreFile.source,loaded,optionalErrors};
 
-      const REQUIRED_WRAPPER_VERSION = "run-wrapper-2.8";
+      const REQUIRED_WRAPPER_VERSION = "run-wrapper-2.9";
       const verifyWrapper = (tries=0) => {
         const button = document.querySelector("#ptc-run");
         if (!button) {
