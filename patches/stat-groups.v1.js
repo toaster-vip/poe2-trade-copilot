@@ -445,7 +445,7 @@
   function statRows(group) {
     const seen = new Set();
     const rows = [];
-    for (const row of $(
+    for (const row of $$(
       ".filter.full-span, .filter-group-body > .filter:not(.filter-select-mutate), .filter",
       group
     )) {
