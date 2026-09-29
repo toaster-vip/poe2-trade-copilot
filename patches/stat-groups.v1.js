@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-1.0";
+  const VERSION = "stat-groups-1.1";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -118,6 +118,64 @@
     return null;
   }
 
+  async function setExistingGroupType(group, type) {
+    const wanted = norm(type);
+
+    for (const select of $("select", group).filter(visible)) {
+      const opts = [...select.options];
+      const idx = opts.findIndex(o => norm(o.textContent || o.label || o.value) === wanted);
+      if (idx >= 0) {
+        select.selectedIndex = idx;
+        select.value = opts[idx].value;
+        select.dispatchEvent(new Event("input",{bubbles:true}));
+        select.dispatchEvent(new Event("change",{bubbles:true}));
+        await sleep(250);
+        if (groupTypeVisible(group,type)) return true;
+      }
+    }
+
+    for (const root of $(".multiselect,[role='combobox']", group).filter(visible)) {
+      const vm = vueFor(root);
+      if (!vm) continue;
+      let options = vueOptions(vm);
+      if (!options.length) {
+        try { root.click(); } catch {}
+        await sleep(180);
+        options = vueOptions(vm);
+      }
+      const picked = options.find(o => norm(labelOf(o)) === wanted);
+      if (!picked) continue;
+      try {
+        if (typeof vm.select === "function") vm.select(picked);
+        else if (typeof vm.$emit === "function") {
+          vm.$emit("input",picked);
+          vm.$emit("update:modelValue",picked);
+        }
+        try { vm.deactivate?.(); } catch {}
+        await sleep(250);
+        if (groupTypeVisible(group,type)) return true;
+      } catch {}
+    }
+
+    const local = $("button,a,[role='button'],.multiselect",group)
+      .filter(visible)
+      .find(el => {
+        const t=norm(el.innerText || el.textContent || "");
+        return ["and","count","not","if","weight","weight2","weighted sum"].includes(t);
+      });
+    if (local) {
+      clickLikeUser(local);
+      await sleep(180);
+      const choice = visibleGroupChoices().find(x => norm(x.text) === wanted);
+      if (choice) {
+        clickLikeUser(choice.el);
+        await sleep(250);
+        if (groupTypeVisible(group,type)) return true;
+      }
+    }
+    return false;
+  }
+
   async function addGroup(type) {
     const before = new Set(groupRoots());
     const control = findAddGroupControl();
@@ -140,7 +198,10 @@
 
     if (!created) return {ok:false, reason:"created_stat_group_not_found"};
     if (!groupTypeVisible(created, type)) {
-      return {ok:false, reason:"wrong_stat_group_type", wanted:type, groupText:String(created.innerText || created.textContent || "").replace(/\s+/g," ").trim().slice(0,400)};
+      const changed = await setExistingGroupType(created,type);
+      if (!changed || !groupTypeVisible(created,type)) {
+        return {ok:false, reason:"wrong_stat_group_type", wanted:type, groupText:String(created.innerText || created.textContent || "").replace(/\s+/g," ").trim().slice(0,400)};
+      }
     }
     return {ok:true, root:created};
   }
@@ -153,9 +214,25 @@
     };
   }
 
+  function groupRangeInputs(group, spec) {
+    const statTexts=(spec.filters || []).map(x=>norm(x.text));
+    const inputs=$("input",group).filter(visible).filter(el=>{
+      const p=norm(el.placeholder);
+      if(p!=="min" && p!=="max") return false;
+      const row=el.closest(".filter");
+      if(!row) return true;
+      const text=norm(row.innerText || row.textContent || "");
+      return !statTexts.some(t=>t && text.includes(t));
+    });
+    return {
+      min:inputs.find(x=>norm(x.placeholder)==="min")||null,
+      max:inputs.find(x=>norm(x.placeholder)==="max")||null
+    };
+  }
+
   function setGroupRange(group, spec) {
     if (spec.type !== "count" && spec.type !== "weight" && spec.type !== "weight2") return {ok:true};
-    const mm = minMaxInputs(group);
+    const mm = groupRangeInputs(group,spec);
     if (spec.min != null) {
       if (!mm.min) return {ok:false, reason:"group_min_not_found"};
       nativeValue(mm.min, spec.min);
@@ -311,7 +388,7 @@
   function verifyGroup(group, spec) {
     if (!groupTypeVisible(group, spec.type)) return {ok:false, reason:"group_type_verify_failed"};
     if (spec.type === "count" || spec.type === "weight" || spec.type === "weight2") {
-      const mm = minMaxInputs(group);
+      const mm = groupRangeInputs(group,spec);
       if (spec.min != null && String(mm.min?.value ?? "") !== String(spec.min)) return {ok:false, reason:"group_min_verify_failed", got:mm.min?.value ?? null};
       if (spec.max != null && String(mm.max?.value ?? "") !== String(spec.max)) return {ok:false, reason:"group_max_verify_failed", got:mm.max?.value ?? null};
     }
