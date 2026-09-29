@@ -22,11 +22,18 @@
     },
     {
       "label": "Energy Shield",
-      "min": 650
+      "min": 550,
+      "max": 649
     },
     {
       "label": "Intelligence",
       "max": 112
+    }
+  ],
+  "stats": [
+    {
+      "text": "maximum Life",
+      "min": 80
     }
   ],
   "search": true
