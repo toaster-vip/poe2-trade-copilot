@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Jewel"
+      "value": "Any Jewel"
     },
     {
       "label": "Item Rarity",
