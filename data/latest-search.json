@@ -19,7 +19,7 @@
     {
       "label": "Buyout Price",
       "min": 151,
-      "max": 250
+      "max": 200
     },
     {
       "label": "Energy Shield",
