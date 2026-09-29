@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.2";
+  const PATCH_VERSION = "run-wrapper-2.3";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -672,7 +672,8 @@
             preflight:window.__POE2TC_PREFLIGHT_DEBUG,
             statBridge:window.__POE2TC_STAT_BRIDGE_DEBUG||null,
             searchSource:window.__POE2TC_LAST_SEARCH_SOURCE||null,
-            lastDebug:window.__POE2TC_LAST_DEBUG||null
+            lastDebug:window.__POE2TC_LAST_DEBUG||null,
+            directApi:window.__POE2TC_DIRECT_API_DEBUG||null
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
