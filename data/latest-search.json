@@ -18,21 +18,17 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 200
+      "max": 250
     },
     {
       "label": "Energy Shield",
-      "min": 560
-    },
-    {
-      "label": "Intelligence",
-      "max": 102
+      "min": 530
     }
   ],
   "stats": [
     {
       "text": "increased Critical Hit Chance",
-      "min": 28
+      "min": 30
     }
   ],
   "search": true
