@@ -29,7 +29,7 @@
   ],
   "apiSearch": {
     "league": "Runes of Aldur",
-    "status": "securable",
+    "status": "any",
     "category": "jewel",
     "rarity": "rare",
     "price": {
