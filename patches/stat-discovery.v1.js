@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.0";
+  const VERSION = "stat-discovery-1.1";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
@@ -20,14 +20,72 @@
     return $$("input").find(el=>visible(el) && /search/i.test(String(el.placeholder||""))) ||
            $$("input").find(el=>visible(el) && el.closest?.(".multiselect,.search-select,.filter-select"));
   }
-  function optionTexts(){
-    const out=[];
-    for(const el of $$("li,[role=option],.multiselect__option,.search-select-option,.filter-select-option")){
-      if(!visible(el)) continue;
-      const t=norm(el.textContent);
-      if(t && !out.includes(t)) out.push(t);
+  function labelOf(v){
+    if(v==null) return "";
+    if(typeof v==="string"||typeof v==="number") return String(v);
+    return String(v.label??v.name??v.text??v.value??v.id??"");
+  }
+  function slim(v){
+    if(v==null || typeof v!=="object") return v;
+    const out={};
+    for(const key of ["id","text","label","name","type","group","option","value"]){
+      const val=v[key];
+      if(val==null) continue;
+      if(typeof val==="object"){
+        try{
+          out[key]=JSON.parse(JSON.stringify(val,(k,x)=>{
+            if(typeof x==="function") return undefined;
+            return x;
+          }));
+        }catch{}
+      }else out[key]=val;
     }
-    return out.slice(0,50);
+    return out;
+  }
+  function vueOptions(root){
+    const vm=root?.__vue__||root?.__vueParentComponent||null;
+    if(!vm) return [];
+    for(const x of [vm.options,vm.filteredOptions,vm.optionKeys,vm.$options?.propsData?.options,vm.$parent?.options,vm.$props?.options]){
+      if(Array.isArray(x)&&x.length) return x;
+    }
+    return [];
+  }
+  function optionDetails(){
+    const out=[];
+    const seen=new Set();
+
+    for(const root of $(".multiselect,[role='combobox']")){
+      if(!visible(root)) continue;
+      for(const opt of vueOptions(root)){
+        const label=labelOf(opt);
+        if(!label) continue;
+        const key=JSON.stringify([label,opt?.id,opt?.value?.id,opt?.value]);
+        if(seen.has(key)) continue;
+        seen.add(key);
+        out.push({
+          source:"vue",
+          label,
+          id:opt?.id??opt?.value?.id??null,
+          raw:slim(opt)
+        });
+      }
+    }
+
+    for(const el of $("li,[role=option],.multiselect__option,.search-select-option,.filter-select-option")){
+      if(!visible(el)) continue;
+      const label=norm(el.textContent);
+      if(!label) continue;
+      const key="dom:"+label;
+      if(seen.has(key)) continue;
+      seen.add(key);
+      out.push({
+        source:"dom",
+        label,
+        dataId:el.getAttribute("data-id"),
+        dataValue:el.getAttribute("data-value")
+      });
+    }
+    return out.slice(0,100);
   }
   async function discover(query){
     const btn=addStatButton();
@@ -40,11 +98,11 @@
     input.dispatchEvent(new Event("input",{bubbles:true}));
     input.dispatchEvent(new Event("change",{bubbles:true}));
     await sleep(500);
-    const options=optionTexts();
+    const options=optionDetails();
     return {ok:true,query,options};
   }
   async function run(){
-    const query=prompt("Stat discovery keyword (example: strength, mana, attack speed):", "strength");
+    const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
     if(!query) return;
     status(`Discovering stat: ${query}…`);
     const result=await discover(query);
