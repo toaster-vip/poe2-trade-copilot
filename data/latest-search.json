@@ -44,7 +44,7 @@
           {
             "id": "explicit.stat_1030153674",
             "text": "Recover #% of maximum Mana on Kill",
-            "min": 2,
+            "min": 1,
             "disabled": false
           }
         ]
