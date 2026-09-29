@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.17";
+  const PATCH_VERSION = "search-source-1.18";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -115,6 +115,10 @@
     if(value==null) return "";
     if(typeof value==="string"||typeof value==="number") return String(value);
     return String(value.label??value.name??value.text??value.value??value.id??"");
+  }
+  function optionIdOf(value) {
+    if(value==null || typeof value!=="object") return null;
+    return value.id ?? value.value?.id ?? value.option?.id ?? null;
   }
   function vueInstanceFor(root) { return root ? (root.__vue__ || root.__vueParentComponent || null) : null; }
   function vueOptions(vm) {
@@ -250,7 +254,7 @@
           }
           try { if(typeof vm.deactivate==="function") vm.deactivate(); } catch {}
           input.blur();
-          return {ok:true,mode:"vue",option:labelOf(picked.option)};
+          return {ok:true,mode:"vue",option:labelOf(picked.option),optionId:optionIdOf(picked.option),optionRaw:{id:picked.option?.id??null,value:picked.option?.value??null,text:picked.option?.text??null,label:picked.option?.label??null,name:picked.option?.name??null}};
         } catch(error) {
           console.warn("[PoE2TC Stat Bridge] Vue select failed",error);
         }
@@ -266,7 +270,7 @@
     option.dispatchEvent(new MouseEvent("mouseup",{bubbles:true,cancelable:true,view:window}));
     option.click();
     input.blur();
-    return {ok:true,mode:"dom",option:String(option.innerText||option.textContent||"").trim()};
+    return {ok:true,mode:"dom",option:String(option.innerText||option.textContent||"").trim(),optionId:option.getAttribute("data-id")||option.getAttribute("data-value")||null};
   }
 
   async function addDynamicStat(spec) {
@@ -301,7 +305,7 @@
       if(!mm.max) return {ok:false,reason:"created_max_not_found",selection:select,rowText:(row.innerText||row.textContent||"").trim()};
       nativeValue(mm.max,spec.max);
     }
-    return {ok:true,mode:`created-${select.mode}`,option:select.option,rowText:(row.innerText||row.textContent||"").replace(/\s+/g," ").trim()};
+    return {ok:true,mode:`created-${select.mode}`,option:select.option,optionId:select.optionId??null,optionRaw:select.optionRaw??null,rowText:(row.innerText||row.textContent||"").replace(/\s+/g," ").trim()};
   }
 
   function propertyRows(){
