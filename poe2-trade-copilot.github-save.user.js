@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot GitHub Save
 // @namespace    chatgpt-poe2-trade
-// @version      1.2.0
+// @version      1.3.0
 // @description  Saves PoE2 Trade Copilot result packets to GitHub without touching PoE Vue state
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -14,7 +14,7 @@
 (() => {
   "use strict";
 
-  const VERSION="1.2.0";
+  const VERSION="1.3.0";
   const OWNER="toaster-vip";
   const REPO="poe2-trade-copilot";
   const BRANCH="main";
@@ -130,7 +130,7 @@
       const save=document.createElement("button");
       save.id="ptc-save-github";
       save.type="button";
-      save.textContent="SAVE TO GITHUB";
+      save.textContent="SAVE TOP 150 TO GITHUB";
       save.setAttribute("style",results.getAttribute("style")||"");
       save.style.cssText += ";padding:9px;background:#26313e;color:#fff;border:1px solid #526071;border-radius:7px;font-weight:600;";
       save.onclick=saveToGitHub;
