@@ -1,12 +1,68 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-3.0";
+  const PATCH_VERSION = "collector-3.1";
   const TOP_N = 150;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+
+  let lastTradeSearch = null;
+
+  function rememberTradeSearch(payload, url) {
+    if (!payload || !Array.isArray(payload.result) || !payload.id) return;
+    lastTradeSearch = {
+      id:String(payload.id),
+      total:Number(payload.total || payload.result.length || 0),
+      result:payload.result.slice(),
+      url:String(url || ""),
+      capturedAt:new Date().toISOString()
+    };
+    window.__POE2TC_TRADE_SEARCH_RESPONSE = lastTradeSearch;
+    console.log("[PoE2TC Collector] captured trade search", {
+      total:lastTradeSearch.total,
+      ids:lastTradeSearch.result.length,
+      id:lastTradeSearch.id
+    });
+  }
+
+  function installTradeSearchTap() {
+    if (window.__POE2TC_TRADE_SEARCH_TAP_INSTALLED) return;
+    window.__POE2TC_TRADE_SEARCH_TAP_INSTALLED = true;
+
+    const originalFetch = window.fetch;
+    window.fetch = async function(...args) {
+      const response = await originalFetch.apply(this,args);
+      try {
+        const url = String(args?.[0]?.url || args?.[0] || "");
+        if (/\/api\/trade2\/search\/poe2\//i.test(url)) {
+          response.clone().json().then(payload => rememberTradeSearch(payload,url)).catch(()=>{});
+        }
+      } catch {}
+      return response;
+    };
+
+    const originalOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method,url,...rest) {
+      try { this.__poe2tcUrl = String(url || ""); } catch {}
+      return originalOpen.call(this,method,url,...rest);
+    };
+    const originalSend = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.send = function(...args) {
+      if (/\/api\/trade2\/search\/poe2\//i.test(String(this.__poe2tcUrl || ""))) {
+        this.addEventListener("load", () => {
+          try {
+            const payload = JSON.parse(String(this.responseText || ""));
+            rememberTradeSearch(payload,this.__poe2tcUrl);
+          } catch {}
+        }, {once:true});
+      }
+      return originalSend.apply(this,args);
+    };
+  }
+
+  installTradeSearchTap();
 
   function visible(el) {
     if (!el) return false;
@@ -160,6 +216,150 @@
     };
   }
 
+  function propNumber(item, wanted) {
+    const props = Array.isArray(item?.properties) ? item.properties : [];
+    const row = props.find(p => norm(p?.name) === norm(wanted));
+    const raw = row?.values?.[0]?.[0];
+    if (raw == null) return null;
+    const m = String(raw).replace(/,/g,"").match(/-?[0-9]+(?:\.[0-9]+)?/);
+    return m ? Number(m[0]) : null;
+  }
+
+  function requirementText(item) {
+    const reqs = Array.isArray(item?.requirements) ? item.requirements : [];
+    if (!reqs.length) return null;
+    return reqs.map(r => {
+      const value = r?.values?.[0]?.[0];
+      return value != null ? `${value} ${r?.name || ""}`.trim() : null;
+    }).filter(Boolean).join(", ") || null;
+  }
+
+  function allApiMods(item) {
+    const fields = [
+      "enchantMods","implicitMods","explicitMods","craftedMods",
+      "fracturedMods","runeMods","sanctumMods","scourgeMods"
+    ];
+    const out = [];
+    for (const field of fields) {
+      const xs = item?.[field];
+      if (Array.isArray(xs)) out.push(...xs.map(String));
+    }
+    return out;
+  }
+
+  function agoFromIso(iso) {
+    const t = Date.parse(String(iso || ""));
+    if (!Number.isFinite(t)) return null;
+    const sec = Math.max(0,Math.floor((Date.now()-t)/1000));
+    if (sec < 3600) return `${Math.max(1,Math.floor(sec/60))} minutes ago`;
+    if (sec < 86400) return `${Math.floor(sec/3600)} hours ago`;
+    if (sec < 604800) return `${Math.floor(sec/86400)} days ago`;
+    if (sec < 2592000) return `${Math.floor(sec/604800)} weeks ago`;
+    return `${Math.floor(sec/2592000)} months ago`;
+  }
+
+  function currentSearchItemClass() {
+    try {
+      const source = window.__POE2TC_LAST_SEARCH_SOURCE?.packet;
+      const packet = source || JSON.parse($("#ptc-box")?.value || "{}");
+      const sel = (packet?.selects || []).find(x => norm(x?.label) === "item category");
+      if (sel?.value) return String(sel.value);
+    } catch {}
+    const first = cardElements()[0];
+    if (first) return parseCard(first).itemClass || null;
+    return null;
+  }
+
+  function parseApiFetched(entry, fallbackClass) {
+    const item = entry?.item || {};
+    const listing = entry?.listing || {};
+    const mods = allApiMods(item);
+    const activeModText = mods.join("\n");
+    const physRaw = propNumber(item,"Physical Damage");
+    let phys = null;
+    const physProp = (item?.properties || []).find(p => norm(p?.name) === "physical damage");
+    const physText = physProp?.values?.[0]?.[0];
+    const physMatch = String(physText || "").match(/([0-9]+)\s*[-–]\s*([0-9]+)/);
+    if (physMatch) phys = [Number(physMatch[1]),Number(physMatch[2])];
+
+    const price = listing?.price ? {
+      amount:Number(listing.price.amount),
+      currency:canonicalCurrency(listing.price.currency)
+    } : null;
+
+    const sockets = Array.isArray(item?.sockets) ? item.sockets : [];
+    const bonded = mods.filter(line => /^Bonded:/i.test(line));
+    return {
+      id:entry?.id || item?.id || null,
+      name:item?.name || item?.typeLine || null,
+      baseType:item?.baseType || item?.typeLine || null,
+      itemClass:fallbackClass || item?.extended?.category || null,
+      itemLevel:Number(item?.ilvl || 0) || null,
+      quality:propNumber(item,"Quality"),
+      requirements:requirementText(item),
+      armour:propNumber(item,"Armour"),
+      evasion:propNumber(item,"Evasion Rating") ?? propNumber(item,"Evasion"),
+      energyShield:propNumber(item,"Energy Shield"),
+      maximumLife:num(activeModText,/\+([0-9]+)\s+to maximum Life/i)||0,
+      dexterity:num(activeModText,/\+([0-9]+)\s+to Dexterity/i)||0,
+      intelligence:num(activeModText,/\+([0-9]+)\s+to Intelligence/i)||0,
+      strength:num(activeModText,/\+([0-9]+)\s+to Strength/i)||0,
+      chaosResistance:num(activeModText,/\+([0-9.]+)%\s+to Chaos Resistance/i)||0,
+      fireResistance:num(activeModText,/\+([0-9.]+)%\s+to Fire Resistance/i)||0,
+      coldResistance:num(activeModText,/\+([0-9.]+)%\s+to Cold Resistance/i)||0,
+      lightningResistance:num(activeModText,/\+([0-9.]+)%\s+to Lightning Resistance/i)||0,
+      physicalDamage:phys,
+      criticalChance:propNumber(item,"Critical Hit Chance"),
+      attacksPerSecond:propNumber(item,"Attacks per Second"),
+      physicalDps:null,elementalDps:null,totalDps:null,
+      price,
+      seller:listing?.account?.name || null,
+      listedAgo:agoFromIso(listing?.indexed),
+      indexedAt:listing?.indexed || null,
+      corrupted:!!item?.corrupted,
+      sanctified:!!item?.sanctified,
+      additionalArrow:mods.some(line => /^Bow Attacks fire an additional Arrow$/i.test(line)),
+      surpassingArrowChance:num(activeModText,/\+?([0-9.]+)%\s+Surpassing chance to fire an additional Arrow/i)||0,
+      lessAttackDamage:num(activeModText,/([0-9.]+)%\s+less Attack Damage/i)||0,
+      criticalDamageBonus:num(activeModText,/\+([0-9.]+)%\s+to Critical Damage Bonus/i)||0,
+      rareUniqueAttackDamage:num(activeModText,/([0-9.]+)%\s+increased Attack Damage against Rare or Unique Enemies/i)||0,
+      projectileRangeReduction:num(activeModText,/([0-9.]+)%\s+reduced Projectile Range/i)||0,
+      gainExtraAllElements:num(activeModText,/Gain\s+([0-9.]+)%\s+of Damage as Extra Damage of all Elements/i)||0,
+      manaPerEnemyKilled:num(activeModText,/Gain\s+([0-9.]+)\s+Mana per enemy killed/i)||0,
+      socketCount:sockets.length || null,
+      bondedEffects:bonded,
+      socketedRunes:[],
+      socketDom:[],
+      manaLeech:num(activeModText,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Mana/i)||0,
+      lifeLeech:num(activeModText,/Leeches\s+([0-9.]+)%\s+of Physical Damage as Life/i)||0,
+      attackSkillLevels:num(activeModText,/\+([0-9]+)\s+to Level of all Attack Skills/i)||0,
+      projectileSkillLevels:num(activeModText,/\+([0-9]+)\s+to Level of all Projectile Skills/i)||0,
+      attackCostEfficiency:num(activeModText,/([0-9.]+)%\s+increased Cost Efficiency of Attacks/i)||0,
+      mods
+    };
+  }
+
+  async function fetchHiddenApiResults(domCount) {
+    const search = lastTradeSearch || window.__POE2TC_TRADE_SEARCH_RESPONSE;
+    if (!search?.id || !Array.isArray(search.result)) return {items:[],search:null};
+    const max = Math.min(TOP_N, search.result.length);
+    if (domCount >= max) return {items:[],search};
+    const ids = search.result.slice(domCount,max);
+    const fallbackClass = currentSearchItemClass();
+    const out = [];
+    for (let i=0;i<ids.length;i+=10) {
+      const batch = ids.slice(i,i+10);
+      status(`Fetching hidden trade results… ${domCount+out.length}/${max}`);
+      const url = `/api/trade2/fetch/${batch.join(",")}?query=${encodeURIComponent(search.id)}&realm=poe2`;
+      const response = await fetch(url,{credentials:"same-origin",headers:{"Accept":"application/json","X-Requested-With":"XMLHttpRequest"}});
+      if (!response.ok) throw new Error(`Trade fetch HTTP ${response.status}`);
+      const payload = await response.json();
+      for (const entry of (payload?.result || [])) out.push(parseApiFetched(entry,fallbackClass));
+      if (i+10 < ids.length) await sleep(450);
+    }
+    return {items:out,search};
+  }
+
   function keyFor(item) { return JSON.stringify([item.name,item.baseType,item.seller,item.price,item.physicalDps,item.criticalChance,item.attacksPerSecond]); }
   function collectCurrent(map) { for (const card of cardElements()) { const item=parseCard(card); map.set(keyFor(item),item); } }
 
@@ -220,24 +420,38 @@
   }
 
   async function buildPacket() {
-    const all=await collectAllResults();
-    const selected=selectTop(all);
+    const dom=await collectAllResults();
+    let combined=dom.slice();
+    let search=null;
+    try {
+      const extra=await fetchHiddenApiResults(dom.length);
+      search=extra.search;
+      if (extra.items.length) combined.push(...extra.items);
+    } catch(error) {
+      console.warn("[PoE2TC Collector] API expansion failed; keeping DOM results",error);
+      window.__POE2TC_API_EXPANSION_ERROR=String(error?.message||error);
+    }
+    const selected=selectTop(combined);
     return {
       protocol:"poe2-trade-copilot/results-v5",
-      version:"0.5.1+collector2.9",
+      version:"0.5.1+collector3.1",
       capturedAt:new Date().toISOString(),
       sourceUrl:location.href,
+      matchedResults:search?.total ?? null,
+      searchResultIds:search?.result?.length ?? null,
       capturedResults:selected.captured,
       returnedResults:selected.listings.length,
       resultLimit:TOP_N,
       sort:selected.sort,
+      apiExpanded:combined.length>dom.length,
+      domResults:dom.length,
       listings:selected.listings
     };
   }
 
   async function copyAllResults() {
     try {
-      status(`Scanning results and selecting cheapest ${TOP_N}…`);
+      status(`Scanning up to top ${TOP_N} results…`);
       const packet=await buildPacket();
       const text=JSON.stringify(packet);
       const ok=await copyText(text);
@@ -250,7 +464,7 @@
 
   document.addEventListener("poe2tc:request-results", async () => {
     try {
-      status(`Preparing cheapest ${TOP_N} for GitHub…`);
+      status(`Preparing up to top ${TOP_N} for GitHub…`);
       const packet=await buildPacket();
       document.dispatchEvent(new CustomEvent("poe2tc:results-ready", {detail:JSON.stringify(packet)}));
     } catch(error) {
