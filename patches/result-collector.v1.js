@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "collector-2.9";
+  const PATCH_VERSION = "collector-3.0";
   const TOP_N = 150;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -260,12 +260,21 @@
 
   window.__POE2TC_BUILD_RESULTS = buildPacket;
 
+  function syncTopNLabels() {
+    const copy=$("#ptc-results");
+    if(copy) copy.textContent=`COPY TOP ${TOP_N} RESULTS`;
+    const save=$("#ptc-save-github");
+    if(save) save.textContent=`SAVE TOP ${TOP_N} TO GITHUB`;
+  }
+
   function install() {
     const button=$("#ptc-results");
     if(!button){setTimeout(install,250);return;}
     button.onclick=copyAllResults;
-    button.textContent=`COPY TOP ${TOP_N} RESULTS`;
     button.dataset.collectorPatch=PATCH_VERSION;
+    syncTopNLabels();
+    setTimeout(syncTopNLabels,500);
+    setTimeout(syncTopNLabels,1500);
     console.log(`[PoE2TC Collector] ${PATCH_VERSION} installed.`);
   }
 
