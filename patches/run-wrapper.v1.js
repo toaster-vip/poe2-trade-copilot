@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.5";
+  const PATCH_VERSION = "run-wrapper-2.6";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -570,6 +570,46 @@
     return {ok:residue.length===0,buttonFound:!!btn,cleared:cleared+clearedAgain,residue};
   }
 
+  async function ensureGroupedStatExecutor(){
+    if(typeof window.__POE2TC_APPLY_STAT_GROUPS==="function") return window.__POE2TC_APPLY_STAT_GROUPS;
+
+    const api="https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/patches/stat-groups.v1.js?ref=main&t="+Date.now();
+    status("Grouped-stat module missing; loading it directly…");
+    const response=await fetch(api,{
+      cache:"no-store",
+      credentials:"omit",
+      headers:{"Accept":"application/vnd.github+json"}
+    });
+    if(!response.ok) throw new Error("stat-groups GitHub HTTP "+response.status);
+    const payload=await response.json();
+    if(!payload?.content) throw new Error("stat-groups GitHub response missing content");
+
+    const clean=String(payload.content||"").replace(/\s+/g,"");
+    const binary=atob(clean);
+    const bytes=Uint8Array.from(binary,ch=>ch.charCodeAt(0));
+    const code=new TextDecoder("utf-8").decode(bytes);
+    (0,eval)(code+"\n//# sourceURL=poe2tc-stat-groups-hotload.js");
+
+    for(let i=0;i<20;i++){
+      if(typeof window.__POE2TC_APPLY_STAT_GROUPS==="function"){
+        window.__POE2TC_STAT_GROUPS_HOTLOAD={
+          ok:true,
+          sha:payload.sha||null,
+          loadedAt:new Date().toISOString()
+        };
+        return window.__POE2TC_APPLY_STAT_GROUPS;
+      }
+      await sleep(100);
+    }
+    window.__POE2TC_STAT_GROUPS_HOTLOAD={
+      ok:false,
+      sha:payload.sha||null,
+      reason:"executor_not_exported_after_eval",
+      loadedAt:new Date().toISOString()
+    };
+    throw new Error("group executor still missing after hot-load");
+  }
+
   function install(){
     const button = document.querySelector("#ptc-run");
     const box = document.querySelector("#ptc-box");
@@ -649,10 +689,12 @@
 
       const grouped = Array.isArray(packet.statGroups) ? packet.statGroups : [];
       if (grouped.length) {
-        const executor = window.__POE2TC_APPLY_STAT_GROUPS;
-        if (typeof executor !== "function") {
-          preflight.failed={step:"stat-groups",reason:"group_executor_not_loaded"};
-          status("ABORTED: grouped-stat executor is not loaded. COPY DEBUG.");
+        let executor;
+        try {
+          executor = await ensureGroupedStatExecutor();
+        } catch (error) {
+          preflight.failed={step:"stat-groups",reason:"group_executor_load_failed:"+String(error?.message||error)};
+          status("ABORTED: grouped-stat executor failed to load. COPY DEBUG.");
           return;
         }
 
@@ -711,7 +753,8 @@
             statGroups:window.__POE2TC_STAT_GROUPS_DEBUG||null,
             statGroupsModule:window.__POE2TC_STAT_GROUPS_MODULE||null,
             remoteInfo:window.__POE2TC_REMOTE_INFO||null,
-            runButtonDataset:{...document.querySelector("#ptc-run")?.dataset}
+            runButtonDataset:{...document.querySelector("#ptc-run")?.dataset},
+            statGroupsHotload:window.__POE2TC_STAT_GROUPS_HOTLOAD||null
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
