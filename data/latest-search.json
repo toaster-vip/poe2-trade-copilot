@@ -27,6 +27,10 @@
       "min": 220
     },
     {
+      "text": "maximum Mana",
+      "min": 80
+    },
+    {
       "text": "Cold Resistance",
       "min": 9
     },
