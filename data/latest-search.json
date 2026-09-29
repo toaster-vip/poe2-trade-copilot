@@ -22,9 +22,18 @@
     },
     {
       "label": "Energy Shield",
-      "min": 400
+      "min": 450
     }
   ],
-  "stats": [],
+  "stats": [
+    {
+      "text": "maximum Life",
+      "min": 100
+    },
+    {
+      "text": "Chaos Resistance",
+      "min": 15
+    }
+  ],
   "search": true
 }
