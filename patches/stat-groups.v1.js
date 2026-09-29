@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-2.0";
+  const VERSION = "stat-groups-2.1";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -443,15 +443,64 @@
   }
 
   function statRows(group) {
-    return $$(".filter", group).filter(row => {
-      const mm = minMaxInputs(row);
-      return !!(mm.min || mm.max);
-    });
+    const seen = new Set();
+    const rows = [];
+    for (const row of $(
+      ".filter.full-span, .filter-group-body > .filter:not(.filter-select-mutate), .filter",
+      group
+    )) {
+      if (seen.has(row)) continue;
+      seen.add(row);
+      if (row.querySelector('input[placeholder="+ Add Stat Filter"]')) continue;
+      const text = norm(row.innerText || row.textContent || "");
+      if (!text) continue;
+      rows.push(row);
+    }
+    return rows;
   }
 
   function findRow(group, text) {
     const wanted = norm(text);
-    return statRows(group).find(row => norm(row.innerText || row.textContent || "").includes(wanted)) || null;
+    return statRows(group).find(row =>
+      norm(row.innerText || row.textContent || "").includes(wanted)
+    ) || null;
+  }
+
+  function nativeStatOptionLabel(option) {
+    if (!option) return "";
+    const labelContainer = option.querySelector("div");
+    const label =
+      labelContainer?.querySelector(":scope > span")?.textContent ||
+      labelContainer?.textContent ||
+      option.textContent ||
+      "";
+    return String(label).replace(/\s+/g," ").trim();
+  }
+
+  function nativeStatOptions(group) {
+    return $(
+      ".multiselect__option:not(.multiselect__option--disabled), [role='option']",
+      group
+    ).filter(visible);
+  }
+
+  async function waitForNativeStatOption(group, spec, attempts=20) {
+    const wanted = norm(spec.text);
+    for (let i=0; i<attempts; i++) {
+      const options = nativeStatOptions(group);
+      const exact = options.find(option => {
+        const label = nativeStatOptionLabel(option);
+        return exactTextMatch(label, spec.text);
+      });
+      if (exact) return exact;
+
+      const contains = options.find(option =>
+        norm(nativeStatOptionLabel(option)).includes(wanted)
+      );
+      if (contains) return contains;
+      await sleep(50);
+    }
+    return null;
   }
 
   async function commitExactStat(group, spec) {
@@ -459,61 +508,71 @@
     if (!input) return {ok:false, reason:"group_add_stat_input_not_found"};
 
     const before = new Set(statRows(group));
-    const root = input.closest(".multiselect") || input.parentElement?.closest(".multiselect") || input.closest("[role='combobox']");
-    let vm = vueFor(root);
 
-    input.click();
+    input.focus();
     nativeValue(input, spec.text);
-    await sleep(500);
 
-    vm = vueFor(root) || vm;
-    let chosenLabel = null;
-    if (vm) {
-      let options = vueOptions(vm);
-      if (!options.length) { await sleep(300); options = vueOptions(vm); }
-      const picked = options.find(o => idOf(o) === String(spec.id)) ||
-        options.find(o => exactTextMatch(labelOf(o), spec.text));
-      if (picked) {
-        try {
-          if (typeof vm.select === "function") vm.select(picked);
-          else if (typeof vm.$emit === "function") {
-            vm.$emit("input", picked);
-            vm.$emit("update:modelValue", picked);
-          }
-          chosenLabel = labelOf(picked);
-          try { vm.deactivate?.(); } catch {}
-          input.blur();
-        } catch {}
+    const option = await waitForNativeStatOption(group, spec, 20);
+    const optionDump = nativeStatOptions(group).slice(0,30).map(el => nativeStatOptionLabel(el));
+
+    if (!option) {
+      return {
+        ok:false,
+        reason:"exact_stat_option_not_found",
+        wanted:spec.text,
+        options:optionDump
+      };
+    }
+
+    const chosenLabel = nativeStatOptionLabel(option);
+    option.click();
+
+    let row = null;
+    for (let i=0; i<20; i++) {
+      await sleep(75);
+      const added = statRows(group).filter(x => !before.has(x));
+      row =
+        added.find(x => norm(x.innerText || x.textContent || "").includes(norm(spec.text))) ||
+        findRow(group, spec.text);
+      if (row) break;
+    }
+
+    // Native Trade occasionally ignores a synthetic click while the
+    // multiselect is focused. Enter is its normal keyboard fallback.
+    if (!row) {
+      input.focus();
+      input.dispatchEvent(new KeyboardEvent("keydown", {
+        key:"Enter",
+        code:"Enter",
+        bubbles:true,
+        cancelable:true
+      }));
+      for (let i=0; i<12; i++) {
+        await sleep(75);
+        row = findRow(group, spec.text);
+        if (row) break;
       }
     }
 
-    if (!chosenLabel) {
-      const options = $$(".multiselect__option,[role='option'],li")
-        .filter(visible)
-        .map(el => ({el,text:String(el.innerText || el.textContent || "").replace(/\s+/g," ").trim()}));
-      const picked = options.find(x => exactTextMatch(x.text, spec.text));
-      if (!picked) return {ok:false, reason:"exact_stat_option_not_found", wanted:spec.text, options:options.slice(0,30).map(x=>x.text)};
-      clickLikeUser(picked.el);
-      chosenLabel = picked.text;
-      input.blur();
+    if (!row) {
+      return {
+        ok:false,
+        reason:"created_stat_row_not_found",
+        selected:chosenLabel,
+        options:optionDump,
+        groupText:String(group.innerText || group.textContent || "").replace(/\s+/g," ").trim().slice(0,1200)
+      };
     }
 
-    let row = null;
-    for (let i=0; i<40; i++) {
-      await sleep(100);
-      const added = statRows(group).filter(x => !before.has(x));
-      row = added.find(x => norm(x.innerText || x.textContent || "").includes(norm(spec.text))) || findRow(group, spec.text);
-      if (row) break;
-    }
-    if (!row) return {ok:false, reason:"created_stat_row_not_found", selected:chosenLabel};
+    input.blur();
 
     const mm = minMaxInputs(row);
     if (spec.min != null) {
-      if (!mm.min) return {ok:false, reason:"stat_min_not_found", selected:chosenLabel};
+      if (!mm.min) return {ok:false, reason:"stat_min_not_found", selected:chosenLabel, rowText:String(row.innerText || row.textContent || "").trim()};
       nativeValue(mm.min, spec.min);
     }
     if (spec.max != null) {
-      if (!mm.max) return {ok:false, reason:"stat_max_not_found", selected:chosenLabel};
+      if (!mm.max) return {ok:false, reason:"stat_max_not_found", selected:chosenLabel, rowText:String(row.innerText || row.textContent || "").trim()};
       nativeValue(mm.max, spec.max);
     }
     return {ok:true, selected:chosenLabel, row};
