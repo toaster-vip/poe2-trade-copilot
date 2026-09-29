@@ -112,6 +112,15 @@
       "status": "verified",
       "observedUi": "explicit Recover #% of maximum Mana on Kill (Jewel)",
       "notes": "Verified from official PoE2 Trade UI screenshot and preflight/statBridge debug on 2026-09-29; min 2 committed correctly."
+    },
+    {
+      "key": "gain_extra_cold",
+      "intent": "item grants a percentage of Damage as Extra Cold Damage",
+      "kind": "stat",
+      "query": "Gain #% of Damage as Extra Cold Damage",
+      "status": "verified",
+      "observedUi": "explicit Gain #% of Damage as Extra Cold Damage",
+      "notes": "Verified from official PoE2 Trade UI preflight/statBridge debug on 2026-09-29; min 13 committed correctly."
     }
   ]
 }
