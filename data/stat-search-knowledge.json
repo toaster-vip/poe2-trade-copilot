@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-26",
+  "updatedAt": "2026-09-29",
   "rules": {
     "neverGuessFromItemText": true,
     "verifyActualUiSection": true,
@@ -103,6 +103,15 @@
       "label": "Energy Shield",
       "status": "verified",
       "notes": "Observed as an Equipment Filter numeric property in saved official Trade page map."
+    },
+    {
+      "key": "mana_on_kill_jewel",
+      "intent": "jewel recovers a percentage of maximum Mana on Kill",
+      "kind": "stat",
+      "query": "Recover #% of maximum Mana on Kill",
+      "status": "verified",
+      "observedUi": "explicit Recover #% of maximum Mana on Kill (Jewel)",
+      "notes": "Verified from official PoE2 Trade UI screenshot and preflight/statBridge debug on 2026-09-29; min 2 committed correctly."
     }
   ]
 }
