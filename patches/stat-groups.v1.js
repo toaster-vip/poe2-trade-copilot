@@ -215,7 +215,7 @@
   function directGroupChoices() {
     const root = $(".filter-group-select");
     if (!root) return [];
-    return $("li>span", root)
+    return $$("li>span", root)
       .map(el => ({el,text:String(el.textContent || "").replace(/\s+/g," ").trim()}))
       .filter(x => x.text);
   }
