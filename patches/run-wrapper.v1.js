@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.4";
+  const PATCH_VERSION = "run-wrapper-2.5";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -645,9 +645,43 @@
       }
 
       const originalText = box.value;
+      preflight.ok=true;
+
+      const grouped = Array.isArray(packet.statGroups) ? packet.statGroups : [];
+      if (grouped.length) {
+        const executor = window.__POE2TC_APPLY_STAT_GROUPS;
+        if (typeof executor !== "function") {
+          preflight.failed={step:"stat-groups",reason:"group_executor_not_loaded"};
+          status("ABORTED: grouped-stat executor is not loaded. COPY DEBUG.");
+          return;
+        }
+
+        status("Preflight complete. Building AND/COUNT stat groups…");
+        try {
+          await executor(packet);
+        } catch (error) {
+          preflight.failed={step:"stat-groups",reason:String(error?.message||error)};
+          status("ABORTED: grouped stat construction failed. COPY DEBUG.");
+          return;
+        }
+
+        if (packet.search !== false) {
+          const searchButton=document.querySelector("button.search-btn");
+          if (!searchButton) {
+            preflight.failed={step:"search",reason:"search_button_not_found"};
+            status("ABORTED: Search button not found after grouped stat verification.");
+            return;
+          }
+          status("PASS: base filters and AND/COUNT groups verified. Searching…");
+          searchButton.click();
+        } else {
+          status("PASS: base filters and AND/COUNT groups verified. Search NOT submitted.");
+        }
+        return;
+      }
+
       const delegated = {...packet, clear:false, selects:[], fields:[]};
       box.value = JSON.stringify(delegated,null,2);
-      preflight.ok=true;
       try {
         const result = original.call(this,event);
         await sleep(80);
@@ -674,7 +708,10 @@
             searchSource:window.__POE2TC_LAST_SEARCH_SOURCE||null,
             lastDebug:window.__POE2TC_LAST_DEBUG||null,
             directApi:window.__POE2TC_DIRECT_API_DEBUG||null,
-            statGroups:window.__POE2TC_STAT_GROUPS_DEBUG||null
+            statGroups:window.__POE2TC_STAT_GROUPS_DEBUG||null,
+            statGroupsModule:window.__POE2TC_STAT_GROUPS_MODULE||null,
+            remoteInfo:window.__POE2TC_REMOTE_INFO||null,
+            runButtonDataset:{...document.querySelector("#ptc-run")?.dataset}
           };
           const text=JSON.stringify(packet);
           try { await navigator.clipboard.writeText(text); status("Preflight debug copied."); return; } catch {}
