@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Belt"
+      "value": "Helmet"
     },
     {
       "label": "Item Rarity",
@@ -18,25 +18,21 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 20
+      "max": 200
+    },
+    {
+      "label": "Energy Shield",
+      "min": 560
+    },
+    {
+      "label": "Intelligence",
+      "max": 102
     }
   ],
   "stats": [
     {
-      "text": "maximum Life",
-      "min": 210
-    },
-    {
-      "text": "maximum Mana",
-      "min": 100
-    },
-    {
-      "text": "Cold Resistance",
-      "min": 15
-    },
-    {
-      "text": "Chaos Resistance",
-      "min": 40
+      "text": "increased Critical Hit Chance",
+      "min": 28
     }
   ],
   "search": true
