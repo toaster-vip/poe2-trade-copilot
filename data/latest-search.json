@@ -48,38 +48,6 @@
             "disabled": false
           }
         ]
-      },
-      {
-        "type": "count",
-        "min": 1,
-        "disabled": false,
-        "filters": [
-          {
-            "id": "explicit.stat_3141070085",
-            "text": "#% increased Elemental Damage",
-            "disabled": false
-          },
-          {
-            "id": "explicit.stat_3291658075",
-            "text": "#% increased Cold Damage",
-            "disabled": false
-          },
-          {
-            "id": "explicit.stat_3417711605",
-            "text": "Damage Penetrates #% Cold Resistance",
-            "disabled": false
-          },
-          {
-            "id": "explicit.stat_587431675",
-            "text": "#% increased Critical Hit Chance",
-            "disabled": false
-          },
-          {
-            "id": "explicit.stat_3556824919",
-            "text": "#% increased Critical Damage Bonus",
-            "disabled": false
-          }
-        ]
       }
     ]
   },
