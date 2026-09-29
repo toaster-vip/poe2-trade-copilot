@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.16";
+  const PATCH_VERSION = "search-source-1.17";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -565,6 +565,96 @@
     },true);
   }
 
+  function ensureMinimizeButton(){
+    const panel=$("#ptc");
+    if(!panel) return false;
+    if($("#ptc-minimize")) return true;
+
+    const button=document.createElement("button");
+    button.id="ptc-minimize";
+    button.type="button";
+    button.textContent="−";
+    button.setAttribute("aria-label","Minimize PoE2 Trade Copilot");
+    button.title="Minimize PoE2 Trade Copilot";
+
+    Object.assign(button.style,{
+      position:"absolute",
+      top:"6px",
+      right:"7px",
+      width:"32px",
+      height:"32px",
+      padding:"0",
+      margin:"0",
+      border:"1px solid #526071",
+      borderRadius:"8px",
+      background:"#26313e",
+      color:"#fff",
+      fontSize:"22px",
+      fontWeight:"700",
+      lineHeight:"28px",
+      zIndex:"2147483647",
+      cursor:"pointer",
+      touchAction:"manipulation"
+    });
+
+    if(getComputedStyle(panel).position==="static") panel.style.position="fixed";
+
+    const original={
+      width:panel.style.width||"",
+      minWidth:panel.style.minWidth||"",
+      height:panel.style.height||"",
+      minHeight:panel.style.minHeight||"",
+      padding:panel.style.padding||"",
+      overflow:panel.style.overflow||""
+    };
+
+    let minimized=false;
+    try{ minimized=localStorage.getItem("poe2tc-panel-minimized")==="1"; }catch{}
+
+    const apply=()=>{
+      for(const child of [...panel.children]){
+        if(child===button) continue;
+        child.style.display=minimized?"none":"";
+      }
+
+      if(minimized){
+        panel.style.width="46px";
+        panel.style.minWidth="46px";
+        panel.style.height="46px";
+        panel.style.minHeight="46px";
+        panel.style.padding="0";
+        panel.style.overflow="hidden";
+        button.textContent="+";
+        button.title="Restore PoE2 Trade Copilot";
+        button.setAttribute("aria-label","Restore PoE2 Trade Copilot");
+      }else{
+        panel.style.width=original.width;
+        panel.style.minWidth=original.minWidth;
+        panel.style.height=original.height;
+        panel.style.minHeight=original.minHeight;
+        panel.style.padding=original.padding;
+        panel.style.overflow=original.overflow;
+        button.textContent="−";
+        button.title="Minimize PoE2 Trade Copilot";
+        button.setAttribute("aria-label","Minimize PoE2 Trade Copilot");
+      }
+
+      try{localStorage.setItem("poe2tc-panel-minimized",minimized?"1":"0");}catch{}
+    };
+
+    button.addEventListener("click",event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      minimized=!minimized;
+      apply();
+    });
+
+    panel.appendChild(button);
+    apply();
+    window.__POE2TC_PANEL_MINIMIZE={version:"embedded-1.0",installed:true};
+    return true;
+  }
+
   function install(){
     const box=$("#ptc-box"),runButton=$("#ptc-run");
     if(!box||!runButton){setTimeout(install,300);return;}
@@ -578,6 +668,7 @@
       grid.insertBefore(button,runButton);
       button.addEventListener("click",async()=>{try{await loadFromGitHub();}catch(error){console.error("[PoE2TC Search Source]",error);status(`GitHub search load failed: ${error.message}`);}});
     }
+    ensureMinimizeButton();
     installDirectApiBridge(runButton,box);
     installStatBridge(runButton,box);
     window.__POE2TC_LOAD_SEARCH_FROM_GITHUB=loadFromGitHub;
