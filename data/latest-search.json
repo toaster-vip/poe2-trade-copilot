@@ -1,18 +1,35 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "selects": [],
-  "fields": [],
-  "stats": [],
-  "apiSearch": {
-    "league": "Runes of Aldur",
-    "status": "securable",
-    "name": "Lavianga's Spirits",
-    "price": {
-      "option": "divine",
-      "max": 1
+  "itemName": "Ultimate Life Flask",
+  "selects": [
+    {
+      "label": "Item Category",
+      "value": "Life Flask"
     },
-    "statGroups": []
-  },
+    {
+      "label": "Item Rarity",
+      "value": "Magic"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Item Level",
+      "min": 83
+    }
+  ],
+  "stats": [
+    {
+      "text": "Instant Recovery"
+    },
+    {
+      "text": "#% reduced Charges per use",
+      "min": 30
+    }
+  ],
   "search": true
 }
