@@ -1,6 +1,7 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
+  "itemName": "Heart of the Well",
   "selects": [
     {
       "label": "Item Category",
