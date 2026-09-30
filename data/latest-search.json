@@ -1,7 +1,7 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "The Fall of the Axe",
+  "itemName": "Silver Charm",
   "selects": [
     {
       "label": "Item Category",
@@ -9,19 +9,14 @@
     },
     {
       "label": "Item Rarity",
-      "value": "Unique"
+      "value": "Any Non-Unique"
     },
     {
       "label": "Buyout Price",
       "value": "Divine Orb"
     }
   ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 1
-    }
-  ],
+  "fields": [],
   "stats": [],
   "search": true
 }
