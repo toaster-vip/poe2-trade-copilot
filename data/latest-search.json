@@ -1,7 +1,6 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Ultimate Life Flask",
   "selects": [
     {
       "label": "Item Category",
