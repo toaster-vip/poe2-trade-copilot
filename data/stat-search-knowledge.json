@@ -130,6 +130,24 @@
       "status": "verified",
       "observedUi": "explicit Gain #% of Damage as Extra Lightning Damage",
       "notes": "Verified from official PoE2 Trade UI preflight/statBridge debug on 2026-09-29; min 13 committed correctly."
+    },
+    {
+      "key": "attack_speed",
+      "intent": "item grants increased Attack Speed",
+      "kind": "stat",
+      "query": "#% increased Attack Speed",
+      "status": "verified",
+      "observedUi": "explicit #% increased Attack Speed",
+      "notes": "Verified previously through official exact stat id explicit.stat_681332047 in successful rare-jewel grouped searches."
+    },
+    {
+      "key": "critical_damage_bonus",
+      "intent": "item grants increased global Critical Damage Bonus",
+      "kind": "stat",
+      "query": "#% increased Critical Damage Bonus",
+      "status": "verified",
+      "observedUi": "explicit #% increased Critical Damage Bonus",
+      "notes": "Verified previously through official exact stat id explicit.stat_3556824919 in successful rare-jewel grouped searches."
     }
   ]
 }
