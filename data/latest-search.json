@@ -1,7 +1,6 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Topaz Ring",
   "selects": [
     {
       "label": "Item Category",
@@ -27,6 +26,11 @@
     {
       "type": "and",
       "filters": [
+        {
+          "id": "implicit.stat_1671376347",
+          "text": "+#% to Lightning Resistance",
+          "min": 20
+        },
         {
           "id": "explicit.stat_3299347043",
           "text": "+# to maximum Life",
