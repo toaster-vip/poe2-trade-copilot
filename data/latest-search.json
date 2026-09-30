@@ -1,6 +1,7 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
+  "itemName": "Against the Darkness",
   "selects": [
     {
       "label": "Item Category",
@@ -8,43 +9,26 @@
     },
     {
       "label": "Item Rarity",
-      "value": "Rare"
+      "value": "Unique"
     },
     {
       "label": "Buyout Price",
       "value": "Divine Orb"
     }
   ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 300
-    }
-  ],
+  "fields": [],
   "stats": [],
   "statGroups": [
     {
       "type": "and",
       "filters": [
         {
-          "id": "explicit.stat_2843214518",
-          "text": "#% increased Attack Damage",
-          "min": 15
+          "text": "Notable Passive Skills in Radius also grant Gain #% of Damage as Extra Cold Damage",
+          "min": 4
         },
         {
-          "id": "explicit.stat_3759735052",
-          "text": "#% increased Attack Speed with Bows",
-          "min": 7
-        },
-        {
-          "id": "explicit.stat_3556824919",
-          "text": "#% increased Critical Damage Bonus",
-          "min": 29
-        },
-        {
-          "id": "explicit.stat_1604736568",
-          "text": "Recover #% of maximum Mana on Kill (Jewel)",
-          "min": 3
+          "text": "Notable Passive Skills in Radius also grant Gain #% of Damage as Extra Chaos Damage",
+          "min": 4
         }
       ]
     }
