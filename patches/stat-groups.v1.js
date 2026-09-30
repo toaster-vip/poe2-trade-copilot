@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-2.3";
+  const VERSION = "stat-groups-2.4";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -422,6 +422,7 @@
   }
 
   function validateGroups(groups, index) {
+    const entries=[...index.entries()].map(([id,entry])=>({id,entry}));
     for (let gi=0; gi<groups.length; gi++) {
       const group = groups[gi];
       if (!["and","count","not","if","weight","weight2"].includes(group.type)) {
@@ -429,9 +430,22 @@
       }
       for (let fi=0; fi<(group.filters || []).length; fi++) {
         const spec = group.filters[fi];
+
+        if (!spec.id) {
+          const wanted=norm(spec.text);
+          const exactMatches=entries.filter(x=>norm(x.entry?.text)===wanted);
+          if (exactMatches.length !== 1) {
+            throw new Error(
+              "official stat text did not resolve uniquely: " + spec.text +
+              " · matches=" + exactMatches.map(x=>x.id).join(",")
+            );
+          }
+          spec.id=exactMatches[0].id;
+        }
+
         const live = index.get(String(spec.id || ""));
         if (!live) throw new Error("official stat id no longer exists: " + spec.id);
-        if (!exactTextMatch(live.text, spec.text)) {
+        if (norm(live.text) !== norm(spec.text)) {
           throw new Error("official stat text mismatch for " + spec.id + ": " + live.text);
         }
       }
@@ -488,16 +502,20 @@
     const wanted = norm(spec.text);
     for (let i=0; i<attempts; i++) {
       const options = nativeStatOptions(group);
-      const exact = options.find(option => {
-        const label = nativeStatOptionLabel(option);
-        return exactTextMatch(label, spec.text);
-      });
+      const exact = options.find(option =>
+        norm(nativeStatOptionLabel(option)) === wanted
+      );
       if (exact) return exact;
 
-      const contains = options.find(option =>
+      const compatible = options.filter(option =>
+        exactTextMatch(nativeStatOptionLabel(option), spec.text)
+      );
+      if (compatible.length === 1) return compatible[0];
+
+      const contains = options.filter(option =>
         norm(nativeStatOptionLabel(option)).includes(wanted)
       );
-      if (contains) return contains;
+      if (contains.length === 1) return contains[0];
       await sleep(50);
     }
     return null;
@@ -658,7 +676,7 @@
   function wrapperCompatibleModuleVersion() {
     const active = document.querySelector("#ptc-run")?.dataset?.runWrapper || "";
     if (active === "run-wrapper-2.8") return "stat-groups-1.5";
-    if (active === "run-wrapper-2.9") return "stat-groups-1.6";
+    if (active === "run-wrapper-2.9" || active === "run-wrapper-3.0") return "stat-groups-1.6";
     return VERSION;
   }
 
