@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Ring"
+      "value": "Amulet"
     },
     {
       "label": "Item Rarity",
@@ -18,7 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 300
+      "max": 500
     }
   ],
   "stats": [],
@@ -27,43 +27,29 @@
       "type": "and",
       "filters": [
         {
-          "id": "implicit.stat_1671376347",
-          "text": "#% to Lightning Resistance",
-          "min": 20
+          "id": "explicit.stat_1202301673",
+          "text": "# to Level of all Projectile Skills",
+          "min": 3
         },
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 100
+          "min": 80
         },
         {
-          "id": "pseudo.pseudo_total_cold_resistance",
-          "text": "+#% total to Cold Resistance",
-          "min": 19
+          "id": "explicit.stat_3372524247",
+          "text": "#% to Fire Resistance",
+          "min": 13
         },
         {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 27
+          "id": "explicit.stat_3556824919",
+          "text": "#% increased Critical Damage Bonus",
+          "min": 25
         },
         {
-          "id": "pseudo.pseudo_total_chaos_resistance",
-          "text": "+#% total to Chaos Resistance",
-          "min": 5
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 2,
-      "filters": [
-        {
-          "id": "explicit.stat_3032590688",
-          "text": "Adds # to # Physical Damage to Attacks"
-        },
-        {
-          "id": "explicit.stat_4067062424",
-          "text": "Adds # to # Cold Damage to Attacks"
+          "id": "explicit.stat_3981240776",
+          "text": "# to Spirit",
+          "min": 10
         }
       ]
     }
