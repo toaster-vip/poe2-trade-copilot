@@ -702,7 +702,7 @@
 
       // run-wrapper 2.5+ calls the public executor after its own verified base preflight.
       // Do not intercept here when that integration is active.
-      if (button.dataset.runWrapper === "run-wrapper-2.5") return;
+      if (/^run-wrapper-(?:2\.[5-9]|3\.)/.test(button.dataset.runWrapper || "")) return;
 
       event.preventDefault();
       event.stopImmediatePropagation();
