@@ -1,47 +1,62 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "selects": [],
-  "fields": [],
-  "stats": [],
-  "apiSearch": {
-    "league": "Runes of Aldur",
-    "status": "securable",
-    "type": "Topaz Ring",
-    "rarity": "rare",
-    "price": {
-      "option": "divine",
-      "max": 300
+  "itemName": "Topaz Ring",
+  "selects": [
+    {
+      "label": "Item Category",
+      "value": "Ring"
     },
-    "statGroups": [
-      {
-        "type": "and",
-        "filters": [
-          {
-            "id": "explicit.stat_3299347043",
-            "min": 90
-          },
-          {
-            "id": "explicit.stat_3032590688"
-          },
-          {
-            "id": "explicit.stat_4067062424"
-          },
-          {
-            "id": "explicit.stat_3372524247",
-            "min": 13
-          },
-          {
-            "id": "explicit.stat_4220027924",
-            "min": 37
-          },
-          {
-            "id": "explicit.stat_3465022881",
-            "min": 15
-          }
-        ]
-      }
-    ]
-  },
+    {
+      "label": "Item Rarity",
+      "value": "Rare"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
+    }
+  ],
+  "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 300
+    }
+  ],
+  "stats": [],
+  "statGroups": [
+    {
+      "type": "and",
+      "filters": [
+        {
+          "id": "explicit.stat_3299347043",
+          "text": "+# to maximum Life",
+          "min": 90
+        },
+        {
+          "id": "explicit.stat_3032590688",
+          "text": "Adds # to # Physical Damage to Attacks"
+        },
+        {
+          "id": "explicit.stat_4067062424",
+          "text": "Adds # to # Cold Damage to Attacks"
+        },
+        {
+          "id": "explicit.stat_3372524247",
+          "text": "+#% to Fire Resistance",
+          "min": 13
+        },
+        {
+          "id": "explicit.stat_4220027924",
+          "text": "+#% to Cold Resistance",
+          "min": 37
+        },
+        {
+          "id": "explicit.stat_3465022881",
+          "text": "+#% to Lightning and Chaos Resistances",
+          "min": 15
+        }
+      ]
+    }
+  ],
   "search": true
 }
