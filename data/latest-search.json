@@ -20,6 +20,10 @@
     {
       "label": "Item Level",
       "min": 83
+    },
+    {
+      "label": "Item Quality",
+      "min": 20
     }
   ],
   "stats": [
@@ -28,7 +32,7 @@
     },
     {
       "text": "#% reduced Charges per use",
-      "min": 30
+      "min": 32
     }
   ],
   "search": true
