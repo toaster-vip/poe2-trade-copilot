@@ -10,14 +10,42 @@
     {
       "label": "Item Rarity",
       "value": "Unique"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
     }
   ],
   "fields": [],
-  "stats": [
+  "stats": [],
+  "statGroups": [
     {
-      "text": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
-      "min": 5
+      "type": "and",
+      "filters": [
+        {
+          "text": "Gain #% of Damage as Extra Cold Damage",
+          "min": 15
+        }
+      ]
+    },
+    {
+      "type": "count",
+      "min": 1,
+      "filters": [
+        {
+          "text": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
+          "min": 5
+        },
+        {
+          "text": "#% increased Skill Speed",
+          "min": 6
+        },
+        {
+          "text": "#% increased Critical Damage Bonus",
+          "min": 10
+        }
+      ]
     }
   ],
-  "search": false
+  "search": true
 }
