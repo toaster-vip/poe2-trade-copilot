@@ -443,7 +443,7 @@
         trace.selectedText=selectedText;
         trace.rootText=rootText.slice(0,300);
 
-        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ") || norm(rootText).includes(wanted)){
+        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ")){
           attempts.push(trace);
           return {ok:true,mode:"search-items-vue-exact",selected:selectedText||rootText,attempts};
         }
@@ -476,7 +476,7 @@
         trace.selectedTextAfterDom=selectedText;
         trace.rootTextAfterDom=rootText.slice(0,300);
 
-        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ") || norm(rootText).includes(wanted)){
+        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ")){
           attempts.push(trace);
           return {ok:true,mode:"search-items-dom-exact",selected:selectedText||rootText,attempts};
         }
