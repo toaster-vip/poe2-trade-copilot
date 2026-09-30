@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot iOS Direct
 // @namespace    chatgpt-poe2-trade
-// @version      0.1.0
+// @version      0.1.1
 // @description  Standalone iOS direct search runner for PoE2 Trade Copilot
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -13,9 +13,10 @@
 (() => {
   "use strict";
 
-  const VERSION="ios-direct-0.1.0";
+  const VERSION="ios-direct-0.1.1";
   const PACKET_URL="https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const norm=s=>String(s||"").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
+  const statKey=s=>norm(s).replace(/\+/g,"").replace(/\s+/g," ").trim();
 
   function installButton(){
     if(document.querySelector("#poe2tc-ios-direct")) return;
@@ -59,8 +60,8 @@
     let id=String(filter?.id||"");
     let live=id?index.get(id):null;
     if(!id){
-      const wanted=norm(filter?.text||"");
-      const matches=[...index.entries()].filter(([,e])=>norm(e?.text)===wanted);
+      const wanted=statKey(filter?.text||"");
+      const matches=[...index.entries()].filter(([,e])=>statKey(e?.text)===wanted);
       const explicit=matches.filter(([candidateId])=>String(candidateId).startsWith("explicit.stat_"));
       const chosen=explicit.length===1?explicit:(matches.length===1?matches:[]);
       if(chosen.length!==1){
@@ -69,7 +70,7 @@
       id=String(chosen[0][0]); live=chosen[0][1];
     }
     if(!live) throw new Error("missing stat: "+id);
-    if(filter?.text && norm(live.text)!==norm(filter.text)) throw new Error("stat text mismatch: "+filter.text+" != "+live.text);
+    if(filter?.text && statKey(live.text)!==statKey(filter.text)) throw new Error("stat text mismatch: "+filter.text+" != "+live.text);
     const value={};
     if(filter?.min!=null) value.min=Number(filter.min);
     if(filter?.max!=null) value.max=Number(filter.max);
