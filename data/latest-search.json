@@ -18,5 +18,16 @@
   ],
   "fields": [],
   "stats": [],
-  "search": true
+  "search": true,
+  "statGroups": [
+    {
+      "type": "and",
+      "filters": [
+        {
+          "text": "#% reduced Amount Recovered",
+          "max": 70
+        }
+      ]
+    }
+  ]
 }
