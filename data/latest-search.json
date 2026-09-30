@@ -1,7 +1,6 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Heart of the Well",
   "selects": [
     {
       "label": "Item Category",
@@ -9,40 +8,43 @@
     },
     {
       "label": "Item Rarity",
-      "value": "Unique"
+      "value": "Rare"
     },
     {
       "label": "Buyout Price",
       "value": "Divine Orb"
     }
   ],
-  "fields": [],
+  "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 300
+    }
+  ],
   "stats": [],
   "statGroups": [
     {
       "type": "and",
       "filters": [
         {
-          "text": "Gain #% of Damage as Extra Cold Damage",
+          "id": "explicit.stat_2843214518",
+          "text": "#% increased Attack Damage",
           "min": 15
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 2,
-      "filters": [
-        {
-          "text": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
-          "min": 5
         },
         {
-          "text": "#% increased Skill Speed",
-          "min": 6
+          "id": "explicit.stat_3759735052",
+          "text": "#% increased Attack Speed with Bows",
+          "min": 7
         },
         {
+          "id": "explicit.stat_3556824919",
           "text": "#% increased Critical Damage Bonus",
-          "min": 10
+          "min": 29
+        },
+        {
+          "id": "explicit.stat_1604736568",
+          "text": "Recover #% of maximum Mana on Kill",
+          "min": 3
         }
       ]
     }
