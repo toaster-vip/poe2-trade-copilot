@@ -37,33 +37,19 @@
           "min": 90
         },
         {
-          "id": "explicit.stat_3372524247",
-          "text": "#% to Fire Resistance",
-          "min": 30
+          "id": "pseudo.pseudo_total_cold_resistance",
+          "text": "+#% total to Cold Resistance",
+          "min": 19
         },
         {
-          "id": "explicit.stat_4220027924",
-          "text": "#% to Cold Resistance",
+          "id": "pseudo.pseudo_total_lightning_resistance",
+          "text": "+#% total to Lightning Resistance",
           "min": 27
         },
         {
-          "id": "explicit.stat_3465022881",
-          "text": "#% to Lightning and Chaos Resistances",
-          "min": 15
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 1,
-      "filters": [
-        {
-          "id": "explicit.stat_3032590688",
-          "text": "Adds # to # Physical Damage to Attacks"
-        },
-        {
-          "id": "explicit.stat_4067062424",
-          "text": "Adds # to # Cold Damage to Attacks"
+          "id": "pseudo.pseudo_total_chaos_resistance",
+          "text": "+#% total to Chaos Resistance",
+          "min": 5
         }
       ]
     }
