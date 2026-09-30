@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.7
+// @version      0.6.8
 // @description  Resilient remote bootstrap for PoE2 Trade Copilot core and GitHub patches
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -13,7 +13,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "0.6.7";
+  const VERSION = "0.6.8";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
@@ -82,8 +82,8 @@
   }
 
   async function boot() {
-    if(window.__POE2TC_BOOT_064_RUNNING) return;
-    window.__POE2TC_BOOT_064_RUNNING=true;
+    if(window.__POE2TC_BOOT_068_RUNNING) return;
+    window.__POE2TC_BOOT_068_RUNNING=true;
     try {
       const core=await fetchApiFile("poe2-trade-copilot.user.js",CORE_SHA);
       execute(core.code,"poe2tc-core-v0.5.1.js");
@@ -126,7 +126,7 @@
         font:"12px -apple-system,BlinkMacSystemFont,sans-serif"
       });
       document.body?.appendChild(box);
-      window.__POE2TC_BOOT_064_RUNNING=false;
+      window.__POE2TC_BOOT_068_RUNNING=false;
     }
   }
 
