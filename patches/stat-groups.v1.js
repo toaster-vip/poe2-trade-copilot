@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "stat-groups-2.4";
+  const VERSION = "stat-groups-2.5";
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
   const $ = (s, r = document) => r ? r.querySelector(s) : null;
   const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
@@ -434,13 +434,19 @@
         if (!spec.id) {
           const wanted=norm(spec.text);
           const exactMatches=entries.filter(x=>norm(x.entry?.text)===wanted);
-          if (exactMatches.length !== 1) {
+
+          const explicitMatches=exactMatches.filter(x=>String(x.id||"").startsWith("explicit."));
+          if (explicitMatches.length === 1) {
+            spec.id=explicitMatches[0].id;
+          } else if (exactMatches.length === 1) {
+            spec.id=exactMatches[0].id;
+          } else {
             throw new Error(
               "official stat text did not resolve uniquely: " + spec.text +
+              " · explicit=" + explicitMatches.map(x=>x.id).join(",") +
               " · matches=" + exactMatches.map(x=>x.id).join(",")
             );
           }
-          spec.id=exactMatches[0].id;
         }
 
         const live = index.get(String(spec.id || ""));
