@@ -136,9 +136,15 @@
       "intent": "item grants increased Attack Speed",
       "kind": "stat",
       "query": "#% increased Attack Speed",
-      "status": "verified",
+      "status": "unverified",
       "observedUi": "explicit #% increased Attack Speed",
-      "notes": "Verified previously through official exact stat id explicit.stat_681332047 in successful rare-jewel grouped searches."
+      "notes": "Do not use bare '#% increased Attack Speed' for Heart of the Well. Official Trade dynamic matching selected '#% increased Attack Speed (Local)' on 2026-09-29, which is the wrong stat for the jewel.",
+      "knownFailures": [
+        {
+          "query": "#% increased Attack Speed",
+          "failure": "official Trade dynamic selector matched explicit #% increased Attack Speed (Local), not the Heart of the Well jewel attack-speed modifier"
+        }
+      ]
     },
     {
       "key": "critical_damage_bonus",
@@ -148,6 +154,17 @@
       "status": "verified",
       "observedUi": "explicit #% increased Critical Damage Bonus",
       "notes": "Verified previously through official exact stat id explicit.stat_3556824919 in successful rare-jewel grouped searches."
+    },
+    {
+      "key": "heart_presence_attack_speed",
+      "intent": "Heart of the Well grants increased Attack Speed while a Rare or Unique Enemy is in your Presence",
+      "kind": "stat",
+      "query": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
+      "status": "unverified",
+      "candidatesToTest": [
+        "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence"
+      ],
+      "notes": "Exact Heart of the Well prefix. Must be verified in official Trade UI before combining."
     }
   ]
 }
