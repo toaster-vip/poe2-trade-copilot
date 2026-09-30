@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.18";
+  const PATCH_VERSION = "search-source-1.19";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -350,7 +350,7 @@
 
 
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
-  const DIRECT_API_VERSION = "direct-api-1.1";
+  const DIRECT_API_VERSION = "direct-api-1.2";
 
   function directLeague(packet){
     const explicit=packet?.apiSearch?.league;
@@ -434,6 +434,8 @@
     }
     return {
       status:{option:String(spec?.status||"securable")},
+      ...(spec?.name?{name:String(spec.name)}:{}),
+      ...(spec?.type?{type:String(spec.type)}:{}),
       stats:apiStatGroups(spec,index),
       filters
     };
