@@ -160,11 +160,20 @@
       "intent": "Heart of the Well grants increased Attack Speed while a Rare or Unique Enemy is in your Presence",
       "kind": "stat",
       "query": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
-      "status": "unverified",
+      "status": "verified",
       "candidatesToTest": [
         "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence"
       ],
-      "notes": "Exact Heart of the Well prefix. Must be verified in official Trade UI before combining."
+      "notes": "Verified by user on official PoE2 Trade UI on 2026-09-29; correct Heart of the Well presence attack-speed stat, not Local Attack Speed.",
+      "observedUi": "explicit #% increased Attack Speed while a Rare or Unique Enemy is in your Presence"
+    },
+    {
+      "key": "skill_speed",
+      "intent": "item grants increased Skill Speed",
+      "kind": "stat",
+      "query": "#% increased Skill Speed",
+      "status": "unverified",
+      "notes": "Used only through grouped-stat exact live official catalog resolution; do not use fuzzy root matching until separately verified."
     }
   ]
 }
