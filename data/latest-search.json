@@ -18,25 +18,25 @@
         "type": "and",
         "filters": [
           {
-            "text": "+# to maximum Life",
+            "id": "explicit.stat_3299347043",
             "min": 90
           },
           {
-            "text": "Adds # to # Physical Damage to Attacks"
+            "id": "explicit.stat_3032590688"
           },
           {
-            "text": "Adds # to # Cold Damage to Attacks"
+            "id": "explicit.stat_4067062424"
           },
           {
-            "text": "+#% to Fire Resistance",
+            "id": "explicit.stat_3372524247",
             "min": 13
           },
           {
-            "text": "+#% to Cold Resistance",
+            "id": "explicit.stat_4220027924",
             "min": 37
           },
           {
-            "text": "+#% to Lightning and Chaos Resistances",
+            "id": "explicit.stat_3465022881",
             "min": 15
           }
         ]
