@@ -4,11 +4,11 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Life Flask"
+      "value": "Amulet"
     },
     {
       "label": "Item Rarity",
-      "value": "Magic"
+      "value": "Rare"
     },
     {
       "label": "Buyout Price",
@@ -17,30 +17,37 @@
   ],
   "fields": [
     {
-      "label": "Item Level",
-      "min": 83
-    },
-    {
-      "label": "Item Quality",
-      "min": 20
+      "label": "Buyout Price",
+      "max": 500
     }
   ],
   "stats": [],
-  "search": true,
   "statGroups": [
     {
       "type": "and",
       "filters": [
         {
-          "id": "explicit.stat_1526933524",
-          "text": "Instant Recovery"
+          "id": "explicit.stat_1202301673",
+          "text": "# to Level of all Projectile Skills",
+          "min": 3
         },
         {
-          "id": "explicit.stat_388617051",
-          "text": "#% increased Charges per use",
-          "max": -30
+          "id": "explicit.stat_3299347043",
+          "text": "# to maximum Life",
+          "min": 80
+        },
+        {
+          "id": "pseudo.pseudo_total_fire_resistance",
+          "text": "+#% total to Fire Resistance",
+          "min": 13
+        },
+        {
+          "id": "pseudo.pseudo_total_lightning_resistance",
+          "text": "+#% total to Lightning Resistance",
+          "min": 4
         }
       ]
     }
-  ]
+  ],
+  "search": true
 }
