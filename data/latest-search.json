@@ -16,15 +16,20 @@
       "value": "Divine Orb"
     }
   ],
-  "fields": [],
+  "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 300
+    }
+  ],
   "stats": [
     {
       "text": "Gain #% of Damage as Extra Cold Damage",
       "min": 15
     },
     {
-      "text": "#% increased Attack Speed",
-      "min": 2
+      "text": "#% increased Critical Damage Bonus",
+      "min": 12
     }
   ],
   "search": true
