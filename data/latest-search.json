@@ -23,10 +23,6 @@
       "min": 15
     },
     {
-      "text": "#% increased Critical Damage Bonus",
-      "min": 10
-    },
-    {
       "text": "#% increased Attack Speed",
       "min": 2
     }
