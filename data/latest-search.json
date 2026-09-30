@@ -16,7 +16,12 @@
       "value": "Divine Orb"
     }
   ],
-  "fields": [],
+  "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 1
+    }
+  ],
   "stats": [],
   "search": true
 }
