@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.3";
+  const VERSION = "github-load-run-1.4";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -62,6 +62,24 @@
         const loader = window.__POE2TC_LOAD_SEARCH_FROM_GITHUB;
         if (typeof loader !== "function") throw new Error("GitHub loader is not ready");
         const packet = await loader();
+
+        const runtime={
+          directApi:runButton.dataset.directApiBridge||"",
+          statBridge:runButton.dataset.statBridge||"",
+          runWrapper:runButton.dataset.runWrapper||""
+        };
+        const expected={
+          directApi:"direct-api-1.3",
+          statBridge:"search-source-1.20",
+          runWrapper:"run-wrapper-3.1"
+        };
+        const stale=Object.keys(expected).filter(key=>runtime[key]!==expected[key]);
+        if(stale.length){
+          throw new Error("runtime patches are stale ("+
+            stale.map(key=>key+"="+(runtime[key]||"missing")+" expected "+expected[key]).join(", ")+
+            "). Reload the Trade page once.");
+        }
+
         await refreshGroupedStatModuleIfNeeded(packet);
         const fields = Array.isArray(packet?.fields) ? packet.fields : [];
         const summary = fields.map(x => {
