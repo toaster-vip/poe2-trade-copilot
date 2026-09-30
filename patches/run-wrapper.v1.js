@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-2.9";
+  const PATCH_VERSION = "run-wrapper-3.0";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -388,6 +388,108 @@
     return {ok:false,reason:"trade_mode_control_not_found",attempts:[trace]};
   }
 
+  function searchItemControl(){
+    const input=[...document.querySelectorAll("input")]
+      .find(el=>!el.closest("#ptc") && /search items/i.test(String(el.placeholder||"")));
+    if(!input) return {root:null,input:null,vm:null};
+    const root=input.closest(".multiselect,.search-select,[role='combobox']") || input.parentElement;
+    const vm=root ? (root.__vue__ || root.__vueParentComponent || null) : null;
+    return {root,input,vm};
+  }
+
+  async function chooseSearchItem(itemName){
+    const wanted=norm(itemName);
+    const attempts=[];
+
+    for(let attempt=1; attempt<=5; attempt++){
+      const ctl=searchItemControl();
+      const trace={attempt,inputFound:!!ctl.input,rootFound:!!ctl.root};
+
+      if(!ctl.input || !ctl.root){
+        trace.reason="search_items_control_not_found";
+        attempts.push(trace);
+        await sleep(350*attempt);
+        continue;
+      }
+
+      try{ ctl.input.click(); }catch{}
+      setInput(ctl.input,itemName);
+      await sleep(650+150*attempt);
+
+      const vm=ctl.root.__vue__ || ctl.root.__vueParentComponent || ctl.vm || null;
+      const vueOpts=options(vm);
+      trace.vueOptions=vueOpts.slice(0,30).map(label);
+
+      const vueMatch=vueOpts.find(o=>{
+        const t=norm(label(o));
+        return t===wanted || t.startsWith(wanted+" ");
+      });
+
+      if(vueMatch){
+        trace.vueMatch=label(vueMatch);
+        try{
+          if(typeof vm?.select==="function") vm.select(vueMatch);
+          else if(typeof vm?.$emit==="function"){
+            vm.$emit("input",vueMatch);
+            vm.$emit("update:modelValue",vueMatch);
+          }
+        }catch(error){ trace.vueError=String(error?.message||error); }
+
+        await close(vm,ctl.input);
+        await sleep(350);
+
+        const rootText=String(ctl.root.innerText||ctl.root.textContent||"").replace(/\s+/g," ").trim();
+        const selectedText=label(selected(ctl.root.__vue__ || ctl.root.__vueParentComponent || vm));
+        trace.selectedText=selectedText;
+        trace.rootText=rootText.slice(0,300);
+
+        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ") || norm(rootText).includes(wanted)){
+          attempts.push(trace);
+          return {ok:true,mode:"search-items-vue-exact",selected:selectedText||rootText,attempts};
+        }
+      }
+
+      try{ ctl.input.click(); }catch{}
+      await sleep(120);
+      setInput(ctl.input,itemName);
+      await sleep(650+150*attempt);
+
+      const domOptions=[...ctl.root.querySelectorAll(".multiselect__option,.multiselect__element,[role='option']")]
+        .filter(visible)
+        .map(el=>({el,text:String(el.innerText||el.textContent||"").replace(/\s+/g," ").trim()}));
+      trace.domOptions=domOptions.slice(0,30).map(x=>x.text);
+
+      const domMatch=domOptions.find(x=>{
+        const t=norm(x.text);
+        return t===wanted || t.startsWith(wanted+" ");
+      });
+
+      if(domMatch){
+        trace.domMatch=domMatch.text;
+        for(const type of ["pointerdown","mousedown","pointerup","mouseup","click"]){
+          try{ domMatch.el.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,view:window})); }catch{}
+        }
+        await sleep(450);
+
+        const rootText=String(ctl.root.innerText||ctl.root.textContent||"").replace(/\s+/g," ").trim();
+        const selectedText=label(selected(ctl.root.__vue__ || ctl.root.__vueParentComponent || vm));
+        trace.selectedTextAfterDom=selectedText;
+        trace.rootTextAfterDom=rootText.slice(0,300);
+
+        if(norm(selectedText)===wanted || norm(selectedText).startsWith(wanted+" ") || norm(rootText).includes(wanted)){
+          attempts.push(trace);
+          return {ok:true,mode:"search-items-dom-exact",selected:selectedText||rootText,attempts};
+        }
+      }
+
+      trace.reason="item_name_not_committed";
+      attempts.push(trace);
+      await sleep(350*attempt);
+    }
+
+    return {ok:false,reason:"item_name_not_committed",wanted:itemName,attempts};
+  }
+
   async function choose(spec){
     const tradeModeResult=await chooseTradeMode(spec);
     if(tradeModeResult) return tradeModeResult;
@@ -632,7 +734,8 @@
 
       const selects = Array.isArray(packet.selects) ? packet.selects : [];
       const fields = Array.isArray(packet.fields) ? packet.fields : [];
-      if (!selects.length && !fields.length) return original.call(this,event);
+      const itemName = packet.itemName != null ? String(packet.itemName).trim() : "";
+      if (!selects.length && !fields.length && !itemName) return original.call(this,event);
 
       const preflight={ok:false,version:PATCH_VERSION,packet,steps:[]};
       window.__POE2TC_PREFLIGHT_DEBUG=preflight;
@@ -645,6 +748,18 @@
         if (!r.ok) {
           preflight.failed={step:"clear",residue:r.residue};
           status("ABORTED: stale numeric filters remain after reset. COPY DEBUG.");
+          return;
+        }
+      }
+
+      if (itemName) {
+        status(`Preflight: Search Items → ${itemName}`);
+        const r = await chooseSearchItem(itemName);
+        preflight.steps.push({step:"item-name",spec:{itemName},result:r});
+        if (!r.ok) {
+          preflight.failed={step:"item-name",itemName};
+          preflight.result=r;
+          status(`ABORTED: Search Items failed for ${itemName}. COPY DEBUG.`);
           return;
         }
       }
@@ -730,7 +845,7 @@
         return;
       }
 
-      const delegated = {...packet, clear:false, selects:[], fields:[]};
+      const delegated = {...packet, clear:false, selects:[], fields:[], itemName:null};
       box.value = JSON.stringify(delegated,null,2);
       try {
         const result = original.call(this,event);
