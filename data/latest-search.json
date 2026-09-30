@@ -1,50 +1,47 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Topaz Ring",
-  "selects": [
-    {
-      "label": "Item Category",
-      "value": "Ring"
-    },
-    {
-      "label": "Item Rarity",
-      "value": "Rare"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
-    }
-  ],
-  "fields": [
-    {
-      "label": "Buyout Price",
+  "selects": [],
+  "fields": [],
+  "stats": [],
+  "apiSearch": {
+    "league": "Runes of Aldur",
+    "status": "securable",
+    "type": "Topaz Ring",
+    "rarity": "rare",
+    "price": {
+      "option": "divine",
       "max": 300
-    }
-  ],
-  "stats": [
-    {
-      "text": "+# to maximum Life",
-      "min": 90
     },
-    {
-      "text": "Adds # to # Physical Damage to Attacks"
-    },
-    {
-      "text": "Adds # to # Cold damage to Attacks"
-    },
-    {
-      "text": "+#% to Fire Resistance",
-      "min": 13
-    },
-    {
-      "text": "+#% to Cold Resistance",
-      "min": 37
-    },
-    {
-      "text": "+#% to Lightning and Chaos Resistances",
-      "min": 15
-    }
-  ],
+    "statGroups": [
+      {
+        "type": "and",
+        "filters": [
+          {
+            "text": "+# to maximum Life",
+            "min": 90
+          },
+          {
+            "text": "Adds # to # Physical Damage to Attacks"
+          },
+          {
+            "text": "Adds # to # Cold Damage to Attacks"
+          },
+          {
+            "text": "+#% to Fire Resistance",
+            "min": 13
+          },
+          {
+            "text": "+#% to Cold Resistance",
+            "min": 37
+          },
+          {
+            "text": "+#% to Lightning and Chaos Resistances",
+            "min": 15
+          }
+        ]
+      }
+    ]
+  },
   "search": true
 }
