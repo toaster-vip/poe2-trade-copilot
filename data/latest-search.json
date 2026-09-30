@@ -45,6 +45,11 @@
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
           "min": 4
+        },
+        {
+          "id": "explicit.stat_3556824919",
+          "text": "#% increased Critical Damage Bonus",
+          "min": 25
         }
       ]
     }
