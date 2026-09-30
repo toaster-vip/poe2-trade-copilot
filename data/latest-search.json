@@ -34,7 +34,7 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 90
+          "min": 100
         },
         {
           "id": "pseudo.pseudo_total_cold_resistance",
@@ -50,6 +50,20 @@
           "id": "pseudo.pseudo_total_chaos_resistance",
           "text": "+#% total to Chaos Resistance",
           "min": 5
+        }
+      ]
+    },
+    {
+      "type": "count",
+      "min": 1,
+      "filters": [
+        {
+          "id": "explicit.stat_3032590688",
+          "text": "Adds # to # Physical Damage to Attacks"
+        },
+        {
+          "id": "explicit.stat_4067062424",
+          "text": "Adds # to # Cold Damage to Attacks"
         }
       ]
     }
