@@ -25,14 +25,22 @@
       "min": 20
     }
   ],
-  "stats": [
+  "stats": [],
+  "search": true,
+  "statGroups": [
     {
-      "text": "Instant Recovery"
-    },
-    {
-      "text": "#% reduced Charges per use",
-      "min": 32
+      "type": "and",
+      "filters": [
+        {
+          "id": "explicit.stat_1526933524",
+          "text": "Instant Recovery"
+        },
+        {
+          "id": "explicit.stat_388617051",
+          "text": "#% increased Charges per use",
+          "max": -32
+        }
+      ]
     }
-  ],
-  "search": true
+  ]
 }
