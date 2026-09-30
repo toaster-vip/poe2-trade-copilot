@@ -25,6 +25,10 @@
     {
       "text": "#% increased Critical Damage Bonus",
       "min": 12
+    },
+    {
+      "text": "#% increased Attack Speed",
+      "min": 2
     }
   ],
   "search": true
