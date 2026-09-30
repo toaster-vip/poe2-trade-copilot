@@ -10,27 +10,14 @@
     {
       "label": "Item Rarity",
       "value": "Unique"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
     }
   ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 300
-    }
-  ],
+  "fields": [],
   "stats": [
     {
-      "text": "Gain #% of Damage as Extra Cold Damage",
-      "min": 15
-    },
-    {
-      "text": "#% increased Critical Damage Bonus",
-      "min": 12
+      "text": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
+      "min": 5
     }
   ],
-  "search": true
+  "search": false
 }
