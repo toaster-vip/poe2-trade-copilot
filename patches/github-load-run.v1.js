@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.2";
+  const VERSION = "github-load-run-1.3";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -22,7 +22,7 @@
     if(!groups.length) return {ok:true,skipped:true};
 
     const current=window.__POE2TC_STAT_GROUPS_MODULE?.implementationVersion||"";
-    if(current==="stat-groups-2.4") return {ok:true,skipped:true,current};
+    if(current==="stat-groups-2.5") return {ok:true,skipped:true,current};
 
     status("Refreshing grouped-stat module from GitHub…");
     const url="https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/patches/stat-groups.v1.js?ref=main&t="+Date.now();
@@ -38,7 +38,7 @@
     (0,eval)(code+"\n//# sourceURL=poe2tc-stat-groups-refresh.js");
 
     const loaded=window.__POE2TC_STAT_GROUPS_MODULE?.implementationVersion||"";
-    if(loaded!=="stat-groups-2.4") throw new Error("latest grouped-stat module did not activate");
+    if(loaded!=="stat-groups-2.5") throw new Error("latest grouped-stat module did not activate");
     return {ok:true,skipped:false,current,loaded,sha:payload.sha||null};
   }
 
