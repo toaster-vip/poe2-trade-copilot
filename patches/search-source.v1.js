@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.19";
+  const PATCH_VERSION = "search-source-1.20";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -350,7 +350,7 @@
 
 
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
-  const DIRECT_API_VERSION = "direct-api-1.2";
+  const DIRECT_API_VERSION = "direct-api-1.3";
 
   function directLeague(packet){
     const explicit=packet?.apiSearch?.league;
@@ -390,9 +390,20 @@
       const allowed=new Set(["and","count","not","if","weight","weight2"]);
       if(!allowed.has(type)) throw new Error(`unsupported stat group type: ${type}`);
       const filters=(Array.isArray(group?.filters)?group.filters:[]).map((filter,filterIndex)=>{
-        const id=String(filter?.id||"");
-        if(!id) throw new Error(`statGroups[${groupIndex}].filters[${filterIndex}] missing id`);
-        const live=index.get(id);
+        let id=String(filter?.id||"");
+        let live=id?index.get(id):null;
+        if(!id){
+          const wanted=norm(filter?.text||"");
+          if(!wanted) throw new Error(`statGroups[${groupIndex}].filters[${filterIndex}] missing id/text`);
+          const matches=[...index.entries()].filter(([,entry])=>norm(entry?.text)===wanted);
+          const explicit=matches.filter(([candidateId])=>String(candidateId).startsWith("explicit.stat_"));
+          const chosen=explicit.length===1?explicit:(matches.length===1?matches:[]);
+          if(chosen.length!==1){
+            throw new Error(`official stat text did not resolve uniquely: ${filter.text} · explicit=${explicit.map(([candidateId])=>candidateId).join(",")} · matches=${matches.map(([candidateId])=>candidateId).join(",")}`);
+          }
+          id=String(chosen[0][0]);
+          live=chosen[0][1];
+        }
         if(!live) throw new Error(`official stat id no longer exists: ${id}`);
         if(filter?.text && norm(live.text)!==norm(filter.text)){
           throw new Error(`official stat text mismatch for ${id}: expected "${filter.text}", got "${live.text}"`);
