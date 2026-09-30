@@ -30,7 +30,7 @@
     },
     {
       "type": "count",
-      "min": 1,
+      "min": 2,
       "filters": [
         {
           "text": "#% increased Attack Speed while a Rare or Unique Enemy is in your Presence",
