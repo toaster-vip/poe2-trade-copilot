@@ -5,6 +5,8 @@
 // @description  Resilient remote bootstrap for PoE2 Trade Copilot core and GitHub patches
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
+// @updateURL    https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/poe2-trade-copilot.user.js
+// @downloadURL  https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/poe2-trade-copilot.user.js
 // @grant        none
 // ==/UserScript==
 
