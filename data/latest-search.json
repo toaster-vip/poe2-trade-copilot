@@ -1,19 +1,18 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Lavianga's Spirits",
-  "selects": [
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
-    }
-  ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 1
-    }
-  ],
+  "selects": [],
+  "fields": [],
   "stats": [],
+  "apiSearch": {
+    "league": "Runes of Aldur",
+    "status": "securable",
+    "name": "Lavianga's Spirits",
+    "price": {
+      "option": "divine",
+      "max": 1
+    },
+    "statGroups": []
+  },
   "search": true
 }
