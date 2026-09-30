@@ -1,14 +1,15 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
+  "itemName": "The Fall of the Axe",
   "selects": [
     {
       "label": "Item Category",
-      "value": "Amulet"
+      "value": "Charm"
     },
     {
       "label": "Item Rarity",
-      "value": "Rare"
+      "value": "Unique"
     },
     {
       "label": "Buyout Price",
@@ -17,20 +18,5 @@
   ],
   "fields": [],
   "stats": [],
-  "statGroups": [
-    {
-      "type": "and",
-      "filters": [
-        {
-          "text": "+# to Level of all Projectile Skills",
-          "min": 3
-        },
-        {
-          "text": "+# to Spirit",
-          "min": 43
-        }
-      ]
-    }
-  ],
   "search": true
 }
