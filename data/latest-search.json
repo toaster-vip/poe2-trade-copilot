@@ -1,15 +1,15 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Ultimate Life Flask",
+  "itemName": "Topaz Ring",
   "selects": [
     {
       "label": "Item Category",
-      "value": "Life Flask"
+      "value": "Ring"
     },
     {
       "label": "Item Rarity",
-      "value": "Magic"
+      "value": "Rare"
     },
     {
       "label": "Buyout Price",
@@ -18,21 +18,32 @@
   ],
   "fields": [
     {
-      "label": "Item Level",
-      "min": 83
-    },
-    {
-      "label": "Item Quality",
-      "min": 20
+      "label": "Buyout Price",
+      "max": 300
     }
   ],
   "stats": [
     {
-      "text": "Instant Recovery"
+      "text": "+# to maximum Life",
+      "min": 90
     },
     {
-      "text": "#% reduced Charges per use",
-      "min": 32
+      "text": "Adds # to # Physical Damage to Attacks"
+    },
+    {
+      "text": "Adds # to # Cold damage to Attacks"
+    },
+    {
+      "text": "+#% to Fire Resistance",
+      "min": 13
+    },
+    {
+      "text": "+#% to Cold Resistance",
+      "min": 37
+    },
+    {
+      "text": "+#% to Lightning and Chaos Resistances",
+      "min": 15
     }
   ],
   "search": true
