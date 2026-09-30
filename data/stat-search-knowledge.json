@@ -121,6 +121,15 @@
       "status": "verified",
       "observedUi": "explicit Gain #% of Damage as Extra Cold Damage",
       "notes": "Verified from official PoE2 Trade UI preflight/statBridge debug on 2026-09-29; min 13 committed correctly."
+    },
+    {
+      "key": "gain_extra_lightning",
+      "intent": "item grants a percentage of Damage as Extra Lightning Damage",
+      "kind": "stat",
+      "query": "Gain #% of Damage as Extra Lightning Damage",
+      "status": "verified",
+      "observedUi": "explicit Gain #% of Damage as Extra Lightning Damage",
+      "notes": "Verified from official PoE2 Trade UI preflight/statBridge debug on 2026-09-29; min 13 committed correctly."
     }
   ]
 }
