@@ -1,14 +1,15 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
+  "itemName": "Ultimate Life Flask",
   "selects": [
     {
       "label": "Item Category",
-      "value": "Amulet"
+      "value": "Life Flask"
     },
     {
       "label": "Item Rarity",
-      "value": "Rare"
+      "value": "Magic"
     },
     {
       "label": "Buyout Price",
@@ -17,41 +18,21 @@
   ],
   "fields": [
     {
-      "label": "Buyout Price",
-      "max": 500
+      "label": "Item Level",
+      "min": 83
+    },
+    {
+      "label": "Item Quality",
+      "min": 20
     }
   ],
-  "stats": [],
-  "statGroups": [
+  "stats": [
     {
-      "type": "and",
-      "filters": [
-        {
-          "id": "explicit.stat_1202301673",
-          "text": "# to Level of all Projectile Skills",
-          "min": 3
-        },
-        {
-          "id": "explicit.stat_3299347043",
-          "text": "# to maximum Life",
-          "min": 80
-        },
-        {
-          "id": "explicit.stat_3372524247",
-          "text": "#% to Fire Resistance",
-          "min": 13
-        },
-        {
-          "id": "explicit.stat_3556824919",
-          "text": "#% increased Critical Damage Bonus",
-          "min": 25
-        },
-        {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 4
-        }
-      ]
+      "text": "Instant Recovery"
+    },
+    {
+      "text": "#% reduced Charges per use",
+      "min": 32
     }
   ],
   "search": true
