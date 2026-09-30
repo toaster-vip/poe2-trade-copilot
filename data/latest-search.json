@@ -47,11 +47,6 @@
           "min": 25
         },
         {
-          "id": "explicit.stat_3981240776",
-          "text": "# to Spirit",
-          "min": 10
-        },
-        {
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
           "min": 4
