@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4
+// @version      0.6.7
 // @description  Resilient remote bootstrap for PoE2 Trade Copilot core and GitHub patches
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -11,7 +11,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "0.6.6";
+  const VERSION = "0.6.7";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
@@ -40,15 +40,22 @@
 
   async function fetchApiFile(path, ref) {
     const url = `${API_BASE}${path}?ref=${encodeURIComponent(ref)}&t=${Date.now()}`;
-    const response = await fetch(url, {
-      cache:"no-store",
-      credentials:"omit",
-      headers:{"Accept":"application/vnd.github+json"}
-    });
-    if (!response.ok) throw new Error(`${path}@${ref}: GitHub API HTTP ${response.status}`);
-    const payload = await response.json();
-    if (!payload?.content) throw new Error(`${path}@${ref}: GitHub API response missing content`);
-    return {code:decodeBase64Utf8(payload.content),sha:payload.sha||null};
+    try {
+      const response = await fetch(url, {
+        cache:"no-store",
+        credentials:"omit",
+        headers:{"Accept":"application/vnd.github+json"}
+      });
+      if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
+      const payload = await response.json();
+      if (!payload?.content) throw new Error("GitHub API response missing content");
+      return {code:decodeBase64Utf8(payload.content),sha:payload.sha||null,source:"api"};
+    } catch(apiError) {
+      const raw = `https://raw.githubusercontent.com/${REPO}/${encodeURIComponent(ref)}/${path}?t=${Date.now()}`;
+      const response = await fetch(raw,{cache:"no-store",credentials:"omit"});
+      if (!response.ok) throw new Error(`${path}@${ref}: API failed (${apiError.message}); raw HTTP ${response.status}`);
+      return {code:await response.text(),sha:null,source:"raw"};
+    }
   }
 
   function stripHeader(code) {
