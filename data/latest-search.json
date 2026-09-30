@@ -1,15 +1,15 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Silver Charm",
+  "itemName": "Lavianga's Spirits",
   "selects": [
     {
       "label": "Item Category",
-      "value": "Charm"
+      "value": "Mana Flask"
     },
     {
       "label": "Item Rarity",
-      "value": "Any Non-Unique"
+      "value": "Unique"
     },
     {
       "label": "Buyout Price",
