@@ -1,15 +1,14 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "itemName": "Against the Darkness",
   "selects": [
     {
       "label": "Item Category",
-      "value": "Any Jewel"
+      "value": "Amulet"
     },
     {
       "label": "Item Rarity",
-      "value": "Unique"
+      "value": "Rare"
     },
     {
       "label": "Buyout Price",
@@ -23,12 +22,12 @@
       "type": "and",
       "filters": [
         {
-          "text": "Notable Passive Skills in Radius also grant Gain #% of Damage as Extra Cold Damage",
-          "min": 4
+          "text": "+# to Level of all Projectile Skills",
+          "min": 3
         },
         {
-          "text": "Notable Passive Skills in Radius also grant Gain #% of Damage as Extra Chaos Damage",
-          "min": 4
+          "text": "+# to Spirit",
+          "min": 43
         }
       ]
     }
