@@ -4,14 +4,6 @@
   "itemName": "Lavianga's Spirits",
   "selects": [
     {
-      "label": "Item Category",
-      "value": "Mana Flask"
-    },
-    {
-      "label": "Item Rarity",
-      "value": "Unique"
-    },
-    {
       "label": "Buyout Price",
       "value": "Divine Orb"
     }
