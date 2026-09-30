@@ -11,7 +11,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "0.6.5";
+  const VERSION = "0.6.6";
   const REPO = "toaster-vip/poe2-trade-copilot";
   const CORE_SHA = "ca6788b3cb741a844f1794737480df9d907eee44";
   const API_BASE = `https://api.github.com/repos/${REPO}/contents/`;
@@ -79,6 +79,14 @@
       const core=await fetchApiFile("poe2-trade-copilot.user.js",CORE_SHA);
       execute(core.code,"poe2tc-core-v0.5.1.js");
 
+      // The pinned core renders its RUN button before remote patches finish loading.
+      // Disable it during bootstrap so a fast click cannot execute stale core logic.
+      const coreRunButton=document.querySelector("#ptc-run");
+      if(coreRunButton){
+        coreRunButton.disabled=true;
+        coreRunButton.dataset.bootstrapPending="1";
+      }
+
       const loaded=[];
       const optionalErrors=[];
       for(const path of CRITICAL_MODULES){
@@ -92,6 +100,11 @@
       }
 
       window.__POE2TC_REMOTE_INFO={version:VERSION,loaded,optionalErrors};
+      const readyRunButton=document.querySelector("#ptc-run");
+      if(readyRunButton){
+        readyRunButton.disabled=false;
+        delete readyRunButton.dataset.bootstrapPending;
+      }
       console.log(`[PoE2TC] loader ${VERSION} ready: ${loaded.join(", ")}`);
     } catch(error) {
       console.error("[PoE2TC] bootstrap failed",error);
