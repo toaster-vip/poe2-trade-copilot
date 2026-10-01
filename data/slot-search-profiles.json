@@ -84,6 +84,27 @@
           "excludedAsUpgradeEquivalent": [
             "Adds # to # Lightning damage to Attacks"
           ]
+        },
+        "currentTarget": {
+          "reason": "Move Lightning Resistance off gloves to free the third suffix for local Attack Speed.",
+          "priceMaxDivine": 300,
+          "prefixes": [
+            "maximum Life",
+            "Adds Physical Damage to Attacks",
+            "Adds Cold Damage to Attacks"
+          ],
+          "suffixes": [
+            "Gain Deflection Rating equal to #% of Evasion Rating",
+            "Leech #% of Physical Attack Damage as Mana",
+            "#% increased Attack Speed (Local)"
+          ],
+          "thresholds": {
+            "life": 120,
+            "deflection": 21,
+            "manaLeechPercent": 7,
+            "localAttackSpeedPercent": 10
+          },
+          "note": "Lightning Resistance intentionally omitted from glove search and must be recovered elsewhere if a candidate is purchased. Runtime must exact-validate the local Attack Speed text against the live Trade catalog."
         }
       }
     }
