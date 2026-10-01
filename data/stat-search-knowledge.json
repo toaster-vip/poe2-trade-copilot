@@ -230,22 +230,23 @@
       "intent": "item grants increased global Critical Hit Chance",
       "kind": "stat",
       "query": "#% increased Critical Hit Chance",
-      "status": "wrong_for_intent",
+      "status": "verified_by_ui",
       "candidatesToTest": [
         "#% increased Critical Hit Chance"
       ],
-      "notes": "Do not use for this Ice Shot ring search. User intent is attack Critical Hit Chance, not generic/global wording."
+      "notes": "User screenshot on 2026-10-01 confirmed the intended Trade option is the generic EXPLICIT '#% increased Critical Hit Chance'. Do not substitute 'for Attacks' or Critical Damage Bonus for this ring search.",
+      "observedUi": "EXPLICIT #% increased Critical Hit Chance"
     },
     {
       "key": "critical_hit_chance_for_attacks",
       "intent": "item grants increased Critical Hit Chance for Attacks",
       "kind": "stat",
       "query": "#% increased Critical Hit Chance for Attacks",
-      "status": "testing",
+      "status": "wrong_for_current_search",
       "candidatesToTest": [
         "#% increased Critical Hit Chance for Attacks"
       ],
-      "notes": "Standalone Rare Ring validation started 2026-10-01. Use for Ice Shot attack crit intent only if official Trade UI resolves this exact stat correctly."
+      "notes": "Exists in official Trade UI, but user explicitly identified it as not the intended ring crit filter for this search. Use generic EXPLICIT '#% increased Critical Hit Chance' instead."
     }
   ]
 }
