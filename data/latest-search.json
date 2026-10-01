@@ -39,7 +39,7 @@
         {
           "id": "explicit.stat_4067062424",
           "text": "Adds # to # Cold damage to Attacks",
-          "min": 23
+          "min": 25
         },
         {
           "id": "pseudo.pseudo_total_lightning_resistance",
