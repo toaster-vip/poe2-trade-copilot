@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.4";
+  const VERSION = "stat-discovery-1.5";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
