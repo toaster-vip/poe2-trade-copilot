@@ -176,8 +176,8 @@
       "intent": "item grants increased Skill Speed",
       "kind": "stat",
       "query": "#% increased Skill Speed",
-      "status": "unverified",
-      "notes": "Used only through grouped-stat exact live official catalog resolution; do not use fuzzy root matching until separately verified."
+      "status": "testing",
+      "notes": "Standalone Rare Ring verification queued on 2026-10-01 after crit-chance dead end. A collected rare-ring listing previously showed '4% increased Skill Speed', but query text still requires official Trade UI verification before combining."
     },
     {
       "key": "evasion_to_deflection",
@@ -230,23 +230,23 @@
       "intent": "item grants increased global Critical Hit Chance",
       "kind": "stat",
       "query": "#% increased Critical Hit Chance",
-      "status": "verified_by_ui",
+      "status": "not_available_on_rare_rings",
       "candidatesToTest": [
         "#% increased Critical Hit Chance"
       ],
-      "notes": "User screenshot on 2026-10-01 confirmed the intended Trade option is the generic EXPLICIT '#% increased Critical Hit Chance'. Do not substitute 'for Attacks' or Critical Damage Bonus for this ring search.",
-      "observedUi": "EXPLICIT #% increased Critical Hit Chance"
+      "notes": "Do not use as a Rare Ring upgrade filter. The official Trade picker is global and exposes stats from sources that do not roll on rare rings. External PoE2DB evidence shows generic increased Critical Hit Chance on Gifts from Above (Unique), while the rare-ring affix table exposes Spell Critical Hit Chance rather than a generic/attack rare-ring affix.",
+      "observedUi": "EXPLICIT #% increased Critical Hit Chance exists in the global Trade stat picker, but Rare Ring search returned 0 results"
     },
     {
       "key": "critical_hit_chance_for_attacks",
       "intent": "item grants increased Critical Hit Chance for Attacks",
       "kind": "stat",
       "query": "#% increased Critical Hit Chance for Attacks",
-      "status": "wrong_for_current_search",
+      "status": "not_available_on_rare_rings",
       "candidatesToTest": [
         "#% increased Critical Hit Chance for Attacks"
       ],
-      "notes": "Exists in official Trade UI, but user explicitly identified it as not the intended ring crit filter for this search. Use generic EXPLICIT '#% increased Critical Hit Chance' instead."
+      "notes": "Official Trade picker contains this text globally, but it is not a usable Rare Ring affix for the current upgrade search. Do not retry on Rare Ring."
     }
   ]
 }
