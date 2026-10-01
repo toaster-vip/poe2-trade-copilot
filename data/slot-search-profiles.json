@@ -50,7 +50,7 @@
         "suffixes": [
           {
             "role": "survival",
-            "stat": "+#% total to Lightning Resistance"
+            "stat": "+#% to Lightning Resistance"
           },
           {
             "role": "survival",
@@ -104,7 +104,7 @@
             "deflection": 22,
             "manaLeechPercent": 7.8
           },
-          "note": "Physical and Cold attack damage are required but not numerically floored in the packet because range-stat min semantics can be ambiguous; rank actual listings against current 8-15 Physical and 24-35 Cold. This target is stricter than a prior exact-architecture search that already returned zero under 300D."
+          "note": "Exact current-glove structure search must use the explicit '+#% to Lightning Resistance' suffix, not PSEUDO total Lightning Resistance. For future speed variants, the user-confirmed Trade stat is '#% increased Attack Speed', not '(Local)'."
         }
       }
     }
