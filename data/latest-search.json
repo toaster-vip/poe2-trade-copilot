@@ -1,5 +1,22 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
-  "discoverStat": "Deflection Rating",
+  "clear": true,
+  "selects": [
+    {
+      "label": "Item Category",
+      "value": "Gloves"
+    },
+    {
+      "label": "Item Rarity",
+      "value": "Rare"
+    }
+  ],
+  "fields": [],
+  "stats": [
+    {
+      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+      "min": 21
+    }
+  ],
   "search": false
 }
