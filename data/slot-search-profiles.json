@@ -17,7 +17,8 @@
           "key": "evasion_to_deflection",
           "text": "Gain Deflection Rating equal to #% of Evasion Rating",
           "min": 21,
-          "execution": "statGroups"
+          "execution": "statGroups",
+          "id": "explicit.stat_3033371881"
         }
       ],
       "strongPreferences": [
