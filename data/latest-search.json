@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Amulet"
+      "value": "Gloves"
     },
     {
       "label": "Item Rarity",
@@ -18,7 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 500
+      "max": 71
     }
   ],
   "stats": [],
@@ -27,29 +27,28 @@
       "type": "and",
       "filters": [
         {
-          "id": "explicit.stat_1202301673",
-          "text": "# to Level of all Projectile Skills",
-          "min": 3
-        },
-        {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 80
-        },
-        {
-          "id": "pseudo.pseudo_total_fire_resistance",
-          "text": "+#% total to Fire Resistance",
-          "min": 13
+          "min": 120
         },
         {
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
-          "min": 4
+          "min": 12
         },
         {
-          "id": "explicit.stat_3556824919",
-          "text": "#% increased Critical Damage Bonus",
-          "min": 25
+          "text": "Leech #% of Physical Attack Damage as Mana",
+          "min": 7
+        },
+        {
+          "text": "Adds # to # Physical Damage to Attacks"
+        },
+        {
+          "text": "Adds # to # Cold damage to Attacks"
+        },
+        {
+          "text": "#% increased Attack Speed",
+          "min": 10
         }
       ]
     }
