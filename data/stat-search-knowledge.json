@@ -138,11 +138,15 @@
       "query": "#% increased Attack Speed",
       "status": "unverified",
       "observedUi": "explicit #% increased Attack Speed",
-      "notes": "Do not use bare '#% increased Attack Speed' for Heart of the Well. Official Trade dynamic matching selected '#% increased Attack Speed (Local)' on 2026-09-29, which is the wrong stat for the jewel.",
+      "notes": "Do not use '#% increased Attack Speed (Local)' for glove replacement searches. Debug on 2026-10-01 resolved Local Attack Speed to explicit.stat_210067635, but that is not the desired glove attack-speed stat for this workflow. Keep glove attack speed unverified until the exact official Trade stat is separately validated.",
       "knownFailures": [
         {
           "query": "#% increased Attack Speed",
           "failure": "official Trade dynamic selector matched explicit #% increased Attack Speed (Local), not the Heart of the Well jewel attack-speed modifier"
+        },
+        {
+          "query": "#% increased Attack Speed (Local)",
+          "failure": "Resolved to explicit.stat_210067635 in statGroups-2.5, but user identified this as the wrong speed filter for gloves."
         }
       ]
     },
@@ -186,6 +190,20 @@
       "officialId": "explicit.stat_3033371881",
       "verifiedAt": "2026-10-01",
       "verifiedVia": "statGroups-2.5 live official catalog + UI group verification"
+    },
+    {
+      "key": "glove_attack_speed",
+      "intent": "rare gloves grant the desired ordinary increased Attack Speed modifier",
+      "kind": "stat",
+      "query": null,
+      "status": "unverified",
+      "knownFailures": [
+        {
+          "query": "#% increased Attack Speed (Local)",
+          "failure": "Wrong stat for glove upgrade search; resolved to explicit.stat_210067635 on 2026-10-01."
+        }
+      ],
+      "notes": "Do not guess. Validate exact official Trade catalog/UI stat before using this in a glove packet."
     }
   ]
 }
