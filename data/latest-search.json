@@ -38,8 +38,7 @@
           "text": "Adds # to # Cold damage to Attacks"
         },
         {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
+          "text": "+#% to Lightning Resistance",
           "min": 27
         },
         {
