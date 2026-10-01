@@ -26,3 +26,13 @@ The one-stat UI-discovery rule above applies to fuzzy/text-driven DOM stat selec
 Grouped modifiers must be placed inside their requested UI group (for example AND or COUNT), never
 silently inserted as root-level Stat Filters. If exact id/text verification, group creation, group
 placement, or final UI verification fails, abort instead of falling back to fuzzy matching.
+
+
+## Stable execution workflow
+
+Before generating any new gear-slot search, also read:
+- `docs/stable-operating-runbook.md`
+- `data/execution-policy.json`
+- `data/slot-search-profiles.json`
+
+These files define the preferred execution path and current slot-specific constraints. Do not ask the user to choose official stat names or manually run discovery when the workflow can be driven from GitHub.
