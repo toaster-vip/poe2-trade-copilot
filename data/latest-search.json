@@ -53,7 +53,7 @@
     },
     {
       "type": "weight",
-      "min": 64,
+      "min": 63.5,
       "filters": [
         {
           "id": "explicit.stat_3032590688",
