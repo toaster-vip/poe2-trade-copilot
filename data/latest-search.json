@@ -29,7 +29,7 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 120
+          "min": 130
         },
         {
           "id": "pseudo.pseudo_total_lightning_resistance",
@@ -44,11 +44,8 @@
           "text": "Adds # to # Physical Damage to Attacks"
         },
         {
-          "text": "Adds # to # Cold damage to Attacks"
-        },
-        {
           "text": "#% increased Attack Speed",
-          "min": 10
+          "min": 12
         }
       ]
     }
