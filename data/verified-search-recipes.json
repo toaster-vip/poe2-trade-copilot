@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-01",
+  "recipes": {
+    "gloves_deflection_verified": {
+      "status": "verified",
+      "purpose": "Rare gloves preserving current Ice Shot Deadeye Deflection layer",
+      "runtime": {
+        "runWrapper": "run-wrapper-3.2",
+        "statGroupsImplementation": "stat-groups-2.5"
+      },
+      "verifiedFilter": {
+        "id": "explicit.stat_3033371881",
+        "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+        "min": 21
+      },
+      "evidence": {
+        "catalogValidated": true,
+        "groupCreated": true,
+        "statAdded": true,
+        "groupVerified": true
+      }
+    }
+  }
+}
