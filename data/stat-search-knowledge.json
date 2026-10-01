@@ -37,12 +37,12 @@
     },
     {
       "key": "lightning_resistance",
-      "intent": "item grants Lightning Resistance",
+      "intent": "item total Lightning Resistance across all applicable sources",
       "kind": "stat",
       "query": "Lightning Resistance",
       "status": "verified",
       "observedUi": "PSEUDO total to Lightning Resistance",
-      "notes": "Successfully created Stat Filter row."
+      "notes": "Use only when total Lightning Resistance is intended. Do NOT use for exact glove suffix/affix-structure searches because pseudo total can include hybrid resistance, Rune, or other sources."
     },
     {
       "key": "grants_strength",
@@ -136,9 +136,9 @@
       "intent": "item grants increased Attack Speed",
       "kind": "stat",
       "query": "#% increased Attack Speed",
-      "status": "unverified",
+      "status": "verified",
       "observedUi": "explicit #% increased Attack Speed",
-      "notes": "Do not use '#% increased Attack Speed (Local)' for glove replacement searches. Debug on 2026-10-01 resolved Local Attack Speed to explicit.stat_210067635, but that is not the desired glove attack-speed stat for this workflow. Keep glove attack speed unverified until the exact official Trade stat is separately validated.",
+      "notes": "Verified by user screenshot on official PoE2 Trade UI on 2026-10-01 for glove searching. Do not replace this with '#% increased Attack Speed (Local)'.",
       "knownFailures": [
         {
           "query": "#% increased Attack Speed",
@@ -195,15 +195,25 @@
       "key": "glove_attack_speed",
       "intent": "rare gloves grant the desired ordinary increased Attack Speed modifier",
       "kind": "stat",
-      "query": null,
-      "status": "unverified",
+      "query": "#% increased Attack Speed",
+      "status": "verified",
       "knownFailures": [
         {
           "query": "#% increased Attack Speed (Local)",
           "failure": "Wrong stat for glove upgrade search; resolved to explicit.stat_210067635 on 2026-10-01."
         }
       ],
-      "notes": "Do not guess. Validate exact official Trade catalog/UI stat before using this in a glove packet."
+      "notes": "User-confirmed on official Trade UI screenshot 2026-10-01. Do not use '(Local)'.",
+      "observedUi": "explicit #% increased Attack Speed"
+    },
+    {
+      "key": "explicit_lightning_resistance",
+      "intent": "item has the ordinary explicit Lightning Resistance suffix",
+      "kind": "stat",
+      "query": "+#% to Lightning Resistance",
+      "status": "verified",
+      "observedUi": "explicit +#% to Lightning Resistance",
+      "notes": "Use for exact glove affix-structure searches. Do not substitute PSEUDO total Lightning Resistance."
     }
   ]
 }
