@@ -4,7 +4,7 @@
   "selects": [
     {
       "label": "Item Category",
-      "value": "Gloves"
+      "value": "Ring"
     },
     {
       "label": "Item Rarity",
@@ -29,22 +29,20 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 136
+          "min": 100
         },
         {
+          "id": "explicit.stat_3032590688",
           "text": "Adds # to # Physical Damage to Attacks"
         },
         {
+          "id": "explicit.stat_4067062424",
           "text": "Adds # to # Cold damage to Attacks"
         },
         {
-          "id": "explicit.stat_3033371881",
-          "text": "Gain Deflection Rating equal to #% of Evasion Rating",
-          "min": 22
-        },
-        {
-          "text": "Leech #% of Physical Attack Damage as Mana",
-          "min": 7.8
+          "id": "pseudo.pseudo_total_lightning_resistance",
+          "text": "+#% total to Lightning Resistance",
+          "min": 25
         }
       ]
     }
