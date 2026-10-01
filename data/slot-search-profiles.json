@@ -208,6 +208,23 @@
             "assessment": "safest no-sustain-loss option but much smaller offensive gain"
           }
         ]
+      },
+      "offensiveSearch": {
+        "priceMaxDivine": 300,
+        "mandatory": [
+          "maximum Life >= 100",
+          "Adds Physical Damage to Attacks >= 11",
+          "Adds Cold Damage to Attacks >= 25",
+          "total Lightning Resistance >= 25"
+        ],
+        "offensiveCountGroup": {
+          "min": 1,
+          "pool": [
+            "#% increased Attack Speed",
+            "#% increased Critical Damage Bonus"
+          ]
+        },
+        "note": "First pass uses only verified offensive stats. Skill Speed and generic increased Damage are not added until separately verified."
       }
     }
   }
