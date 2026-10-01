@@ -44,13 +44,7 @@
         {
           "text": "Leech #% of Physical Attack Damage as Mana",
           "min": 7
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 1,
-      "filters": [
+        },
         {
           "text": "Adds # to # Physical Damage to Attacks"
         },
