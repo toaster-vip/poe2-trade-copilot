@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.4";
+  const VERSION = "github-load-run-1.5";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -58,10 +58,18 @@
       if (button.dataset.running === "1") return;
       button.dataset.running = "1";
       button.disabled = true;
+      let packet = null;
       try {
         const loader = window.__POE2TC_LOAD_SEARCH_FROM_GITHUB;
         if (typeof loader !== "function") throw new Error("GitHub loader is not ready");
-        const packet = await loader();
+        packet = await loader();
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          note:"Packet loaded; runtime verification pending"
+        };
 
         const runtime={
           directApi:runButton.dataset.directApiBridge||"",
@@ -72,6 +80,15 @@
           directApi:"direct-api-1.3",
           statBridge:"search-source-1.20",
           runWrapper:"run-wrapper-3.1"
+        };
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          runtime,
+          expected,
+          note:"Packet loaded; checking runtime versions"
         };
         const stale=Object.keys(expected).filter(key=>runtime[key]!==expected[key]);
         if(stale.length){
@@ -91,6 +108,16 @@
         runButton.click();
       } catch (error) {
         console.error("[PoE2TC GitHub Load+Run]", error);
+        if (!packet) {
+          try { packet = JSON.parse($("#ptc-box")?.value || "null"); } catch {}
+        }
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          error:String(error?.message || error)
+        };
         status(`GitHub search load failed: ${error.message}`);
       } finally {
         button.dataset.running = "0";
