@@ -49,16 +49,13 @@
     },
     {
       "type": "count",
-      "min": 2,
+      "min": 1,
       "filters": [
         {
           "text": "Adds # to # Physical Damage to Attacks"
         },
         {
           "text": "Adds # to # Cold damage to Attacks"
-        },
-        {
-          "text": "Adds # to # Lightning damage to Attacks"
         }
       ]
     }
