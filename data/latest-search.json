@@ -21,11 +21,6 @@
       "max": 71
     }
   ],
-  "stats": [
-    {
-      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
-      "min": 21
-    }
-  ],
-  "search": true
+  "stats": [],
+  "search": false
 }
