@@ -29,7 +29,7 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 100
+          "min": 115
         },
         {
           "id": "explicit.stat_3032590688",
@@ -42,7 +42,7 @@
         {
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
-          "min": 25
+          "min": 35
         }
       ]
     }
