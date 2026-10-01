@@ -12,10 +12,16 @@
     }
   ],
   "fields": [],
-  "stats": [
+  "stats": [],
+  "statGroups": [
     {
-      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
-      "min": 21
+      "type": "and",
+      "filters": [
+        {
+          "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+          "min": 21
+        }
+      ]
     }
   ],
   "search": false
