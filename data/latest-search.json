@@ -38,7 +38,7 @@
           "text": "Adds # to # Cold damage to Attacks"
         },
         {
-          "text": "+#% to Lightning Resistance",
+          "text": "#% to Lightning Resistance",
           "min": 27
         },
         {
