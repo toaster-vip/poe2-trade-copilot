@@ -31,7 +31,48 @@
         "Adds Physical Damage to Attacks",
         "Adds Cold Damage to Attacks"
       ],
-      "notes": "Do not recommend dropping the 21% Evasion-to-Deflection affix merely for attack speed. Candidate must be evaluated against latest PoB for EHP/deflect and mana sustain as well as DPS."
+      "notes": "Do not recommend dropping the 21% Evasion-to-Deflection affix merely for attack speed. Candidate must be evaluated against latest PoB for EHP/deflect and mana sustain as well as DPS.",
+      "affixStructure": {
+        "prefixes": [
+          {
+            "role": "damage",
+            "stat": "Adds # to # Physical Damage to Attacks"
+          },
+          {
+            "role": "damage",
+            "stat": "Adds # to # Cold damage to Attacks"
+          },
+          {
+            "role": "survival",
+            "stat": "# to maximum Life"
+          }
+        ],
+        "suffixes": [
+          {
+            "role": "survival",
+            "stat": "+#% total to Lightning Resistance"
+          },
+          {
+            "role": "survival",
+            "stat": "Gain Deflection Rating equal to #% of Evasion Rating"
+          },
+          {
+            "role": "sustain",
+            "stat": "Leech #% of Physical Attack Damage as Mana"
+          }
+        ],
+        "note": "Current glove occupies all 3 prefixes and all 3 suffixes. Any extra offensive gain must come from better rolls, base defence, Rune/Bonded/Corruption, or by deliberately replacing one existing affix."
+      },
+      "searchStrategy": {
+        "architectureFirst": true,
+        "rule": "Preserve the same six-affix architecture first; relax numeric thresholds before adding another normal affix that cannot coexist.",
+        "broadThresholds": {
+          "life": 120,
+          "lightningResistance": 12,
+          "manaLeechPercent": 7,
+          "evasionToDeflectionPercent": 21
+        }
+      }
     }
   }
 }
