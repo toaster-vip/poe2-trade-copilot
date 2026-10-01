@@ -18,7 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 71
+      "max": 300
     }
   ],
   "stats": [],
