@@ -37,20 +37,13 @@
           "min": 120
         },
         {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 12
-        },
-        {
           "text": "Leech #% of Physical Attack Damage as Mana",
           "min": 7
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 1,
-      "filters": [
+        },
+        {
+          "text": "#% increased Attack Speed (Local)",
+          "min": 10
+        },
         {
           "text": "Adds # to # Physical Damage to Attacks"
         },
