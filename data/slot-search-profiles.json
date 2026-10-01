@@ -73,8 +73,9 @@
           "evasionToDeflectionPercent": 21
         },
         "currentFallback": {
-          "reason": "Exact Physical+Cold 3P+3S structure had no listings under 71D. Lightning flat is not treated as an equivalent upgrade for this Ice Shot build.",
-          "structure": "Life prefix + three mandatory survival/sustain suffixes + at least one of Physical/Cold attack-damage prefixes. Rank results preferring Physical+Cold, then high Physical or high Cold with strong Rune/Bonded extras.",
+          "reason": "No listings under 300D with the exact current 3P+3S structure (Life + Physical + Cold prefixes; Lightning + Deflection + Mana Leech suffixes).",
+          "structure": "Keep Life + Lightning + Deflection + Mana Leech. Require at least one of Physical or Cold attack damage, then rank high-end results for Rune/Bonded/roll compensation.",
+          "priceMaxDivine": 300,
           "countGroupMin": 1,
           "attackPrefixPool": [
             "Adds # to # Physical Damage to Attacks",
