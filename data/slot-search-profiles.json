@@ -144,7 +144,7 @@
         "do not create unsafe mana sustain",
         "useful extra resistance/Chaos/Mana as tie-breakers"
       ],
-      "userPriority": "comprehensive_upgrade_first_sustain_secondary",
+      "userPriority": "endgame_boss_single_target_survival_not_lower",
       "marketScan20261001": {
         "uniqueListingsReviewed": 125,
         "currentBaseline": {
@@ -225,6 +225,39 @@
           ]
         },
         "note": "First pass uses only verified offensive stats. Skill Speed and generic increased Damage are not added until separately verified."
+      },
+      "bossSearch": {
+        "priceMaxDivine": 300,
+        "hardSurvival": [
+          "maximum Life >= current 83",
+          "total Lightning Resistance >=22 so post-swap Lightning remains capped",
+          "post-filter actual Cold Resistance contribution >=2 so post-swap Cold remains capped"
+        ],
+        "offensePool": {
+          "countMin": 3,
+          "stats": [
+            "Adds Physical Damage to Attacks",
+            "Adds Cold Damage to Attacks",
+            "#% increased Attack Speed",
+            "#% increased Skill Speed",
+            "#% increased Critical Damage Bonus"
+          ]
+        },
+        "postFilter": [
+          "reject any candidate that uncaps Cold or Lightning Resistance",
+          "reject if boss single-target offense is not clearly above current ring",
+          "check sustained boss mana after removing current 41% increased Mana Regeneration Rate",
+          "ignore rarity, on-kill recovery, extra skill slot and mapping-only utility when ranking"
+        ],
+        "currentBossBaseline": {
+          "life": 83,
+          "physicalAttackDamage": "11-17",
+          "coldAttackDamage": "23-37",
+          "flatAverageProxy": 44,
+          "lightningResistance": 36,
+          "coldResistanceContribution": 71,
+          "manaRegenerationRatePercent": 41
+        }
       }
     }
   }
