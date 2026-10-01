@@ -18,8 +18,7 @@
   "fields": [
     {
       "label": "Buyout Price",
-      "max": 300,
-      "min": 75
+      "max": 300
     }
   ],
   "stats": [],
@@ -46,6 +45,19 @@
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
           "min": 25
+        }
+      ]
+    },
+    {
+      "type": "count",
+      "min": 1,
+      "filters": [
+        {
+          "text": "#% increased Attack Speed"
+        },
+        {
+          "id": "explicit.stat_3556824919",
+          "text": "#% increased Critical Damage Bonus"
         }
       ]
     }
