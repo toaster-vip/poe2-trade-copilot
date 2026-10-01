@@ -73,12 +73,14 @@
           "evasionToDeflectionPercent": 21
         },
         "currentFallback": {
-          "reason": "No listings found with the exact current 3P+3S architecture under 71D.",
-          "structure": "Life prefix + three mandatory survival/sustain suffixes + any 2 of Physical/Cold/Lightning attack-damage prefixes.",
-          "countGroupMin": 2,
+          "reason": "Exact Physical+Cold 3P+3S structure had no listings under 71D. Lightning flat is not treated as an equivalent upgrade for this Ice Shot build.",
+          "structure": "Life prefix + three mandatory survival/sustain suffixes + at least one of Physical/Cold attack-damage prefixes. Rank results preferring Physical+Cold, then high Physical or high Cold with strong Rune/Bonded extras.",
+          "countGroupMin": 1,
           "attackPrefixPool": [
             "Adds # to # Physical Damage to Attacks",
-            "Adds # to # Cold damage to Attacks",
+            "Adds # to # Cold damage to Attacks"
+          ],
+          "excludedAsUpgradeEquivalent": [
             "Adds # to # Lightning damage to Attacks"
           ]
         }
