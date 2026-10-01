@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.6
+// @version      0.6.4-stable.7
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -2750,7 +2750,7 @@ boot();
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.6";
+  const VERSION = "github-load-run-1.7";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -2836,7 +2836,7 @@ boot();
         const expected={
           directApi:"direct-api-1.3",
           statBridge:"search-source-1.20",
-          runWrapper:"run-wrapper-3.1"
+          runWrapper:"run-wrapper-3.2"
         };
         window.__POE2TC_LAST_DEBUG = {
           ok:false,
@@ -2894,7 +2894,7 @@ boot();
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-3.1";
+  const PATCH_VERSION = "run-wrapper-3.2";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -3566,11 +3566,15 @@ boot();
   }
 
   async function ensureGroupedStatExecutor(){
-    const required="stat-groups-1.6";
-    if(
+    const requiredImplementation="stat-groups-2.5";
+    const compatible=()=>(
       typeof window.__POE2TC_APPLY_STAT_GROUPS==="function" &&
-      window.__POE2TC_STAT_GROUPS_MODULE?.version===required
-    ) return window.__POE2TC_APPLY_STAT_GROUPS;
+      (
+        window.__POE2TC_STAT_GROUPS_MODULE?.implementationVersion===requiredImplementation ||
+        window.__POE2TC_STAT_GROUPS_MODULE?.version===requiredImplementation
+      )
+    );
+    if(compatible()) return window.__POE2TC_APPLY_STAT_GROUPS;
 
     const api="https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/patches/stat-groups.v1.js?ref=main&t="+Date.now();
     status("Loading current grouped-stat module…");
@@ -3590,14 +3594,12 @@ boot();
     (0,eval)(code+"\n//# sourceURL=poe2tc-stat-groups-hotload.js");
 
     for(let i=0;i<20;i++){
-      if(
-        typeof window.__POE2TC_APPLY_STAT_GROUPS==="function" &&
-        window.__POE2TC_STAT_GROUPS_MODULE?.version===required
-      ){
+      if(compatible()){
         window.__POE2TC_STAT_GROUPS_HOTLOAD={
           ok:true,
           sha:payload.sha||null,
           version:window.__POE2TC_STAT_GROUPS_MODULE.version,
+          implementationVersion:window.__POE2TC_STAT_GROUPS_MODULE.implementationVersion||null,
           loadedAt:new Date().toISOString()
         };
         return window.__POE2TC_APPLY_STAT_GROUPS;
