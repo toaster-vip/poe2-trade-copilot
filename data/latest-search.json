@@ -27,7 +27,7 @@
       "type": "and",
       "filters": [
         {
-          "text": "#% increased Critical Hit Chance for Attacks"
+          "text": "#% increased Critical Hit Chance"
         }
       ]
     }
