@@ -86,25 +86,25 @@
           ]
         },
         "currentTarget": {
-          "reason": "Move Lightning Resistance off gloves to free the third suffix for local Attack Speed.",
+          "reason": "User wants the same 3P+3S glove architecture as current, only with improved rolls.",
           "priceMaxDivine": 300,
           "prefixes": [
-            "maximum Life",
             "Adds Physical Damage to Attacks",
-            "Adds Cold Damage to Attacks"
+            "Adds Cold Damage to Attacks",
+            "maximum Life"
           ],
           "suffixes": [
+            "Lightning Resistance",
             "Gain Deflection Rating equal to #% of Evasion Rating",
-            "Leech #% of Physical Attack Damage as Mana",
-            "#% increased Attack Speed (Local)"
+            "Leech #% of Physical Attack Damage as Mana"
           ],
           "thresholds": {
-            "life": 120,
-            "deflection": 21,
-            "manaLeechPercent": 7,
-            "localAttackSpeedPercent": 1
+            "life": 136,
+            "lightningResistance": 27,
+            "deflection": 22,
+            "manaLeechPercent": 7.8
           },
-          "note": "Exact 3P+3S attack-speed architecture returned 0 matches at AS >=10 under 300D. First relaxation: keep the same six-affix structure and accept any positive Local Attack Speed. If still 0, relax Life next."
+          "note": "Physical and Cold attack damage are required but not numerically floored in the packet because range-stat min semantics can be ambiguous; rank actual listings against current 8-15 Physical and 24-35 Cold. This target is stricter than a prior exact-architecture search that already returned zero under 300D."
         }
       }
     }
