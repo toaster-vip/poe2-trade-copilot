@@ -1,26 +1,5 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
-  "clear": true,
-  "selects": [
-    {
-      "label": "Item Category",
-      "value": "Gloves"
-    },
-    {
-      "label": "Item Rarity",
-      "value": "Rare"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
-    }
-  ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 71
-    }
-  ],
-  "stats": [],
+  "discoverStat": "Deflection Rating",
   "search": false
 }
