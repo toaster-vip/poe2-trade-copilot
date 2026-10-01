@@ -102,9 +102,9 @@
             "life": 120,
             "deflection": 21,
             "manaLeechPercent": 7,
-            "localAttackSpeedPercent": 10
+            "localAttackSpeedPercent": 1
           },
-          "note": "Lightning Resistance intentionally omitted from glove search and must be recovered elsewhere if a candidate is purchased. Runtime must exact-validate the local Attack Speed text against the live Trade catalog."
+          "note": "Exact 3P+3S attack-speed architecture returned 0 matches at AS >=10 under 300D. First relaxation: keep the same six-affix structure and accept any positive Local Attack Speed. If still 0, relax Life next."
         }
       }
     }
