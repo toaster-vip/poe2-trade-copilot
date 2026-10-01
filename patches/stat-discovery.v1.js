@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.3";
+  const VERSION = "stat-discovery-1.4";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
@@ -157,9 +157,8 @@
     }catch{return false;}
   }
 
-  async function run(){
-    const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
-    if(!query) return;
+  async function emitDiscovery(query){
+    if(!query) return {ok:false,reason:"empty_query"};
     status(`Discovering stat: ${query}…`);
     const result=await discover(query);
     const packet={protocol:"poe2-trade-copilot/stat-discovery-v1",version:VERSION,url:location.href,result};
@@ -181,6 +180,15 @@
       }
     }
     console.log("[PoE2TC Stat Discovery]",packet);
+    return packet;
+  }
+
+  window.__POE2TC_DISCOVER_STAT_FROM_PACKET = emitDiscovery;
+
+  async function run(){
+    const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
+    if(!query) return;
+    await emitDiscovery(query);
   }
   function install(){
     const panel=$("#ptc"); if(!panel) return setTimeout(install,250);
