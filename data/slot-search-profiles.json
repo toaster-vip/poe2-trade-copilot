@@ -71,6 +71,16 @@
           "lightningResistance": 12,
           "manaLeechPercent": 7,
           "evasionToDeflectionPercent": 21
+        },
+        "currentFallback": {
+          "reason": "No listings found with the exact current 3P+3S architecture under 71D.",
+          "structure": "Life prefix + three mandatory survival/sustain suffixes + any 2 of Physical/Cold/Lightning attack-damage prefixes.",
+          "countGroupMin": 2,
+          "attackPrefixPool": [
+            "Adds # to # Physical Damage to Attacks",
+            "Adds # to # Cold damage to Attacks",
+            "Adds # to # Lightning damage to Attacks"
+          ]
         }
       }
     }
