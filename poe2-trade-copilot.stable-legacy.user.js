@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.4
+// @version      0.6.4-stable.5
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -2750,7 +2750,7 @@ boot();
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.5";
+  const VERSION = "github-load-run-1.6";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -2819,6 +2819,14 @@ boot();
           packet,
           note:"Packet loaded; runtime verification pending"
         };
+
+        if (packet?.discoverStat) {
+          const discover = window.__POE2TC_DISCOVER_STAT_FROM_PACKET;
+          if (typeof discover !== "function") throw new Error("Stat discovery module is not ready");
+          status(`Loaded discovery packet · ${packet.discoverStat} · running…`);
+          await discover(String(packet.discoverStat));
+          return;
+        }
 
         const runtime={
           directApi:runButton.dataset.directApiBridge||"",
@@ -3890,7 +3898,7 @@ boot();
 /* ===== patches/stat-discovery.v1.js@main ===== */
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.3";
+  const VERSION = "stat-discovery-1.4";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
@@ -4047,9 +4055,8 @@ boot();
     }catch{return false;}
   }
 
-  async function run(){
-    const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
-    if(!query) return;
+  async function emitDiscovery(query){
+    if(!query) return {ok:false,reason:"empty_query"};
     status(`Discovering stat: ${query}…`);
     const result=await discover(query);
     const packet={protocol:"poe2-trade-copilot/stat-discovery-v1",version:VERSION,url:location.href,result};
@@ -4071,6 +4078,15 @@ boot();
       }
     }
     console.log("[PoE2TC Stat Discovery]",packet);
+    return packet;
+  }
+
+  window.__POE2TC_DISCOVER_STAT_FROM_PACKET = emitDiscovery;
+
+  async function run(){
+    const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
+    if(!query) return;
+    await emitDiscovery(query);
   }
   function install(){
     const panel=$("#ptc"); if(!panel) return setTimeout(install,250);
