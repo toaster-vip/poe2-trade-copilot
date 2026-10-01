@@ -131,16 +131,17 @@
       "firstSearch": {
         "priceMaxDivine": 300,
         "lifeMin": 100,
-        "requirePhysicalAttackDamage": true,
-        "requireColdAttackDamage": true,
         "totalLightningResistanceMin": 25,
-        "execution": "statGroups"
+        "physicalAttackDamageMin": 11,
+        "coldAttackDamageMin": 23,
+        "execution": "statGroups",
+        "note": "Do not over-tighten Life before protecting offense. Damage mins are anchored to the current ring's low-end rolls (11-17 phys, 23-37 cold). Final candidates must still be post-checked against both endpoints/overall damage before recommendation."
       },
       "ranking": [
+        "do not reduce current ring attack contribution (11-17 Physical and 23-37 Cold baseline)",
         "keep Lightning Resistance capped",
+        "prefer Life materially above current 83 without using Life as the main choke point",
         "do not create unsafe mana sustain",
-        "higher Physical + Cold attack damage than current",
-        "higher Life than current",
         "useful extra resistance/Chaos/Mana as tie-breakers"
       ]
     }
