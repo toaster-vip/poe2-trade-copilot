@@ -230,11 +230,11 @@
       "intent": "item grants increased global Critical Hit Chance",
       "kind": "stat",
       "query": "#% increased Critical Hit Chance",
-      "status": "unverified",
+      "status": "testing",
       "candidatesToTest": [
         "#% increased Critical Hit Chance"
       ],
-      "notes": "Do not substitute Critical Damage Bonus. PoE2DB shows generic Critical Hit Chance on some ring sources/uniques, while ordinary rare ring affixes prominently include Spell Critical Hit Chance. Must verify exact official Trade UI/catalog behavior before combining into rare-ring searches."
+      "notes": "Testing exact live-catalog/UI resolution on Rare Ring as a standalone stat on 2026-10-01. Do not combine into production COUNT until the official Trade UI confirms the intended Critical Hit Chance stat."
     }
   ]
 }
