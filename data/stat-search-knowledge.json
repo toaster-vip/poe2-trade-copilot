@@ -210,10 +210,16 @@
       "key": "explicit_lightning_resistance",
       "intent": "item has the ordinary explicit Lightning Resistance suffix",
       "kind": "stat",
-      "query": "+#% to Lightning Resistance",
-      "status": "verified",
-      "observedUi": "explicit +#% to Lightning Resistance",
-      "notes": "Use for exact glove affix-structure searches. Do not substitute PSEUDO total Lightning Resistance."
+      "query": "#% to Lightning Resistance",
+      "status": "testing",
+      "observedUi": null,
+      "notes": "Candidate exact Trade stat text after '+#% to Lightning Resistance' failed live catalog resolution on 2026-10-01. Next live statGroups validation uses '#% to Lightning Resistance' without leading plus.",
+      "knownFailures": [
+        {
+          "query": "+#% to Lightning Resistance",
+          "failure": "statGroups-2.5 live catalog returned zero exact matches."
+        }
+      ]
     }
   ]
 }
