@@ -180,9 +180,12 @@
       "intent": "item grants Deflection Rating equal to a percentage of Evasion Rating",
       "kind": "stat",
       "query": "Gain Deflection Rating equal to #% of Evasion Rating",
-      "status": "unverified",
-      "observedUi": null,
-      "notes": "Candidate text confirmed from current PoE2 modifier data for gloves; must be verified on the official Trade UI before use in combined searches."
+      "status": "verified",
+      "observedUi": "explicit Gain Deflection Rating equal to #% of Evasion Rating",
+      "notes": "Verified on official PoE2 Trade UI with Gloves/Rare, AND group, min 21. Catalog validation, group creation, stat insertion, and group verification all passed.",
+      "officialId": "explicit.stat_3033371881",
+      "verifiedAt": "2026-10-01",
+      "verifiedVia": "statGroups-2.5 live official catalog + UI group verification"
     }
   ]
 }
