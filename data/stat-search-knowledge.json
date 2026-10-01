@@ -157,7 +157,7 @@
       "query": "#% increased Critical Damage Bonus",
       "status": "verified",
       "observedUi": "explicit #% increased Critical Damage Bonus",
-      "notes": "Verified previously through official exact stat id explicit.stat_3556824919 in successful rare-jewel grouped searches."
+      "notes": "Verified as Critical Damage Bonus (critical damage), NOT Critical Hit Chance. Do not use this stat when the search intent is crit chance."
     },
     {
       "key": "heart_presence_attack_speed",
@@ -224,6 +224,17 @@
           "failure": "Not available as a unique exact official Trade catalog stat for this workflow."
         }
       ]
+    },
+    {
+      "key": "critical_hit_chance_global",
+      "intent": "item grants increased global Critical Hit Chance",
+      "kind": "stat",
+      "query": "#% increased Critical Hit Chance",
+      "status": "unverified",
+      "candidatesToTest": [
+        "#% increased Critical Hit Chance"
+      ],
+      "notes": "Do not substitute Critical Damage Bonus. PoE2DB shows generic Critical Hit Chance on some ring sources/uniques, while ordinary rare ring affixes prominently include Spell Critical Hit Chance. Must verify exact official Trade UI/catalog behavior before combining into rare-ring searches."
     }
   ]
 }
