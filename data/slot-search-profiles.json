@@ -86,25 +86,26 @@
           ]
         },
         "currentTarget": {
-          "reason": "User wants the same 3P+3S glove architecture as current, only with improved rolls.",
+          "reason": "Exact ordinary Lightning Resistance suffix is not directly searchable via a unique official Trade stat in this workflow.",
           "priceMaxDivine": 300,
-          "prefixes": [
+          "tradeFilters": [
+            "maximum Life >= 136",
             "Adds Physical Damage to Attacks",
             "Adds Cold Damage to Attacks",
-            "maximum Life"
+            "Gain Deflection Rating equal to #% of Evasion Rating >= 22",
+            "Leech #% of Physical Attack Damage as Mana >= 7.8"
           ],
-          "suffixes": [
-            "Lightning Resistance",
-            "Gain Deflection Rating equal to #% of Evasion Rating",
-            "Leech #% of Physical Attack Damage as Mana"
-          ],
-          "thresholds": {
-            "life": 136,
-            "lightningResistance": 27,
-            "deflection": 22,
-            "manaLeechPercent": 7.8
+          "postFilter": {
+            "requirement": "actual ordinary Lightning Resistance suffix >=27",
+            "matchRule": "item mods must contain an explicit suffix line like '+X% to Lightning ResistanceS*'",
+            "exclude": [
+              "PSEUDO total Lightning Resistance",
+              "Rune resistance",
+              "hybrid resistance",
+              "other non-ordinary resistance sources"
+            ]
           },
-          "note": "Exact current-glove structure search must use the explicit '+#% to Lightning Resistance' suffix, not PSEUDO total Lightning Resistance. For future speed variants, the user-confirmed Trade stat is '#% increased Attack Speed', not '(Local)'."
+          "note": "Preserve exact current 3P+3S architecture by post-filtering the collected listings rather than inventing an unavailable Trade stat."
         }
       }
     }
