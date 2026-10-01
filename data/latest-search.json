@@ -34,16 +34,22 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 130
+          "min": 135
         },
         {
           "id": "pseudo.pseudo_total_lightning_resistance",
           "text": "+#% total to Lightning Resistance",
-          "min": 20
+          "min": 26
         },
         {
           "text": "Leech #% of Physical Attack Damage as Mana",
-          "min": 7.5
+          "min": 7.7
+        },
+        {
+          "text": "Adds # to # Physical Damage to Attacks"
+        },
+        {
+          "text": "Adds # to # Cold damage to Attacks"
         }
       ]
     }
