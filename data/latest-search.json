@@ -38,10 +38,6 @@
           "text": "Adds # to # Cold damage to Attacks"
         },
         {
-          "text": "#% to Lightning Resistance",
-          "min": 27
-        },
-        {
           "id": "explicit.stat_3033371881",
           "text": "Gain Deflection Rating equal to #% of Evasion Rating",
           "min": 22
