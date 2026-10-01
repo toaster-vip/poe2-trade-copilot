@@ -108,6 +108,41 @@
           "note": "Preserve exact current 3P+3S architecture by post-filtering the collected listings rather than inventing an unavailable Trade stat."
         }
       }
+    },
+    "ring1_current_ice_shot_deadeye": {
+      "priority": "attack_and_survival",
+      "slot": "Ring 1",
+      "currentItem": "Maelstrom Spiral Sapphire Ring",
+      "baseline": {
+        "implicitColdResistance": 30,
+        "physicalAttackFlat": "11-17",
+        "coldAttackFlat": "23-37",
+        "life": 83,
+        "coldResistanceExplicit": 41,
+        "lightningResistance": 36,
+        "manaRegenerationRatePercent": 41
+      },
+      "buildContext": {
+        "currentLightningOvercap": 14,
+        "currentColdOvercap": 69,
+        "minimumReplacementLightningToStayCappedApprox": 22,
+        "note": "Removing current Ring 1 also removes Sapphire implicit +30 Cold and +41 explicit Cold. Cold has large overcap, so Cold Resistance is not a first-pass hard filter. Mana Regen is a sustain preference and must be checked on shortlisted replacements."
+      },
+      "firstSearch": {
+        "priceMaxDivine": 300,
+        "lifeMin": 100,
+        "requirePhysicalAttackDamage": true,
+        "requireColdAttackDamage": true,
+        "totalLightningResistanceMin": 25,
+        "execution": "statGroups"
+      },
+      "ranking": [
+        "keep Lightning Resistance capped",
+        "do not create unsafe mana sustain",
+        "higher Physical + Cold attack damage than current",
+        "higher Life than current",
+        "useful extra resistance/Chaos/Mana as tie-breakers"
+      ]
     }
   }
 }
