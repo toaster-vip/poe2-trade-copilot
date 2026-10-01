@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.5
+// @version      0.6.4-stable.6
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -3898,7 +3898,7 @@ boot();
 /* ===== patches/stat-discovery.v1.js@main ===== */
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.4";
+  const VERSION = "stat-discovery-1.5";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
