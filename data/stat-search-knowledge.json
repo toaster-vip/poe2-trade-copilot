@@ -176,8 +176,9 @@
       "intent": "item grants increased Skill Speed",
       "kind": "stat",
       "query": "#% increased Skill Speed",
-      "status": "testing",
-      "notes": "Standalone Rare Ring verification queued on 2026-10-01 after crit-chance dead end. A collected rare-ring listing previously showed '4% increased Skill Speed', but query text still requires official Trade UI verification before combining."
+      "status": "verified",
+      "notes": "User confirmed on official Trade UI on 2026-10-01 that this stat is available and usable for rare-ring searching.",
+      "observedUi": "explicit #% increased Skill Speed"
     },
     {
       "key": "evasion_to_deflection",
