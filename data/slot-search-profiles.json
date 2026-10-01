@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-01",
+  "profiles": {
+    "gloves_current_ice_shot_deadeye": {
+      "priority": "survival_first",
+      "baseline": {
+        "lifeExplicit": 135,
+        "lightningResistance": 26,
+        "manaLeechPercent": 7.7,
+        "evasionToDeflectionPercent": 21,
+        "physicalAttackFlat": "8-15",
+        "coldAttackFlat": "24-35"
+      },
+      "hardConstraints": [
+        {
+          "key": "evasion_to_deflection",
+          "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+          "min": 21,
+          "execution": "statGroups"
+        }
+      ],
+      "strongPreferences": [
+        "maximum Life near or above current",
+        "mana leech near or above current",
+        "enough Lightning Resistance to remain capped after swap"
+      ],
+      "offenseAfterSurvival": [
+        "local increased Attack Speed",
+        "Adds Physical Damage to Attacks",
+        "Adds Cold Damage to Attacks"
+      ],
+      "notes": "Do not recommend dropping the 21% Evasion-to-Deflection affix merely for attack speed. Candidate must be evaluated against latest PoB for EHP/deflect and mana sustain as well as DPS."
+    }
+  }
+}
