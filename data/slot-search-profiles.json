@@ -257,7 +257,32 @@
           "lightningResistance": 36,
           "coldResistanceContribution": 71,
           "manaRegenerationRatePercent": 41
-        }
+        },
+        "strategy": "beat_corpse_loop_baseline_first",
+        "benchmark": {
+          "name": "Corpse Loop",
+          "priceDivine": 65,
+          "physicalAttackDamage": "21-38",
+          "coldAttackDamage": "26-42",
+          "flatAverageProxy": 63.5,
+          "life": 115,
+          "coldResistance": 31,
+          "lightningResistance": 39
+        },
+        "hardSearch": [
+          "maximum Life >=100",
+          "total Lightning Resistance >=22",
+          "total Cold Resistance >=2",
+          "must have Physical Damage to Attacks",
+          "must have Cold Damage to Attacks"
+        ],
+        "ranking": [
+          "reject anything that uncaps Cold or Lightning",
+          "prefer candidates that beat Corpse Loop's 63.5 flat-average proxy",
+          "then reward Attack Speed / Skill Speed / Critical Damage Bonus",
+          "for endgame-boss use, ignore rarity and on-kill utility",
+          "do not recommend marginal sidegrades"
+        ]
       }
     }
   }
