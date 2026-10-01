@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.6";
+  const VERSION = "github-load-run-1.7";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -87,7 +87,7 @@
         const expected={
           directApi:"direct-api-1.3",
           statBridge:"search-source-1.20",
-          runWrapper:"run-wrapper-3.1"
+          runWrapper:"run-wrapper-3.2"
         };
         window.__POE2TC_LAST_DEBUG = {
           ok:false,
