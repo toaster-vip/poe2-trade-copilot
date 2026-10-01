@@ -143,7 +143,72 @@
         "prefer Life materially above current 83 without using Life as the main choke point",
         "do not create unsafe mana sustain",
         "useful extra resistance/Chaos/Mana as tie-breakers"
-      ]
+      ],
+      "userPriority": "comprehensive_upgrade_first_sustain_secondary",
+      "marketScan20261001": {
+        "uniqueListingsReviewed": 125,
+        "currentBaseline": {
+          "physicalAttackDamage": "11-17",
+          "coldAttackDamage": "23-37",
+          "flatAverageProxy": 44,
+          "life": 83,
+          "coldResistanceContribution": 71,
+          "lightningResistance": 36,
+          "manaRegenerationRatePercent": 41
+        },
+        "shortlist": [
+          {
+            "name": "Corpse Loop",
+            "baseType": "Gold Ring",
+            "priceDivine": 65,
+            "physicalAttackDamage": "21-38",
+            "coldAttackDamage": "26-42",
+            "flatAverageProxy": 63.5,
+            "flatAverageProxyVsCurrentPercent": 44.3,
+            "life": 115,
+            "coldResistance": 31,
+            "totalLightningResistance": 39,
+            "strength": 27,
+            "manaRegenerationRatePercent": 0,
+            "estimatedPostSwapColdOvercap": 29,
+            "estimatedPostSwapLightningOvercap": 17,
+            "assessment": "best comprehensive candidate if sustain loss is acceptable"
+          },
+          {
+            "name": "Viper Knuckle",
+            "baseType": "Topaz Ring",
+            "priceDivine": 75,
+            "physicalAttackDamage": "20-33",
+            "coldAttackDamage": "25-40",
+            "flatAverageProxy": 59,
+            "flatAverageProxyVsCurrentPercent": 34.1,
+            "life": 105,
+            "coldResistance": 32,
+            "totalLightningResistance": 56,
+            "intelligence": 30,
+            "manaRegenerationRatePercent": 0,
+            "estimatedPostSwapColdOvercap": 30,
+            "estimatedPostSwapLightningOvercap": 34,
+            "assessment": "second-best balanced candidate, more resistance cushion but less damage/life than Corpse Loop"
+          },
+          {
+            "name": "Kraken Coil",
+            "baseType": "Gold Ring",
+            "priceDivine": 80,
+            "physicalAttackDamage": "11-26",
+            "coldAttackDamage": "23-35",
+            "flatAverageProxy": 47.5,
+            "flatAverageProxyVsCurrentPercent": 8,
+            "life": 116,
+            "allElementalResistance": 13,
+            "totalLightningResistance": 37,
+            "manaRegenerationRatePercent": 63,
+            "estimatedPostSwapColdOvercap": 11,
+            "estimatedPostSwapLightningOvercap": 15,
+            "assessment": "safest no-sustain-loss option but much smaller offensive gain"
+          }
+        ]
+      }
     }
   }
 }
