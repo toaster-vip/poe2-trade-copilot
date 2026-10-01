@@ -42,7 +42,7 @@
         },
         {
           "text": "#% increased Attack Speed (Local)",
-          "min": 10
+          "min": 1
         },
         {
           "text": "Adds # to # Physical Damage to Attacks"
