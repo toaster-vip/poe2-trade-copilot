@@ -9,20 +9,44 @@
     {
       "label": "Item Rarity",
       "value": "Rare"
+    },
+    {
+      "label": "Buyout Price",
+      "value": "Divine Orb"
     }
   ],
-  "fields": [],
+  "fields": [
+    {
+      "label": "Buyout Price",
+      "max": 71
+    }
+  ],
   "stats": [],
   "statGroups": [
     {
       "type": "and",
       "filters": [
         {
+          "id": "explicit.stat_3033371881",
           "text": "Gain Deflection Rating equal to #% of Evasion Rating",
           "min": 21
+        },
+        {
+          "id": "explicit.stat_3299347043",
+          "text": "# to maximum Life",
+          "min": 130
+        },
+        {
+          "id": "pseudo.pseudo_total_lightning_resistance",
+          "text": "+#% total to Lightning Resistance",
+          "min": 20
+        },
+        {
+          "text": "Leech #% of Physical Attack Damage as Mana",
+          "min": 7.5
         }
       ]
     }
   ],
-  "search": false
+  "search": true
 }
