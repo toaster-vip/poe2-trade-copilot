@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-01",
+  "preferredExecution": {
+    "explicitModifiers": "statGroups",
+    "nativeProperties": "selects_fields",
+    "legacyDynamicStats": "compatibility_only",
+    "manualDiscovery": "diagnostic_only"
+  },
+  "runtimeBaseline": {
+    "runWrapper": "run-wrapper-3.2",
+    "statGroupsImplementation": "stat-groups-2.5",
+    "searchSource": "search-source-1.20",
+    "directApi": "direct-api-1.3"
+  },
+  "resultTiers": {
+    "tooFewMax": 5,
+    "directAnalysisMax": 40,
+    "collectorMax": 150
+  },
+  "userWorkflow": [
+    "AI writes data/latest-search.json",
+    "user presses LOAD + RUN FROM GITHUB",
+    "user saves results to GitHub or sends COPY DEBUG on abort",
+    "AI analyzes and writes the next packet"
+  ],
+  "rules": [
+    "Do not ask the user to choose official stat names.",
+    "Prefer exact live-catalog statGroups for explicit modifiers.",
+    "Do not use manual DISCOVER STAT in the normal workflow.",
+    "Preserve build-critical survival and sustain constraints before DPS.",
+    "Use the latest uploaded build as the source of truth for gear comparisons."
+  ]
+}
