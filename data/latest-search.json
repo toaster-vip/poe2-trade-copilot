@@ -21,33 +21,10 @@
       "max": 71
     }
   ],
-  "stats": [],
-  "statGroups": [
+  "stats": [
     {
-      "type": "and",
-      "filters": [
-        {
-          "id": "explicit.stat_3299347043",
-          "text": "# to maximum Life",
-          "min": 130
-        },
-        {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 12
-        },
-        {
-          "text": "Leech #% of Physical Attack Damage as Mana",
-          "min": 7
-        },
-        {
-          "text": "Adds # to # Physical Damage to Attacks"
-        },
-        {
-          "text": "#% increased Attack Speed",
-          "min": 12
-        }
-      ]
+      "text": "Gain Deflection Rating equal to #% of Evasion Rating",
+      "min": 21
     }
   ],
   "search": true
