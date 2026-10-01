@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.2
+// @version      0.6.4-stable.3
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -3890,7 +3890,7 @@ boot();
 /* ===== patches/stat-discovery.v1.js@main ===== */
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.1";
+  const VERSION = "stat-discovery-1.2";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
@@ -3991,15 +3991,43 @@ boot();
     const options=optionDetails();
     return {ok:true,query,options};
   }
+  async function copyText(text){
+    try{ await navigator.clipboard.writeText(text); return true; }catch{}
+    try{
+      const ta=document.createElement("textarea");
+      ta.value=text;
+      Object.assign(ta.style,{position:"fixed",left:"-9999px",top:"-9999px"});
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      const ok=document.execCommand("copy");
+      ta.remove();
+      return !!ok;
+    }catch{return false;}
+  }
+
   async function run(){
     const query=prompt("Stat discovery keyword:", "maximum Mana on Kill");
     if(!query) return;
     status(`Discovering stat: ${query}…`);
     const result=await discover(query);
-    window.__POE2TC_STAT_DISCOVERY=result;
     const packet={protocol:"poe2-trade-copilot/stat-discovery-v1",version:VERSION,url:location.href,result};
-    try{ await navigator.clipboard.writeText(JSON.stringify(packet,null,2)); status(result.ok?`Discovery copied: ${result.options.length} candidate(s).`:`Discovery failed: ${result.reason}.`); }
-    catch{ status(`Discovery ready. Run COPY DEBUG if clipboard is blocked.`); }
+    window.__POE2TC_STAT_DISCOVERY=result;
+    window.__POE2TC_STAT_DISCOVERY_PACKET=packet;
+    const json=JSON.stringify(packet,null,2);
+    const copied=await copyText(json);
+    if(copied){
+      status(result.ok?`Discovery copied: ${result.options.length} candidate(s).`:`Discovery failed: ${result.reason}.`);
+    }else{
+      const box=$("#ptc-box");
+      if(box){
+        box.value=json;
+        box.dispatchEvent(new Event("input",{bubbles:true}));
+        box.dispatchEvent(new Event("change",{bubbles:true}));
+        status("Discovery JSON placed in the search box. Long-press and copy it.");
+      }else{
+        status("Discovery ready; clipboard blocked. See console for JSON.");
+      }
+    }
     console.log("[PoE2TC Stat Discovery]",packet);
   }
   function install(){
