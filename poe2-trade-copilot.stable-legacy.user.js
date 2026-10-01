@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.3
+// @version      0.6.4-stable.4
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -3890,7 +3890,7 @@ boot();
 /* ===== patches/stat-discovery.v1.js@main ===== */
 (() => {
   "use strict";
-  const VERSION = "stat-discovery-1.2";
+  const VERSION = "stat-discovery-1.3";
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const norm = s => String(s||"").replace(/\s+/g," ").trim();
@@ -3898,17 +3898,48 @@ boot();
 
   function status(msg){ const el=$("#ptc-status"); if(el) el.textContent=msg; }
   function visible(el){ const r=el?.getBoundingClientRect?.(); return !!r && r.width>0 && r.height>0; }
-  function statSection(){
-    return $$("body *").find(el=>visible(el) && /^STAT FILTERS$/i.test(norm(el.textContent)))?.parentElement || null;
+  function addStatInput(){
+    return $("input").find(el =>
+      visible(el) &&
+      /add stat filter/i.test(String(el.placeholder || ""))
+    ) || null;
   }
-  function addStatButton(){
-    const section=statSection();
-    if(!section) return null;
-    return $$("button,div").find(el=>visible(el) && /ADD STAT FILTER/i.test(norm(el.textContent)) && section.contains(el)) || null;
+  function statSection(){
+    const direct=addStatInput();
+    if(direct){
+      return direct.closest(".filter-group") ||
+             direct.closest(".filter-group-body") ||
+             direct.parentElement?.parentElement?.parentElement ||
+             direct.parentElement ||
+             null;
+    }
+    const heading=$("body *").find(el=>visible(el) && /^STAT FILTERS$/i.test(norm(el.textContent)));
+    if(!heading) return null;
+    let node=heading.parentElement;
+    for(let i=0;node&&node!==document.body&&i<8;i++,node=node.parentElement){
+      const text=norm(node.innerText||node.textContent||"");
+      if(text.includes("STAT FILTERS") && text.includes("ADD STAT FILTER")) return node;
+    }
+    return heading.parentElement||null;
+  }
+  function addStatControl(){
+    const direct=addStatInput();
+    if(direct) return direct;
+    const section=statSection() || document;
+    return $("input,button,[role='button'],div,span").find(el =>
+      visible(el) &&
+      !el.closest("#ptc") &&
+      /ADD STAT FILTER/i.test(norm(el.placeholder || el.innerText || el.textContent || "")) &&
+      section.contains(el)
+    ) || null;
   }
   function activeSearchInput(){
-    return $$("input").find(el=>visible(el) && /search/i.test(String(el.placeholder||""))) ||
-           $$("input").find(el=>visible(el) && el.closest?.(".multiselect,.search-select,.filter-select"));
+    const direct=addStatInput();
+    if(direct) return direct;
+    const active=document.activeElement;
+    if(active && active.tagName==="INPUT" && visible(active) && !active.closest("#ptc")) return active;
+    return $("input").find(el=>visible(el) && !el.closest("#ptc") && /search|stat/i.test(String(el.placeholder||""))) ||
+           $("input").find(el=>visible(el) && !el.closest("#ptc") && el.closest?.(".multiselect,.search-select,.filter-select"));
   }
   function labelOf(v){
     if(v==null) return "";
@@ -3977,19 +4008,30 @@ boot();
     }
     return out.slice(0,100);
   }
-  async function discover(query){
-    const btn=addStatButton();
-    if(!btn) return {ok:false,reason:"add_stat_filter_not_found",query};
-    btn.click(); await sleep(250);
-    const input=activeSearchInput();
-    if(!input) return {ok:false,reason:"stat_search_input_not_found",query};
+  function setInputValue(input,value){
+    const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value")?.set;
     input.focus();
-    input.value=query;
+    if(setter) setter.call(input,String(value)); else input.value=String(value);
     input.dispatchEvent(new Event("input",{bubbles:true}));
     input.dispatchEvent(new Event("change",{bubbles:true}));
-    await sleep(500);
+    input.dispatchEvent(new KeyboardEvent("keyup",{bubbles:true,key:"g"}));
+  }
+  async function discover(query){
+    const control=addStatControl();
+    if(!control) return {ok:false,reason:"add_stat_filter_not_found",query};
+    try{ control.click(); }catch{}
+    await sleep(250);
+    const input=activeSearchInput();
+    if(!input) return {ok:false,reason:"stat_search_input_not_found",query};
+    setInputValue(input,query);
+    await sleep(700);
     const options=optionDetails();
-    return {ok:true,query,options};
+    return {
+      ok:true,
+      query,
+      inputPlaceholder:String(input.placeholder||""),
+      options
+    };
   }
   async function copyText(text){
     try{ await navigator.clipboard.writeText(text); return true; }catch{}
