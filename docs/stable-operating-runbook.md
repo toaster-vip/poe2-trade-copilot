@@ -66,3 +66,13 @@ Do not discard build-critical sustain/defence constraints merely to increase DPS
 For the current Ice Shot Deadeye build, survival is explicitly prioritized. For gloves, Evasion-to-Deflection is build-critical and should not be traded away casually for attack speed.
 
 The AI must always compare candidate gear against the latest uploaded build, not stale historical gear.
+
+
+## Affix-capacity rule
+
+Before searching a replacement rare item, map the current item's ordinary prefixes and suffixes.
+
+- A rare item cannot be treated as if it can carry unlimited normal modifiers.
+- If the current item already occupies 3 prefixes and 3 suffixes, do not add another ordinary affix to the search unless one existing affix is intentionally being replaced.
+- Rune, Bonded, Corruption, implicit and other non-standard modifiers must be treated separately from ordinary prefix/suffix capacity.
+- For a full 3P+3S item, first search the same affix architecture with broader numeric thresholds, then rank actual listings by total build impact.
