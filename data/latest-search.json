@@ -43,11 +43,13 @@
         },
         {
           "id": "explicit.stat_3032590688",
-          "text": "Adds # to # Physical Damage to Attacks"
+          "text": "Adds # to # Physical Damage to Attacks",
+          "min": 18
         },
         {
           "id": "explicit.stat_4067062424",
-          "text": "Adds # to # Cold damage to Attacks"
+          "text": "Adds # to # Cold damage to Attacks",
+          "min": 25
         }
       ]
     }
