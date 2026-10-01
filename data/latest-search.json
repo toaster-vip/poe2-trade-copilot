@@ -29,8 +29,19 @@
         {
           "id": "explicit.stat_3299347043",
           "text": "# to maximum Life",
-          "min": 100
+          "min": 83
         },
+        {
+          "id": "pseudo.pseudo_total_lightning_resistance",
+          "text": "+#% total to Lightning Resistance",
+          "min": 22
+        }
+      ]
+    },
+    {
+      "type": "count",
+      "min": 3,
+      "filters": [
         {
           "id": "explicit.stat_3032590688",
           "text": "Adds # to # Physical Damage to Attacks"
@@ -39,17 +50,6 @@
           "id": "explicit.stat_4067062424",
           "text": "Adds # to # Cold damage to Attacks"
         },
-        {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 25
-        }
-      ]
-    },
-    {
-      "type": "count",
-      "min": 1,
-      "filters": [
         {
           "text": "#% increased Attack Speed"
         },
