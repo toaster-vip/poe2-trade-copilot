@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.5";
+  const VERSION = "github-load-run-1.6";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -70,6 +70,14 @@
           packet,
           note:"Packet loaded; runtime verification pending"
         };
+
+        if (packet?.discoverStat) {
+          const discover = window.__POE2TC_DISCOVER_STAT_FROM_PACKET;
+          if (typeof discover !== "function") throw new Error("Stat discovery module is not ready");
+          status(`Loaded discovery packet · ${packet.discoverStat} · running…`);
+          await discover(String(packet.discoverStat));
+          return;
+        }
 
         const runtime={
           directApi:runButton.dataset.directApiBridge||"",
