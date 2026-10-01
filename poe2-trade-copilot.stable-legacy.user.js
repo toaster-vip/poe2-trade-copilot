@@ -1,16 +1,18 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.1
-// @description  Frozen known-good PoE2 Trade Copilot snapshot with minimize button and GitHub Load+Run
+// @version      0.6.4-stable.2
+// @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
+// @updateURL    https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/poe2-trade-copilot.stable-legacy.user.js
+// @downloadURL  https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/poe2-trade-copilot.stable-legacy.user.js
 // @grant        none
 // ==/UserScript==
 
 
 
-/* ===== poe2-trade-copilot.user.js@ca6788b3cb74 ===== */
+/* ===== poe2-trade-copilot.user.js@ca6788b3cb741a844f1794737480df9d907eee44 ===== */
 (() => {
 "use strict";
 
@@ -566,8 +568,7 @@ boot();
 })();
 
 
-
-/* ===== patches/pre-run-reset.v1.js@3065962f4044 ===== */
+/* ===== patches/pre-run-reset.v1.js@main ===== */
 (() => {
   "use strict";
 
@@ -666,8 +667,7 @@ boot();
 })();
 
 
-
-/* ===== patches/packet-guard.v1.js@3065962f4044 ===== */
+/* ===== patches/packet-guard.v1.js@main ===== */
 (() => {
   "use strict";
 
@@ -764,8 +764,7 @@ boot();
 })();
 
 
-
-/* ===== patches/result-collector.v1.js@3065962f4044 ===== */
+/* ===== patches/result-collector.v1.js@main ===== */
 (() => {
   "use strict";
 
@@ -1290,12 +1289,11 @@ boot();
 })();
 
 
-
-/* ===== patches/search-source.v1.js@3065962f4044 ===== */
+/* ===== patches/search-source.v1.js@main ===== */
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.19";
+  const PATCH_VERSION = "search-source-1.20";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -1644,7 +1642,7 @@ boot();
 
 
   const OFFICIAL_STATS_URL = "/api/trade2/data/stats";
-  const DIRECT_API_VERSION = "direct-api-1.2";
+  const DIRECT_API_VERSION = "direct-api-1.3";
 
   function directLeague(packet){
     const explicit=packet?.apiSearch?.league;
@@ -1684,9 +1682,20 @@ boot();
       const allowed=new Set(["and","count","not","if","weight","weight2"]);
       if(!allowed.has(type)) throw new Error(`unsupported stat group type: ${type}`);
       const filters=(Array.isArray(group?.filters)?group.filters:[]).map((filter,filterIndex)=>{
-        const id=String(filter?.id||"");
-        if(!id) throw new Error(`statGroups[${groupIndex}].filters[${filterIndex}] missing id`);
-        const live=index.get(id);
+        let id=String(filter?.id||"");
+        let live=id?index.get(id):null;
+        if(!id){
+          const wanted=norm(filter?.text||"");
+          if(!wanted) throw new Error(`statGroups[${groupIndex}].filters[${filterIndex}] missing id/text`);
+          const matches=[...index.entries()].filter(([,entry])=>norm(entry?.text)===wanted);
+          const explicit=matches.filter(([candidateId])=>String(candidateId).startsWith("explicit.stat_"));
+          const chosen=explicit.length===1?explicit:(matches.length===1?matches:[]);
+          if(chosen.length!==1){
+            throw new Error(`official stat text did not resolve uniquely: ${filter.text} · explicit=${explicit.map(([candidateId])=>candidateId).join(",")} · matches=${matches.map(([candidateId])=>candidateId).join(",")}`);
+          }
+          id=String(chosen[0][0]);
+          live=chosen[0][1];
+        }
         if(!live) throw new Error(`official stat id no longer exists: ${id}`);
         if(filter?.text && norm(live.text)!==norm(filter.text)){
           throw new Error(`official stat text mismatch for ${id}: expected "${filter.text}", got "${live.text}"`);
@@ -1978,8 +1987,7 @@ boot();
 })();
 
 
-
-/* ===== patches/stat-groups.v1.js@3065962f4044 ===== */
+/* ===== patches/stat-groups.v1.js@main ===== */
 (() => {
   "use strict";
 
@@ -2738,12 +2746,11 @@ boot();
 })();
 
 
-
-/* ===== patches/github-load-run.v1.js@3065962f4044 ===== */
+/* ===== patches/github-load-run.v1.js@main ===== */
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.3";
+  const VERSION = "github-load-run-1.5";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -2800,10 +2807,45 @@ boot();
       if (button.dataset.running === "1") return;
       button.dataset.running = "1";
       button.disabled = true;
+      let packet = null;
       try {
         const loader = window.__POE2TC_LOAD_SEARCH_FROM_GITHUB;
         if (typeof loader !== "function") throw new Error("GitHub loader is not ready");
-        const packet = await loader();
+        packet = await loader();
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          note:"Packet loaded; runtime verification pending"
+        };
+
+        const runtime={
+          directApi:runButton.dataset.directApiBridge||"",
+          statBridge:runButton.dataset.statBridge||"",
+          runWrapper:runButton.dataset.runWrapper||""
+        };
+        const expected={
+          directApi:"direct-api-1.3",
+          statBridge:"search-source-1.20",
+          runWrapper:"run-wrapper-3.1"
+        };
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          runtime,
+          expected,
+          note:"Packet loaded; checking runtime versions"
+        };
+        const stale=Object.keys(expected).filter(key=>runtime[key]!==expected[key]);
+        if(stale.length){
+          throw new Error("runtime patches are stale ("+
+            stale.map(key=>key+"="+(runtime[key]||"missing")+" expected "+expected[key]).join(", ")+
+            "). Reload the Trade page once.");
+        }
+
         await refreshGroupedStatModuleIfNeeded(packet);
         const fields = Array.isArray(packet?.fields) ? packet.fields : [];
         const summary = fields.map(x => {
@@ -2815,6 +2857,16 @@ boot();
         runButton.click();
       } catch (error) {
         console.error("[PoE2TC GitHub Load+Run]", error);
+        if (!packet) {
+          try { packet = JSON.parse($("#ptc-box")?.value || "null"); } catch {}
+        }
+        window.__POE2TC_LAST_DEBUG = {
+          ok:false,
+          stage:"github-load-run",
+          version:VERSION,
+          packet,
+          error:String(error?.message || error)
+        };
         status(`GitHub search load failed: ${error.message}`);
       } finally {
         button.dataset.running = "0";
@@ -2830,12 +2882,11 @@ boot();
 
 
 
-
-/* ===== patches/run-wrapper.v1.js@3065962f4044 ===== */
+/* ===== patches/run-wrapper.v1.js@main ===== */
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "run-wrapper-3.0";
+  const PATCH_VERSION = "run-wrapper-3.1";
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const norm = s => String(s || "").replace(/\u00a0/g," ").replace(/\s+/g," ").trim().toLowerCase();
   const visible = el => {
@@ -3748,8 +3799,7 @@ boot();
 })();
 
 
-
-/* ===== patches/panel-minimize.v1.js@3065962f4044 ===== */
+/* ===== patches/panel-minimize.v1.js@main ===== */
 (() => {
   "use strict";
 
@@ -3837,8 +3887,7 @@ boot();
 })();
 
 
-
-/* ===== patches/stat-discovery.v1.js@3065962f4044 ===== */
+/* ===== patches/stat-discovery.v1.js@main ===== */
 (() => {
   "use strict";
   const VERSION = "stat-discovery-1.1";
@@ -3962,4 +4011,3 @@ boot();
   }
   install();
 })();
-
