@@ -52,6 +52,22 @@
           "min": 25
         }
       ]
+    },
+    {
+      "type": "count",
+      "min": 1,
+      "filters": [
+        {
+          "text": "#% increased Attack Speed"
+        },
+        {
+          "text": "#% increased Skill Speed"
+        },
+        {
+          "id": "explicit.stat_3556824919",
+          "text": "#% increased Critical Damage Bonus"
+        }
+      ]
     }
   ],
   "search": true
