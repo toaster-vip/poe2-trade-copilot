@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.7";
+  const VERSION = "github-load-run-1.8";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -86,7 +86,7 @@
         };
         const expected={
           directApi:"direct-api-1.3",
-          statBridge:"search-source-1.20",
+          statBridge:"search-source-1.21",
           runWrapper:"run-wrapper-3.2"
         };
         window.__POE2TC_LAST_DEBUG = {
@@ -106,6 +106,24 @@
         }
 
         await refreshGroupedStatModuleIfNeeded(packet);
+
+        if (packet?.apiSearch) {
+          const direct = window.__POE2TC_RUN_DIRECT_API_PACKET;
+          if (typeof direct !== "function") throw new Error("Direct API runner is not ready");
+          status("Loaded direct API packet · running…");
+          window.__POE2TC_LAST_DEBUG = {
+            ok:false,
+            stage:"github-load-run",
+            version:VERSION,
+            packet,
+            runtime,
+            expected,
+            note:"Direct API handoff started"
+          };
+          await direct(packet);
+          return;
+        }
+
         const fields = Array.isArray(packet?.fields) ? packet.fields : [];
         const summary = fields.map(x => {
           const range = [x.min != null ? `>=${x.min}` : "", x.max != null ? `<=${x.max}` : ""].filter(Boolean).join(" ");
