@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.20";
+  const PATCH_VERSION = "search-source-1.21";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
@@ -689,6 +689,7 @@
     installDirectApiBridge(runButton,box);
     installStatBridge(runButton,box);
     window.__POE2TC_LOAD_SEARCH_FROM_GITHUB=loadFromGitHub;
+    window.__POE2TC_RUN_DIRECT_API_PACKET=runDirectApiPacket;
     console.log(`[PoE2TC Search Source] ${PATCH_VERSION} installed`);
   }
   install();
