@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.9
+// @version      0.6.5
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
