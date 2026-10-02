@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PoE2 Trade Copilot Stable Legacy
 // @namespace    chatgpt-poe2-trade
-// @version      0.6.4-stable.7
+// @version      0.6.4-stable.8
 // @description  Stable self-contained PoE2 Trade Copilot with GitHub Load+Run
 // @match        https://www.pathofexile.com/trade2/search/poe2/*
 // @match        https://pathofexile.com/trade2/search/poe2/*
@@ -1293,11 +1293,11 @@ boot();
 (() => {
   "use strict";
 
-  const PATCH_VERSION = "search-source-1.20";
+  const PATCH_VERSION = "search-source-1.21";
   const API_SOURCE = "https://api.github.com/repos/toaster-vip/poe2-trade-copilot/contents/data/latest-search.json?ref=main";
   const RAW_FALLBACK = "https://raw.githubusercontent.com/toaster-vip/poe2-trade-copilot/main/data/latest-search.json";
   const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
+  const $ = (s, r = document) => r ? [...r.querySelectorAll(s)] : [];
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   const norm = s => String(s || "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
 
@@ -1485,10 +1485,10 @@ boot();
   }
   function allRows() {
     const section=statSection() || ($(".search-advanced-pane")||document);
-    return $$(".filter",section);
+    return $(".filter",section);
   }
   function minMax(row) {
-    const inputs=$$('input',row).filter(x=>x!==$("input[placeholder='+ Add Stat Filter']",row));
+    const inputs=$('input',row).filter(x=>x!==$("input[placeholder='+ Add Stat Filter']",row));
     return {
       min:inputs.find(x=>norm(x.placeholder)==="min")||null,
       max:inputs.find(x=>norm(x.placeholder)==="max")||null
@@ -1553,7 +1553,7 @@ boot();
       }
     }
 
-    const domOptions=$$(".multiselect__option, [role='option']").filter(visible);
+    const domOptions=$(".multiselect__option, [role='option']").filter(visible);
     const picked=bestOption(domOptions,spec.text,x=>String(x.innerText||x.textContent||"").trim());
     if(!picked) return {ok:false,reason:"stat_option_not_found",options:domOptions.slice(0,20).map(x=>(x.innerText||x.textContent||"").trim())};
     const option=picked.option;
@@ -1602,7 +1602,7 @@ boot();
 
   function propertyRows(){
     const pane=$(".search-advanced-pane")||document;
-    return $$(".filter.filter-property",pane).filter(visible);
+    return $(".filter.filter-property",pane).filter(visible);
   }
   function selectedValue(label){
     const wanted=norm(label);
@@ -1619,7 +1619,7 @@ boot();
     return propertyRows().find(r=>{const text=norm(r.innerText||r.textContent||"");return text===wanted||text.startsWith(wanted+" ")||text.includes(wanted);})||null;
   }
   function propertyMinMax(row){
-    const inputs=$$('input',row).filter(visible);
+    const inputs=$('input',row).filter(visible);
     return {min:inputs.find(x=>norm(x.placeholder)==="min")||null,max:inputs.find(x=>norm(x.placeholder)==="max")||null};
   }
   function propertyValueMatches(spec){
@@ -1981,6 +1981,7 @@ boot();
     installDirectApiBridge(runButton,box);
     installStatBridge(runButton,box);
     window.__POE2TC_LOAD_SEARCH_FROM_GITHUB=loadFromGitHub;
+    window.__POE2TC_RUN_DIRECT_API_PACKET=runDirectApiPacket;
     console.log(`[PoE2TC Search Source] ${PATCH_VERSION} installed`);
   }
   install();
@@ -2750,7 +2751,7 @@ boot();
 (() => {
   "use strict";
 
-  const VERSION = "github-load-run-1.7";
+  const VERSION = "github-load-run-1.8";
   const $ = (s, r = document) => r.querySelector(s);
 
   function status(text) {
@@ -2835,7 +2836,7 @@ boot();
         };
         const expected={
           directApi:"direct-api-1.3",
-          statBridge:"search-source-1.20",
+          statBridge:"search-source-1.21",
           runWrapper:"run-wrapper-3.2"
         };
         window.__POE2TC_LAST_DEBUG = {
@@ -2855,6 +2856,24 @@ boot();
         }
 
         await refreshGroupedStatModuleIfNeeded(packet);
+
+        if (packet?.apiSearch) {
+          const direct = window.__POE2TC_RUN_DIRECT_API_PACKET;
+          if (typeof direct !== "function") throw new Error("Direct API runner is not ready");
+          status("Loaded direct API packet · running…");
+          window.__POE2TC_LAST_DEBUG = {
+            ok:false,
+            stage:"github-load-run",
+            version:VERSION,
+            packet,
+            runtime,
+            expected,
+            note:"Direct API handoff started"
+          };
+          await direct(packet);
+          return;
+        }
+
         const fields = Array.isArray(packet?.fields) ? packet.fields : [];
         const summary = fields.map(x => {
           const range = [x.min != null ? `>=${x.min}` : "", x.max != null ? `<=${x.max}` : ""].filter(Boolean).join(" ");
