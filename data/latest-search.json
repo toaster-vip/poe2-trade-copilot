@@ -1,72 +1,9 @@
 {
   "protocol": "poe2-trade-copilot/search-v5",
   "clear": true,
-  "selects": [
-    {
-      "label": "Item Category",
-      "value": "Ring"
-    },
-    {
-      "label": "Item Rarity",
-      "value": "Rare"
-    },
-    {
-      "label": "Buyout Price",
-      "value": "Divine Orb"
-    }
-  ],
-  "fields": [
-    {
-      "label": "Buyout Price",
-      "max": 3000
-    }
-  ],
-  "stats": [],
-  "statGroups": [
-    {
-      "type": "and",
-      "filters": [
-        {
-          "id": "explicit.stat_3299347043",
-          "text": "# to maximum Life",
-          "min": 83
-        },
-        {
-          "id": "pseudo.pseudo_total_lightning_resistance",
-          "text": "+#% total to Lightning Resistance",
-          "min": 22
-        },
-        {
-          "id": "pseudo.pseudo_total_cold_resistance",
-          "text": "+#% total to Cold Resistance",
-          "min": 2
-        },
-        {
-          "id": "explicit.stat_3032590688",
-          "text": "Adds # to # Physical Damage to Attacks"
-        },
-        {
-          "id": "explicit.stat_4067062424",
-          "text": "Adds # to # Cold damage to Attacks"
-        }
-      ]
-    },
-    {
-      "type": "weight",
-      "min": 63.5,
-      "filters": [
-        {
-          "id": "explicit.stat_3032590688",
-          "text": "Adds # to # Physical Damage to Attacks",
-          "weight": 1
-        },
-        {
-          "id": "explicit.stat_4067062424",
-          "text": "Adds # to # Cold damage to Attacks",
-          "weight": 1
-        }
-      ]
-    }
-  ],
+  "apiSearch": {
+    "name": "Garukhan's Resolve",
+    "status": "securable"
+  },
   "search": true
 }
